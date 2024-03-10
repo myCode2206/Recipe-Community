@@ -14,7 +14,7 @@ function MyNav() {
         <Navbar
           key={expand}
           expand={expand}
-          style={{ backgroundColor: "#ffca3a" }}
+          style={{ backgroundColor: "#ffee32" }}
           className="mb-3"
         >
           <Container fluid>
@@ -52,7 +52,7 @@ function MyNav() {
                   </NavDropdown> */}
                 </Nav>
                 <button
-                  style={{ backgroundColor: "#ca6702", color: "black" }}
+                  style={{ backgroundColor: "#ffd449", color: "black" }}
                   className="d-flex btn btn-success"
                 >
                   <Nav.Link href="/login">Log In</Nav.Link>

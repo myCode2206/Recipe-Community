@@ -5,6 +5,7 @@ const Herotitle = () => {
     <h1
       style={{
         textAlign: "center",
+        margin: "33px",
       }}
     >
       Easy & Delicious Recipes:{" "}

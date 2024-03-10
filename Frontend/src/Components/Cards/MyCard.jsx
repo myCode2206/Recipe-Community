@@ -1,16 +1,22 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-function MyCard() {
+function MyCard(props) {
   return (
     <Card
       style={{
         width: "18rem",
         textAlign: "center",
         border: "1px solid #ffba08",
+        margin: "10px",
+        borderRadius: "6px",
       }}
     >
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img
+        variant="top"
+        src={props.img}
+        style={{ width: "100%", height: "50%" }}
+      />
       <Card.Body>
         <Card.Title>Card Title</Card.Title>
         <Card.Text>
@@ -19,12 +25,12 @@ function MyCard() {
         </Card.Text>
         <Button
           style={{
-            backgroundColor: "#ffba08",
+            backgroundColor: "#ffee32",
             color: "black",
           }}
           variant="primary"
         >
-          Go somewhere
+          Read More
         </Button>
       </Card.Body>
     </Card>

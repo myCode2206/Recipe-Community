@@ -2,6 +2,7 @@ import React from "react";
 import MyNav from "../Navbar/MyNav";
 import Footer from "../footer/Footer";
 import MyCard from "../Cards/MyCard";
+import SearchForm from "../Search Bar/SearchForm";
 
 const Recipe = () => {
   //data fetch from api to get the content of cards
@@ -11,24 +12,21 @@ const Recipe = () => {
     justifyContent: "space-around",
     flexWrap: "wrap",
   };
-  const serchbox = {
-    border: "2px solid #606c38",
-    borderRadius: "20px",
-    fontSize: "34px",
-  };
 
   return (
     <>
       <MyNav />
-      <div style={{ textAlign: "center" }}>
-        <input
-          style={serchbox}
-          type="text"
-          name=""
-          id=""
-          placeholder="Search Recipe"
-        />
+      <div
+        style={{
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "center",
+          margin: "20px",
+        }}
+      >
+        <SearchForm />
       </div>
+
       <div style={flexbox}>
         <MyCard />
         <MyCard />

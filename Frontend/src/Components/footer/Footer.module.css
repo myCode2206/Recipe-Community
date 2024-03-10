@@ -16,7 +16,7 @@ ul {
 }
 
 .footer {
-  background-color: #ffba08;
+  background-color: #ffee32;
   padding: 60px 0;
 }
 
@@ -39,7 +39,7 @@ ul {
   position: absolute;
   left: 0;
   bottom: -10px;
-  background-color: #fefae0;
+  background-color: black;
   height: 2px;
   box-sizing: border-box;
   width: 50px;
@@ -60,7 +60,7 @@ ul {
 }
 
 .footerCol ul li a:hover {
-  color: white;
+  color: #a70b0b;
   padding-left: 8px;
 }
 
