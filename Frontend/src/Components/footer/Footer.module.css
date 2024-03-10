@@ -16,7 +16,7 @@ ul {
 }
 
 .footer {
-  background-color: #606c38;
+  background-color: #ffba08;
   padding: 60px 0;
 }
 
@@ -26,8 +26,8 @@ ul {
 }
 
 .footerCol h4 {
-  font-size: 18px;
-  color: #212529;
+  font-size: 20px;
+  color: black;
   text-transform: capitalize;
   margin-bottom: 35px;
   font-weight: 500;
@@ -50,7 +50,7 @@ ul {
 }
 
 .footerCol ul li a {
-  font-size: 16px;
+  font-size: 18px;
   text-transform: capitalize;
   color: black;
   text-decoration: none;
@@ -60,7 +60,7 @@ ul {
 }
 
 .footerCol ul li a:hover {
-  color: #adb5bd;
+  color: white;
   padding-left: 8px;
 }
 
@@ -78,7 +78,7 @@ ul {
 }
 
 .footerCol .socialLinks a:hover {
-  color: grey;
+  color: white;
   background-color: black;
 }
 

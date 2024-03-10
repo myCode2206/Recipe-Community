@@ -11,7 +11,12 @@ function MyNav() {
   return (
     <>
       {["md"].map((expand) => (
-        <Navbar key={expand} expand={expand} className="bg-body-tertiary mb-3">
+        <Navbar
+          key={expand}
+          expand={expand}
+          style={{ backgroundColor: "#ffba08" }}
+          className="mb-3"
+        >
           <Container fluid>
             <Navbar.Brand href="#">Reciepe</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -30,10 +35,10 @@ function MyNav() {
                   className="justify-content-center flex-grow-1 pe-3 align-content-center"
                   style={{}}
                 >
-                  <Nav.Link href="#action1">Home</Nav.Link>
-                  <Nav.Link href="#action2">About</Nav.Link>
-                  <Nav.Link href="#action2">Recipe</Nav.Link>
-                  <Nav.Link href="#action2">Contact Us</Nav.Link>
+                  <Nav.Link href="/home">Home</Nav.Link>
+                  <Nav.Link href="/about">About</Nav.Link>
+                  <Nav.Link href="/recipe">Recipe</Nav.Link>
+                  <Nav.Link href="/contactus">Contact Us</Nav.Link>
                   {/* <NavDropdown
                     title="User"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -46,7 +51,12 @@ function MyNav() {
                     <NavDropdown.Item href="#action5">Sign In</NavDropdown.Item>
                   </NavDropdown> */}
                 </Nav>
-                <button class="d-flex btn btn-success">Sign Up</button>
+                <button
+                  style={{ backgroundColor: "#ffba08", color: "black" }}
+                  className="d-flex btn btn-success"
+                >
+                  <Nav.Link href="/login">Sign Up</Nav.Link>
+                </button>
                 {/* <Form className="d-flex">
                   <Form.Control
                     type="search"
