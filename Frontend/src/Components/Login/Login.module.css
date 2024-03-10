@@ -14,7 +14,7 @@ a {
 
 /* to cover full image in background */
 html {
-    background: url('D:\MiniProject2\Frontend\src\Images\login.jpg') no-repeat center center fixed;
+    background: url('https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -73,7 +73,7 @@ html {
     position: relative;
     font-size: 27px;
     font-weight: 600;
-    color: #849f44;
+    color: #ffca3a;
 }
 
 .form .title::before {
@@ -83,19 +83,19 @@ html {
     bottom: 0;
     height: 3px;
     width: 30px;
-    background-color: #606c38;
+    background-color: #ffca3a;
     /* background-color: black; */
     border-radius: 25px;
 }
 
-.form .input-field {
+.form .inputField {
     position: relative;
     height: 50px;
     width: 100%;
     margin-top: 30px;
 }
 
-.input-field input {
+.inputField input {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -109,11 +109,11 @@ html {
     transition: all 0.2s ease;
 }
 
-.input-field input:is(:focus, :valid) {
-    border-bottom-color: #606c38;
+.inputField input:is(:focus, :valid) {
+    border-bottom-color: #ffca3a;
 }
 
-.input-field i {
+.inputField i {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -122,28 +122,28 @@ html {
     transition: all 0.2s ease;
 }
 
-.input-field input:is(:focus, :valid)~i {
-    color: #606c38;
+.inputField input:is(:focus, :valid)~i {
+    color: #ffca3a;
 }
 
-.input-field i.icon {
+.inputField i.icon {
     left: 0;
 }
 
-.input-field i.showHidePw {
+.inputField i.showHidePw {
     right: 0;
     cursor: pointer;
     padding: 10px;
 }
 
-.form .checkbox-text {
+.form .checkboxText {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-top: 20px;
 }
 
-.checkbox-text .checkbox-content {
+.checkbox-text .checkboxContent {
     display: flex;
     align-items: center;
 }
@@ -159,7 +159,7 @@ html {
 }
 
 .form a.text {
-    color: #849f44;
+    color: #ffca3a;
     text-decoration: none;
 }
 
@@ -171,22 +171,22 @@ html {
     height: 100%;
     width: 100%;
     border: none;
-    color: #ffffff;
+    color: black;
     ;
     font-size: 17px;
     font-weight: 500;
     letter-spacing: 1px;
     border-radius: 6px;
-    background-color: #606c38;
+    background-color: #ffca3a;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #606c38;
+    background-color: #ffd60a;
 }
 
-.form .login-signup {
+.form .loginSignup {
     margin-top: 30px;
     text-align: center;
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Login.module.css";
+import styles from "./Login.module.css";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,13 +42,13 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <div className="forms">
+    <div className={styles.container}>
+      <div className={styles.forms}>
         {isLogin ? (
-          <div className="form login">
-            <span className="title">Login</span>
+          <div className={styles.form}>
+            <span className={styles.title}>Login</span>
             <form onSubmit={handleSubmit}>
-              <div className="input-field">
+              <div className={styles.inputField}>
                 <input
                   id="inp-email"
                   type="text"
@@ -60,11 +60,11 @@ const Login = () => {
                 />
                 <i className="uil uil-envelope icon"></i>
               </div>
-              <div className="input-field">
+              <div className={styles.inputField}>
                 <input
                   type={showPassword ? "text" : "password"}
                   id="inp-pass"
-                  className="password"
+                  className={styles.password}
                   placeholder="Enter your password"
                   name="password"
                   value={formData.password}
@@ -73,41 +73,39 @@ const Login = () => {
                 />
                 <i className="uil uil-lock icon"></i>
                 <i
-                  className={`uil ${
-                    showPassword ? "uil-eye" : "uil-eye-slash"
-                  } showHidePw`}
+                  className={`uil ${showPassword ? "uil-eye" : "uil-eye-slash"} ${styles.showHidePw}`}
                   onClick={togglePasswordVisibility}
                 ></i>
               </div>
-              <div className="checkbox-text">
-                <div className="checkbox-content">
+              <div className={styles.checkboxText}>
+                <div className={styles.checkboxContent}>
                   <input type="checkbox" id="logCheck" />
-                  <label htmlFor="logCheck" className="text">
+                  <label htmlFor="logCheck" className={styles.text}>
                     Remember me
                   </label>
                 </div>
-                <a href="#" className="text">
+                <a href="#" className={styles.text}>
                   Forgot password?
                 </a>
               </div>
-              <div className="input-field button">
+              <div className={styles.inputField}>
                 <button type="submit">Login</button>
               </div>
             </form>
-            <div className="login-signup">
-              <span className="text">
+            <div className={styles.loginSignup}>
+              <span className={styles.text}>
                 Not a member?{" "}
-                <a className="text signup-link" onClick={handleFormSwitch}>
+                <a className={styles.text} onClick={handleFormSwitch}>
                   Signup Now
                 </a>
               </span>
             </div>
           </div>
         ) : (
-          <div className="form signup">
-            <span className="title">SignUp</span>
+          <div className={styles.form}>
+            <span className={styles.title}>SignUp</span>
             <form onSubmit={handleSubmit}>
-              <div className="input-field">
+              <div className={styles.inputField}>
                 <input
                   type="text"
                   placeholder="Enter your name"
@@ -118,7 +116,7 @@ const Login = () => {
                 />
                 <i className="uil uil-user"></i>
               </div>
-              <div className="input-field">
+              <div className={styles.inputField}>
                 <input
                   type="text"
                   placeholder="Enter your email"
@@ -129,10 +127,10 @@ const Login = () => {
                 />
                 <i className="uil uil-envelope icon"></i>
               </div>
-              <div className="input-field">
+              <div className={styles.inputField}>
                 <input
                   type="password"
-                  className="password"
+                  className={styles.password}
                   placeholder="Create a password"
                   name="password"
                   value={formData.password}
@@ -141,22 +139,22 @@ const Login = () => {
                 />
                 <i className=" uil uil-lock icon"></i>
               </div>
-              <div className="checkbox-text">
-                <div className="checkbox-content">
+              <div className={styles.checkboxText}>
+                <div className={styles.checkboxContent}>
                   <input type="checkbox" id="termCon" />
-                  <label htmlFor="termCon" className="text">
+                  <label htmlFor="termCon" className={styles.text}>
                     I accepted all terms and conditions
                   </label>
                 </div>
               </div>
-              <div className="input-field button">
+              <div className={styles.inputField}>
                 <button type="submit">Signup</button>
               </div>
             </form>
-            <div className="login-signup">
-              <span className="text">
+            <div className={styles.loginSignup}>
+              <span className={styles.text}>
                 Already have an account?{" "}
-                <a className="text login-link" onClick={handleFormSwitch}>
+                <a className={styles.text} onClick={handleFormSwitch}>
                   Log In
                 </a>
               </span>
