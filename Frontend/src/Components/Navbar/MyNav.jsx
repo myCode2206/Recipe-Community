@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import {Link} from 'react-router-dom';
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 function MyNav() {
@@ -35,10 +36,10 @@ function MyNav() {
                   className="justify-content-center flex-grow-1 pe-3 align-content-center"
                   style={{}}
                 >
-                  <Nav.Link href="/">Home</Nav.Link>
-                  <Nav.Link href="/blogs">Blogs</Nav.Link>
-                  <Nav.Link href="/recipe">Recipe</Nav.Link>
-                  <Nav.Link href="/contactus">Contact Us</Nav.Link>
+                  <Link to="/" style={{textDecoration:"none", margin:"5px", color:"black"}}>Home</Link>
+                  <Link to="/blogs" style={{textDecoration:"none", margin:"5px", color:"black"}}>Blogs</Link>
+                  <Link to="/recipe" style={{textDecoration:"none", margin:"5px", color:"black"}}>Recipe</Link>
+                  <Link to="/contactus" style={{textDecoration:"none", margin:"5px", color:"black"}}>Contact Us</Link>
                   {/* <NavDropdown
                     title="User"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}
@@ -55,7 +56,7 @@ function MyNav() {
                   style={{ backgroundColor: "#ffd449", color: "black" }}
                   className="d-flex btn btn-success"
                 >
-                  <Nav.Link href="/login">Log In</Nav.Link>
+                  <Link to="/login" style={{textDecoration:"none", color:"black"}}>Log In</Link>
                 </button>
                 {/* <Form className="d-flex">
                   <Form.Control

@@ -21,8 +21,7 @@ html {
 }
 
 .main {
-  background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg")
-    no-repeat center center fixed;
+  background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg") no-repeat center center fixed;
   height: 100%;
   width: 100%;
 }
@@ -126,7 +125,7 @@ html {
   transition: all 0.2s ease;
 }
 
-.inputField input:is(:focus, :valid) ~ i {
+.inputField input:is(:focus, :valid)~i {
   color: #ffca3a;
 }
 
