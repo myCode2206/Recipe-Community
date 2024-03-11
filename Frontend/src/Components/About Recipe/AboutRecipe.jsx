@@ -7,12 +7,14 @@ import { LiaWeightSolid } from "react-icons/lia";
 const mystyle = {
   display: "flex",
   flexWrap: "wrap",
-  margin: "50px 0px",
+  margin: "50px 90px",
+  borderBottom: "3px solid #E5E7EB",
+  justifyContent: "space-evenly",
 };
 const AboutRecipe = () => {
   return (
-    <section className="container" style={mystyle}>
-      <div style={{ margin: "0 30px 0 80px" }}>
+    <section className="" style={mystyle}>
+      <div>
         <img
           src="https://images.pexels.com/photos/1191639/pexels-photo-1191639.jpeg?auto=compress&cs=tinysrgb&w=1080&dpr=1"
           alt=""
@@ -42,7 +44,12 @@ const AboutRecipe = () => {
           enjoyed as a breakfast treat or a snack, and they have become a
           beloved staple of many cuisines around the world.lorem23
         </p>
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+          }}
+        >
           <div
             style={{
               display: "flex",

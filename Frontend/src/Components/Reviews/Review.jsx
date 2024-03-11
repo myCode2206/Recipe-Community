@@ -10,6 +10,8 @@ const Review = () => {
         justifyContent: "space-around",
         marginTop: "100px",
         marginBottom: "100px",
+        borderTop: "3px solid #E5E7EB",
+        paddingTop: "40px",
       }}
     >
       <div>

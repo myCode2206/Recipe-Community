@@ -13,17 +13,12 @@ a {
 
 /* to cover full image in background */
 html {
-  /* background: url('https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg') no-repeat center center fixed; */
+  background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg")
+    no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
-
-.main {
-  background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg") no-repeat center center fixed;
-  height: 100%;
-  width: 100%;
 }
 
 .container {
@@ -125,7 +120,7 @@ html {
   transition: all 0.2s ease;
 }
 
-.inputField input:is(:focus, :valid)~i {
+.inputField input:is(:focus, :valid) ~ i {
   color: #ffca3a;
 }
 

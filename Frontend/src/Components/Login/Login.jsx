@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
+import MyNav from "../Navbar/MyNav";
+import Footer from "../footer/Footer";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -42,8 +44,9 @@ const Login = () => {
   };
 
   return (
-    <div className={styles.main}>
-      <div className={styles.container}>
+    <>
+      <MyNav />
+      <div className={styles.container} style={{ marginTop: "20px" }}>
         <div className={styles.forms}>
           {isLogin ? (
             <div className={styles.form}>
@@ -166,7 +169,7 @@ const Login = () => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

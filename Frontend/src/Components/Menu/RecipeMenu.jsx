@@ -14,7 +14,7 @@ const RecipeMenu = () => {
           style={{
             borderRight: "3px solid #E5E7EB",
             paddingRight: "20px",
-            width: "30%",
+            Width: "30%",
           }}
         >
           <h4 style={{ fontSize: "32px" }}>Ingredients</h4>
