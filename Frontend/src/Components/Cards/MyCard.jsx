@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 function MyCard(props) {
   return (
@@ -30,7 +31,12 @@ function MyCard(props) {
           }}
           variant="primary"
         >
-          Read More
+          <Link
+            style={{ textDecoration: "none", color: "black" }}
+            to="/showRecipe"
+          >
+            Read More
+          </Link>
         </Button>
       </Card.Body>
     </Card>

@@ -1,223 +1,218 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* to cover full image in background */
 html {
-    background: url('https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(53, 53, 53, 0.596);
-    width: 430px;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    padding: 30px 30px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(53, 53, 53, 0.596);
+  width: 430px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 30px 30px;
 }
 
 .container .forms {
-    display: flex;
-    align-items: center;
-    height: 440px;
-    width: 200%;
-    transition: height 0.2s ease;
-
+  display: flex;
+  align-items: center;
+  height: 440px;
+  width: 200%;
+  transition: height 0.2s ease;
 }
 
-
 .container .form {
-    width: 50%;
-    padding: 30px;
-    transition: margin-left 0.18s ease;
+  width: 50%;
+  padding: 30px;
+  transition: margin-left 0.18s ease;
 }
 
 .container.active .login {
-    margin-left: -50%;
-    opacity: 0;
-    transition: margin-left 0.18s ease, opacity 0.15s ease;
+  margin-left: -50%;
+  opacity: 0;
+  transition: margin-left 0.18s ease, opacity 0.15s ease;
 }
 
 .container .signup {
-    transition: opacity 0.09s ease;
+  transition: opacity 0.09s ease;
 }
 
 .container.active .signup {
-    opacity: 1;
-    transition: opacity 0.2s ease;
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 .container.active .forms {
-    height: 600px;
+  height: 600px;
 }
 
 .container .form .title {
-    position: relative;
-    font-size: 27px;
-    font-weight: 600;
-    color: #ffca3a;
+  position: relative;
+  font-size: 27px;
+  font-weight: 600;
+  color: #ffca3a;
 }
 
 .form .title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
-    width: 30px;
-    background-color: #ffca3a;
-    /* background-color: black; */
-    border-radius: 25px;
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background-color: #ffca3a;
+  /* background-color: black; */
+  border-radius: 25px;
 }
 
 .form .inputField {
-    position: relative;
-    height: 50px;
-    width: 100%;
-    margin-top: 30px;
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
 }
 
 .inputField input {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    padding: 0 35px;
-    border: none;
-    border-radius: 10px;
-    outline: none;
-    font-size: 16px;
-    border-bottom: 2px solid #ccc;
-    border-top: 2px solid transparent;
-    transition: all 0.2s ease;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 0 35px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  font-size: 16px;
+  border-bottom: 2px solid #ccc;
+  border-top: 2px solid transparent;
+  transition: all 0.2s ease;
 }
 
 .inputField input:is(:focus, :valid) {
-    border-bottom-color: #ffca3a;
+  border-bottom-color: #ffca3a;
 }
 
 .inputField i {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ffffff;
-    font-size: 23px;
-    transition: all 0.2s ease;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #ffffff;
+  font-size: 23px;
+  transition: all 0.2s ease;
 }
 
-.inputField input:is(:focus, :valid)~i {
-    color: #ffca3a;
+.inputField input:is(:focus, :valid) ~ i {
+  color: #ffca3a;
 }
 
 .inputField i.icon {
-    left: 0;
+  left: 0;
 }
 
 .inputField i.showHidePw {
-    right: 0;
-    cursor: pointer;
-    padding: 10px;
+  right: 0;
+  cursor: pointer;
+  padding: 10px;
 }
 
 .form .checkboxText {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .checkbox-text .checkboxContent {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .checkbox-content input {
-    margin-right: 10px;
-    accent-color: blue;
+  margin-right: 10px;
+  accent-color: blue;
 }
 
 .form .text {
-    color: #ffffff;
-    font-size: 14px;
+  color: #ffffff;
+  font-size: 14px;
 }
 
 .form a.text {
-    color: #ffca3a;
-    text-decoration: none;
+  color: #ffca3a;
+  text-decoration: none;
 }
 
 .form a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .form button {
-    height: 100%;
-    width: 100%;
-    border: none;
-    color: black;
-    ;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    border-radius: 6px;
-    background-color: #ffca3a;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  height: 100%;
+  width: 100%;
+  border: none;
+  color: black;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  background-color: #ffca3a;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #ffd60a;
+  background-color: #ffd60a;
 }
 
 .form .loginSignup {
-    margin-top: 30px;
-    text-align: center;
+  margin-top: 30px;
+  text-align: center;
 }
 
 .error {
-    border: 2px solid red;
-    animation: shake 0.1s linear 10;
+  border: 2px solid red;
+  animation: shake 0.1s linear 10;
 }
 
 @keyframes shake {
-    0% {
-        border-color: red;
-        transform: translate(0);
-    }
+  0% {
+    border-color: red;
+    transform: translate(0);
+  }
 
-    25% {
-        border-color: red;
-        transform: translate(-2px);
-    }
+  25% {
+    border-color: red;
+    transform: translate(-2px);
+  }
 
-    50% {
-        border-color: red;
-        transform: translate(0);
-    }
+  50% {
+    border-color: red;
+    transform: translate(0);
+  }
 
-    75% {
-        border-color: red;
-        transform: translate(2px);
-    }
+  75% {
+    border-color: red;
+    transform: translate(2px);
+  }
 
-    100% {
-        transform: translate(0);
-    }
+  100% {
+    transform: translate(0);
+  }
 }

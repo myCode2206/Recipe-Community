@@ -35,7 +35,7 @@ function MyNav() {
                   className="justify-content-center flex-grow-1 pe-3 align-content-center"
                   style={{}}
                 >
-                  <Nav.Link href="/home">Home</Nav.Link>
+                  <Nav.Link href="/">Home</Nav.Link>
                   <Nav.Link href="/about">About</Nav.Link>
                   <Nav.Link href="/recipe">Recipe</Nav.Link>
                   <Nav.Link href="/contactus">Contact Us</Nav.Link>
