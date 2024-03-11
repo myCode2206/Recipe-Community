@@ -16,6 +16,10 @@ const Recipe = () => {
   return (
     <>
       <MyNav />
+
+      <div style={{ textAlign: "center", marginTop: "30px" }}>
+        <h1>Discover Flavorful Creations</h1>
+      </div>
       <div
         style={{
           textAlign: "center",
