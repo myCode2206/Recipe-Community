@@ -5,6 +5,8 @@ import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
 import "./App.css";
 import ShowRecipe from "./Components/Show Recipe/ShowRecipe";
+import { MyBlogs } from "./Components/Blogs/MyBlogs";
+import { ShowBlogs } from "./Components/Show Blogs/ShowBlogs";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
           <Route path="/recipe" element={<Recipe />} />
           <Route path="/login" element={<Login />} />
           <Route path="/showRecipe" element={<ShowRecipe />} />
+          <Route path="/blogs" element={<MyBlogs/>} />
+          <Route path="/showBlogs" element={<ShowBlogs />} />
         </Routes>
       </Router>
     </>
