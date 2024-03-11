@@ -6,11 +6,15 @@ import Footer from "../footer/Footer";
 import BCard from "../Cards/BCard";
 
 export const MyBlogs = () => {
+
+
   const flexbox = {
     display: "flex",
     justifyContent: "space-around",
     flexWrap: "wrap",
   };
+
+  
   return (
     <>
       <MyNav />
@@ -28,6 +32,7 @@ export const MyBlogs = () => {
       >
         <SearchForm />
       </div>
+
 
       <div style={flexbox}>
         <BCard />
