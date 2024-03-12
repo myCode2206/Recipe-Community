@@ -1,5 +1,7 @@
 const mongoose=require('mongoose');
 const review=require('./recipereview')
+let arr=new Date().toDateString().split(" ");
+let date=arr[2]+" "+arr[1];
 
 const recipeSchema = new mongoose.Schema({
   
@@ -11,6 +13,10 @@ const recipeSchema = new mongoose.Schema({
       type:String,
       require:true
   },
+  body:{
+    type:String,
+    require:true
+  },
     author: {
       type:String,
       require:true
@@ -19,21 +25,25 @@ const recipeSchema = new mongoose.Schema({
       type:String,
       require:true
     },
-    Calories:{
+    calories:{
+      type:String,
+      required:true
+    },
+    Ingredients:{
       type:String,
       require:true
     },
-    Ingredients: {
+    Procedure:{
       type:String,
       require:true
     },
-    Instruction:{
+    usermail:{
       type:String,
       require:true
     },
     date: { 
-      type:Date, 
-      default:Date.now
+      type: String,
+      default:date
     },
     comment:{
       type:mongoose.Schema.Types.ObjectId,
@@ -45,7 +55,6 @@ const recipeSchema = new mongoose.Schema({
   const Recipe = mongoose.model("Recipe",recipeSchema);
 
 
-  module.exports={
-    Recipe
-  }
+  module.exports= Recipe
+
 

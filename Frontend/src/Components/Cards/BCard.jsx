@@ -15,14 +15,13 @@ function BCard(props) {
     >
       <Card.Img
         variant="top"
-        src={props.img}
+        src={props.blog.image}
         style={{ width: "100%", height: "50%" }}
       />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{props.blog.title}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {props.blog.body}
         </Card.Text>
         <Button
           style={{

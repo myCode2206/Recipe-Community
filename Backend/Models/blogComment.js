@@ -13,7 +13,5 @@ const commentSchema = new mongoose.Schema({
 
 const BlogComment = mongoose.model("BlogComment",commentSchema);
 
-  module.exports={
-    BlogComment
-  }
+  module.exports=BlogComment;
 

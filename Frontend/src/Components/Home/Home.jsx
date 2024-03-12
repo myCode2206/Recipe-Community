@@ -12,7 +12,7 @@ const Home = () => {
       <MyNav />
       <Herotitle />
       <MyCarousels />
-      <HCard />
+      {/* <HCard /> */}
       <Footer />
     </>
   );

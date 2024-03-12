@@ -1,6 +1,9 @@
 const mongoose=require('mongoose');
 const comment=require('./blogComment')
 
+let arr=new Date().toDateString().split(" ");
+let date=arr[2]+" "+arr[1];
+
 const blogschema = new mongoose.Schema({
     title: {
       type:String,
@@ -18,9 +21,13 @@ const blogschema = new mongoose.Schema({
       type:String,
       require:true
     },
-    date: { 
-      type:Date, 
-      default:Date.now
+    date:{ 
+      type: String,
+      default:date
+    },
+    usermail:{
+      type:String,
+      required:true
     },
     comment:{
       type: mongoose.Schema.Types.ObjectId,
@@ -30,7 +37,5 @@ const blogschema = new mongoose.Schema({
 
   const Blog = mongoose.model("Blog",blogschema);
 
-  module.exports={
-    Blog
-  }
+  module.exports = Blog
 
