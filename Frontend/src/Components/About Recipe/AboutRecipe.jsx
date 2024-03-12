@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 import { MdOutlineStar } from "react-icons/md";
 import { TbChefHat } from "react-icons/tb";
@@ -11,12 +12,12 @@ const mystyle = {
   borderBottom: "3px solid #E5E7EB",
   justifyContent: "space-evenly",
 };
-const AboutRecipe = () => {
+const AboutRecipe = (props) => {
   return (
     <section className="" style={mystyle}>
       <div>
         <img
-          src="https://images.pexels.com/photos/1191639/pexels-photo-1191639.jpeg?auto=compress&cs=tinysrgb&w=1080&dpr=1"
+          src={props.recipe.image}
           alt=""
           height="300px"
           width="500px"
@@ -24,11 +25,11 @@ const AboutRecipe = () => {
       </div>
       <div style={{ width: "500px" }}>
         <h3 style={{ fontSize: "40px" }} className="text-dark">
-          Homemade Donuts
+          {props.recipe.title}
         </h3>
         <h5 className="text-muted">
           <TbChefHat />
-          Ajay Tyagi
+          {props.recipe.author}
         </h5>
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
@@ -36,13 +37,7 @@ const AboutRecipe = () => {
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
         <p>
-          Donuts, also known as doughnuts, are a popular type of fried or baked
-          pastry. They are typically round with a hole in the center, though
-          there are various shapes and flavors available. The dough is made from
-          ingredients like flour, sugar, yeast, and often eggs and milk,
-          resulting in a soft and slightly sweet texture. Donuts are commonly
-          enjoyed as a breakfast treat or a snack, and they have become a
-          beloved staple of many cuisines around the world.lorem23
+          {props.recipe.body}
         </p>
         <div
           style={{
@@ -59,7 +54,7 @@ const AboutRecipe = () => {
           >
             <FaRegClock style={{ fontSize: "30px" }} />
             <h5>Cooking Time</h5>
-            <p>60 min</p>
+            <p>{props.recipe.CookingTime}</p>
           </div>
           <div
             style={{
@@ -70,7 +65,7 @@ const AboutRecipe = () => {
           >
             <LiaWeightSolid style={{ fontSize: "30px" }} />
             <h5>Calories</h5>
-            <p>450.2cal</p>
+            <p>{props.recipe.calories}cal</p>
           </div>
         </div>
       </div>

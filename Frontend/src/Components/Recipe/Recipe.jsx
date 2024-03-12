@@ -1,11 +1,30 @@
-import React from "react";
+import React,{useState,useEffect} from 'react'
 import MyNav from "../Navbar/MyNav";
 import Footer from "../footer/Footer";
 import MyCard from "../Cards/MyCard";
 import SearchForm from "../Search Bar/SearchForm";
+import axios from 'axios'
 
 const Recipe = () => {
   //data fetch from api to get the content of cards
+
+  const [recipes,setrecipe]=useState([]);
+
+   async function getAllRecipes(){
+    try{
+      const res= await axios.get("http://localhost:5000/recipe/")
+    setrecipe(res.data);
+    }
+    catch(e){
+      console.log("bhai recipe fetch nhi ho pa rhi url se")
+    }
+
+    
+  }
+
+  useEffect(()=>{
+    getAllRecipes()},[]
+  )
 
   const flexbox = {
     display: "flex",
@@ -32,22 +51,14 @@ const Recipe = () => {
       </div>
 
       <div style={flexbox}>
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
-        <MyCard />
+
+      {
+        recipes.map((recipe)=>{
+
+          return <MyCard key={recipe._id} item={recipe}/>
+
+        })
+      }
       </div>
 
       <Footer />

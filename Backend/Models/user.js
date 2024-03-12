@@ -10,4 +10,4 @@ const authentication = new mongoose.Schema({
   
   const User = mongoose.model("User", authentication);
   
-module.exports={ User }
+module.exports=User 

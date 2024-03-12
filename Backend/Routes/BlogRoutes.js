@@ -2,7 +2,7 @@ const express=require('express')
 const router=express.Router();
 const MyBlog=require('../Models/blog')
 
-router.get('/blogs',async(req,res)=>{
+router.get('/blog',async(req,res)=>{
     try{
     const blog= await MyBlog.find();
     console.log("sare blogs aa jynge");
