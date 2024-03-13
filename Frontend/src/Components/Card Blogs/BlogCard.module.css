@@ -1,0 +1,122 @@
+:root {
+  --clr-neutral-900: hsl(207, 19%, 9%);
+  --clr-accent-400: hsl(142, 90%, 61%);
+  --clr-neutral-100: hsl(0, 0%, 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.card {
+  color: var(--clr-neutral-100);
+  background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR43lUZQfnllb1L2KOjbZYS72vjdnc679_9Rf2uwieB-5Mhl6JyOarYqeyrPtag7n41yMs&usqp=CAU);
+  background-size: cover;
+  padding: 10rem 0 0;
+  max-width: 35ch;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  transition: transform 500ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  --padding: 1.5rem;
+  padding: var(--padding);
+  background: linear-gradient(
+    hsl(0 0% 0% / 0),
+    hsl(20 0% 0% / 0.3) 15%,
+    hsl(0 0% 0% / 1)
+  );
+}
+
+.cardTitle {
+  position: relative;
+  width: max-content;
+}
+
+.cardTitle::after {
+  content: "";
+  position: absolute;
+  height: 4px;
+  left: calc(var(--padding) * -1);
+  bottom: 0;
+  width: calc(100% + var(--padding));
+  background: var(--clr-accent-400);
+  transition: transform 500ms ease;
+  transform-origin: left;
+}
+
+.card:hover .cardTitle::after,
+.card:focus-within .cardTitle::after {
+  transform: scaleX(1);
+}
+
+.cardBody {
+  color: rgb(255 255 255 / 0.8);
+}
+
+@media (hover) {
+  .cardContent {
+    transform: translateY(65%);
+    transition: transform 500ms ease;
+  }
+
+  .card:hover .cardVContent,
+  .card:focus-within .cardContent {
+    transform: translateY(0);
+    transition-delay: 500ms;
+  }
+
+  .card:focus-within .cardContent {
+    transition-duration: 0ms;
+  }
+
+  .cardContent > *:not(.cardTitle) {
+    opacity: 0;
+    transition: opacity 500ms linear;
+  }
+
+  .card:hover .cardContent > *:not(.cardTitle),
+  .card:focus-within .cardContent > *:not(.cardTitle) {
+    opacity: 1;
+    transition-delay: 1000ms;
+  }
+
+  .cardTitle::after {
+    transform: scaleX(0);
+  }
+}
+
+.button {
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--clr-neutral-900);
+  background-color: var(--clr-accent-400);
+  padding: 0.5em 1.25em;
+  border-radius: 0.5em;
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--clr-neutral-100);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0ms !important;
+  }
+}
