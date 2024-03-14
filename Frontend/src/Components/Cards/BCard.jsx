@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
@@ -16,12 +17,12 @@ function BCard(props) {
       <Card.Img
         variant="top"
         src={props.blog.image}
-        style={{ width: "100%", height: "50%" }}
+        style={{ width: "100%", height: "210px" }}
       />
       <Card.Body>
         <Card.Title>{props.blog.title}</Card.Title>
         <Card.Text>
-          {props.blog.body}
+          {props.blog.body.substring(0, 100)}
         </Card.Text>
         <Button
           style={{

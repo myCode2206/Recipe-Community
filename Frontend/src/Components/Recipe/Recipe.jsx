@@ -51,6 +51,7 @@ const Recipe = () => {
         {recipes.map((recipe) => {
           return <MyCard key={recipe._id} item={recipe} />;
         })}
+        
       </div>
 
       <Footer />

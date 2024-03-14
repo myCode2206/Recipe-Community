@@ -2,13 +2,13 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
-// const seedDB = require("./seed");
+const seedDB = require("./seed");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 mongoose
-  .connect("mongodb://localhost:27017/recipeeee")
+  .connect("mongodb://127.0.0.1:27017/recipeeee")
   .then(() => console.log("Connection Open!"))
   .catch((err) => console.log(err));
 

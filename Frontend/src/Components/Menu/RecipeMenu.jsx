@@ -1,6 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from "react";
 
-const RecipeMenu = () => {
+const RecipeMenu = (props) => {
+  let arr=props.recipe.Ingredients;
+  console.log(arr);
+  // console.log(arr.split("."))
+  
   return (
     <>
       <h1 style={{ textAlign: "center", fontSize: "60px" }}>
@@ -78,7 +83,7 @@ const RecipeMenu = () => {
             </span>
             Powdered sugar, for dusting
           </p>
-        </div>z
+        </div>
         <div style={{ width: "60%" }}>
           <h4 style={{ fontSize: "32px" }}>Procedure</h4>
           <p>
