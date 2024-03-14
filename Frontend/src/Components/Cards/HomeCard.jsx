@@ -1,18 +1,8 @@
-/* eslint-disable react/prop-types */
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function MyCard(props) {
-
-  const navigate=useNavigate();
-  const  showRecipeHandler = (id)=>
-  {
-    console.log("bhai merko pt dba")
-    navigate(`/recipe/${id}`)
-  }
-  
-
+const HomeCard = (props) => {
   return (
     <Card
       style={{
@@ -25,25 +15,32 @@ function MyCard(props) {
     >
       <Card.Img
         variant="top"
-        src={props.item.image}
+        src={props.image}
         style={{ width: "100%", height: "50%" }}
       />
       <Card.Body>
-        <Card.Title>{props.item.title}</Card.Title>
-        <Card.Text>{props.item.body.substring(0, 100)}...</Card.Text>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
         <Button
-          onClick={() => showRecipeHandler(props.item._id)}
           style={{
             backgroundColor: "#ffee32",
             color: "black",
           }}
           variant="primary"
         >
-          Read More
+          <Link
+            style={{ textDecoration: "none", color: "black" }}
+            to="/showRecipe"
+          >
+            Read More
+          </Link>
         </Button>
       </Card.Body>
     </Card>
   );
 }
 
-export default MyCard;
+export default HomeCard

@@ -55,7 +55,7 @@ export const MyBlogs = () => {
       </div>
 
 
-      <div style={flexbox}>
+      <div className="container"  style={flexbox}>
       {
       blogs.map((blog)=>{
         return <BCard 
