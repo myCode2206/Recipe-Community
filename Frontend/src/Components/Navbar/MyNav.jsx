@@ -18,7 +18,7 @@ function MyNav() {
           className="mb-3"
         >
           <Container fluid>
-            <Navbar.Brand href="#">Reciepe</Navbar.Brand>
+            <Navbar.Brand href="#">Recipe</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
