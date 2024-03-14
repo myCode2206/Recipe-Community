@@ -10,6 +10,7 @@ import axios from "axios";
 const ShowRecipe = () => {
 
   const params=useParams();
+  
   const [recipe,setRecipe] = useState([]);
 
 
@@ -24,11 +25,6 @@ const ShowRecipe = () => {
   },[]);
 
 
-
-
-
-
-  
   return (
     <>
       <MyNav />

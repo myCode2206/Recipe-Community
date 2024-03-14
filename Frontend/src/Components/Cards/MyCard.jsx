@@ -9,7 +9,7 @@ function MyCard(props) {
   const navigate=useNavigate();
   const  showRecipeHandler = (id)=>
   {
-    console.log("bhai merko pt dba")
+    // console.log("bhai merko mt da")
     navigate(`/recipe/${id}`)
   }
   
