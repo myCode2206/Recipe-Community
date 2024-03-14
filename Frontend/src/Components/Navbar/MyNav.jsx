@@ -1,4 +1,3 @@
-import React from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -39,7 +38,7 @@ function MyNav() {
                   <Link to="/" style={{textDecoration:"none", margin:"5px", color:"black"}}>Home</Link>
                   <Link to="/blogs" style={{textDecoration:"none", margin:"5px", color:"black"}}>Blogs</Link>
                   <Link to="/recipe" style={{textDecoration:"none", margin:"5px", color:"black"}}>Recipe</Link>
-                  <Link to="/contactus" style={{textDecoration:"none", margin:"5px", color:"black"}}>Contact Us</Link>
+                  <Link to="/contact" style={{textDecoration:"none", margin:"5px", color:"black"}}>Contact Us</Link>
                   {/* <NavDropdown
                     title="User"
                     id={`offcanvasNavbarDropdown-expand-${expand}`}

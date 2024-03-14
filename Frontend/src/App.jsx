@@ -7,6 +7,7 @@ import "./App.css";
 import ShowRecipe from "./Components/Show Recipe/ShowRecipe";
 import { MyBlogs } from "./Components/Blogs/MyBlogs";
 import { ShowBlogs } from "./Components/Show Blogs/ShowBlogs";
+import  { Contact } from "./Components/contactUs/Contact";
 const App = () => {
   return (
     <>
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/showRecipe" element={<ShowRecipe />} />
           <Route path="/blogs" element={<MyBlogs />} />
           <Route path="/showBlogs" element={<ShowBlogs />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
     </>
