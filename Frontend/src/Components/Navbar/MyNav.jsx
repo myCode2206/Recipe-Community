@@ -27,7 +27,7 @@ function MyNav() {
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  Reciepe
+                  Recipe
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
