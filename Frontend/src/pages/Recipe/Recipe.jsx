@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import MyNav from "../Navbar/MyNav";
-import Footer from "../footer/Footer";
-import MyCard from "../Cards/MyCard";
-import SearchForm from "../Search Bar/SearchForm";
+import  { useState, useEffect } from "react";
+import MyNav from "../../Components/Navbar/MyNav";
+import Footer from "../../Components/footer/Footer";
+import MyCard from "../../Components/Cards/MyCard";
+import SearchForm from "../../Components/Search Bar/SearchForm";
 import axios from "axios";
 
 const Recipe = () => {
