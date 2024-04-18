@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import AboutRecipe from "../About Recipe/AboutRecipe";
-import MyNav from "../Navbar/MyNav";
-import RecipeMenu from "../Menu/RecipeMenu";
-import Footer from "../footer/Footer";
-import Review from "../Reviews/Review";
+import AboutRecipe from "../../Components/About Recipe/AboutRecipe";
+import MyNav from "../../Components/Navbar/MyNav";
+import RecipeMenu from "../../Components/Menu/RecipeMenu";
+import Footer from "../../Components/footer/Footer";
+import Review from "../../Components/Reviews/Review";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 

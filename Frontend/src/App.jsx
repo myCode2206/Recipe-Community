@@ -1,13 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Recipe from "./Components/Recipe/Recipe";
-import Home from "./Components/Home/Home";
-import Login from "./Components/Login/Login";
+import Recipe from "./pages/Recipe/Recipe";
+import Login from "./pages/Login/Login";
 import "./App.css";
-import ShowRecipe from "./Components/Show Recipe/ShowRecipe";
-import { MyBlogs } from "./Components/Blogs/MyBlogs";
-import { ShowBlogs } from "./Components/Show Blogs/ShowBlogs";
-import  { Contact } from "./Components/contactUs/Contact";
+import ShowRecipe from "./pages/Show Recipe/ShowRecipe";
+import { MyBlogs } from "./pages/Blogs/MyBlogs";
+import { ShowBlogs } from "./pages/Show Blogs/ShowBlogs";
+import  { Contact } from "./pages/contactUs/Contact";
+import Home from "./pages/Home/Home";
 const App = () => {
   return (
     <>

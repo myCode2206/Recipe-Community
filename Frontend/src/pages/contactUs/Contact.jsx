@@ -38,8 +38,8 @@
 import  { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
 import "./constyle.css"
-import MyNav from '../Navbar/MyNav';
-import Footer from '../footer/Footer';
+import MyNav from '../../Components/Navbar/MyNav';
+import Footer from '../../Components/footer/Footer';
 
 export const Contact = () => {
   const form = useRef();

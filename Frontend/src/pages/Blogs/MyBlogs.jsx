@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React,{useState,useEffect} from 'react'
-import MyNav from "../Navbar/MyNav";
-import SearchForm from "../Search Bar/SearchForm";
-import MyCard from "../Cards/MyCard";
-import Footer from "../footer/Footer";
-import BCard from "../Cards/BCard";
+import MyNav from "../../Components/Navbar/MyNav";
+import SearchForm from "../../Components/Search Bar/SearchForm";
+import MyCard from "../../Components/Cards/MyCard";
+import Footer from "../../Components/footer/Footer";
+import BCard from "../../Components/Cards/BCard";
 import axios from 'axios';
 
 export const MyBlogs = () => {

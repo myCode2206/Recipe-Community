@@ -23,11 +23,11 @@ html {
 
 .container {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(53, 53, 53, 0.596);
-  width: 430px;
+  width: auto;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;

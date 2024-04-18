@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
-import MyNav from "../Navbar/MyNav";
-import Footer from "../footer/Footer";
+import MyNav from "../../Components/Navbar/MyNav";
+import Footer from "../../Components/footer/Footer";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
+    
     password: "",
     username: "",
   });
