@@ -5,16 +5,40 @@ import Footer from "../footer/Footer";
 const AddRecipe = () => {
   const [countIng, setCount1] = useState(2);
   const [countIns, setCount2] = useState(2);
+  const [formData, setFormData] = useState({
+    recipeName: "",
+    img: "",
+    desc: "",
+    cookingTime: "",
+    calorie: "",
+    ingredient: [],
+    procedure: [],
+
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+  }
 
   async function Input1() {
     await setCount1(countIng + 1);
     let input = document.createElement("input");
     let steps = document.getElementsByClassName("steps")[0];
     input.type = "text";
-    input.name = "recipe";
+    input.name = "ingredient";
     input.className = "form-control mb-2";
     input.placeholder = `Step-${countIng}`;
-
+    input.onChange = handleChange;
     steps.append(input);
   }
   async function Input2() {
@@ -23,6 +47,7 @@ const AddRecipe = () => {
     let procedure = document.getElementsByClassName("procedure")[0];
     input.type = "text";
     input.name = "procedure";
+    input.onChange = handleChange;
     input.className = "form-control mb-2";
     input.placeholder = `Step-${countIns}`;
 
@@ -48,6 +73,7 @@ const AddRecipe = () => {
             display: "flex",
             flexDirection: "column",
           }}
+          onSubmit={onSubmitHandler}
         >
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
@@ -57,15 +83,16 @@ const AddRecipe = () => {
               type="text"
               className="form-control"
               id="title"
-              name="recipe-name"
+              name="recipeName"
               aria-describedby="emailHelp"
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
             <label htmlFor="img" className="form-label">
               Img
             </label>
-            <input type="text" name="img" className="form-control" id="img" />
+            <input type="text" name="img" className="form-control" id="img" onChange={handleChange} />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">
@@ -76,6 +103,7 @@ const AddRecipe = () => {
               name="desc"
               className="form-control"
               id="description"
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
@@ -84,9 +112,10 @@ const AddRecipe = () => {
             </label>
             <input
               type="text"
-              name="cookingtime"
+              name="cookingTime"
               className="form-control"
               id="cookingtime"
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
@@ -98,6 +127,7 @@ const AddRecipe = () => {
               name="calorie"
               className="form-control"
               id="calorie"
+              onChange={handleChange}
             />
           </div>
           <div className="mb-3">
@@ -105,9 +135,10 @@ const AddRecipe = () => {
             <div className="steps">
               <input
                 type="text"
-                name="recipe"
+                name="ingredient"
                 className="form-control mb-2"
                 placeholder="step-1"
+                onChange={handleChange}
               />
             </div>
             <p
@@ -123,9 +154,10 @@ const AddRecipe = () => {
             <div className="procedure">
               <input
                 type="text"
-                name="recipe"
+                name="procedure"
                 className="form-control mb-2"
                 placeholder="step-1"
+                onChange={handleChange}
               />
             </div>
             <p
