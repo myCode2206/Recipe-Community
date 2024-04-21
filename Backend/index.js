@@ -3,23 +3,16 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const seedDB = require("./seed");
-const dotenv=require('dotenv').config()
-
-
-
+const dotenv = require("dotenv").config();
 
 app.use(express.json());
 
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 
-
-
-// const mongourl = process.env.MONGO_URL;
-const mongourl = "mongodb://127.0.0.1:27017/recipeeee";
+const mongourl = process.env.MONGO_URL;
+// const mongourl = "mongodb://localhost:27017/recipeeee";
 const port = process.env.PORT;
-
-
 
 mongoose
   .connect(mongourl)
