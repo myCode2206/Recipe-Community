@@ -29,10 +29,10 @@ const blogschema = new mongoose.Schema({
       type:String,
       required:true
     },
-    comment:{
+    comment:[{
       type: mongoose.Schema.Types.ObjectId,
       ref:'comment'
-    }
+    }]
   });
 
   const Blog = mongoose.model("Blog",blogschema);

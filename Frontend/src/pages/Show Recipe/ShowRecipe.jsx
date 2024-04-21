@@ -6,6 +6,7 @@ import Footer from "../../Components/footer/Footer";
 import Review from "../../Components/Reviews/Review";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import ReviewRecipe from "../../Components/Reviews/ReviewRecipe";
 
 const ShowRecipe = () => {
 
@@ -30,7 +31,7 @@ const ShowRecipe = () => {
       <MyNav />
       <AboutRecipe  recipe={recipe}/>
       <RecipeMenu recipe={recipe} />
-      <Review  recipe={recipe}/>
+      <ReviewRecipe  recipe={recipe}/>
       <Footer />
     </>
   );

@@ -1,6 +1,46 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+import React, { useState } from "react";
 import { MdOutlineStar } from "react-icons/md";
-const Review = () => {
+import axios from "axios"
+
+
+const Review = (props) => {
+
+  const id = props.data._id;
+
+
+  const [comment ,setComment] =useState("");
+
+  //backend call
+
+  function  onSubmitHandler()
+  {
+
+    const postcomment = async()=>{
+
+      if(comment.trim() == "")
+      return 
+
+      try{
+        await axios.post(`http://localhost:5000/blog/${id}/comment`,{
+          comment
+          // username
+          // user_id
+        })
+        setComment("");
+     }
+     catch(e)
+     {
+      console.log("unable to fetch post comments")
+     }
+    }
+    postcomment();
+    
+  }
+
+
+
   return (
     <div
       className="container"
@@ -27,6 +67,9 @@ const Review = () => {
           <label id="review">
             <h4>Add A Comment</h4>
             <textarea
+             
+              value={comment}
+              onChange={ (e)=>{setComment(e.target.value)}} 
               name=""
               id="review"
               cols="30"
@@ -36,7 +79,7 @@ const Review = () => {
             ></textarea>
           </label>
         </div>
-        <button class="btn btn-success ">POST</button>
+        <button className="btn btn-success"  onClick={onSubmitHandler} >POST</button>
       </div>
     </div>
   );

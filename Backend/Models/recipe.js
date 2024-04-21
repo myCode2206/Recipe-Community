@@ -45,10 +45,10 @@ const recipeSchema = new mongoose.Schema({
       type: String,
       default:date
     },
-    comment:{
+    comment:[{
       type:mongoose.Schema.Types.ObjectId,
       ref:'review'
-    }
+    }]
   });
 
 

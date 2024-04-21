@@ -1,9 +1,20 @@
 /* eslint-disable react/prop-types */
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function BCard(props) {
+  const navigate = useNavigate();
+
+  function onclickedhandler() {
+    const id=props.blog._id;
+    // console.log(props.blog._id);
+
+    navigate(`/showBlogs/${id}`);
+  }
+
   return (
     <Card
       style={{
@@ -21,22 +32,16 @@ function BCard(props) {
       />
       <Card.Body>
         <Card.Title>{props.blog.title}</Card.Title>
-        <Card.Text>
-          {props.blog.body.substring(0, 100)}
-        </Card.Text>
+        <Card.Text>{props.blog.body.substring(0, 100)}</Card.Text>
         <Button
+          onClick={onclickedhandler}
           style={{
             backgroundColor: "#ffee32",
             color: "black",
           }}
           variant="primary"
         >
-          <Link
-            style={{ textDecoration: "none", color: "black" }}
-            to="/showBlogs"
-          >
-            Read More
-          </Link>
+          Read More
         </Button>
       </Card.Body>
     </Card>

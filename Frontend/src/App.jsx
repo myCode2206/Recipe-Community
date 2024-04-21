@@ -8,20 +8,22 @@ import { MyBlogs } from "./pages/Blogs/MyBlogs";
 import { ShowBlogs } from "./pages/Show Blogs/ShowBlogs";
 import  { Contact } from "./pages/contactUs/Contact";
 import Home from "./pages/Home/Home";
+import { RecoilRoot } from "recoil";
 const App = () => {
   return (
     <>
       <Router>
+    
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recipe" element={<Recipe />} />
-          <Route path="/recipe/:id" element={<ShowRecipe />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/showRecipe" element={<ShowRecipe />} />
+          <Route path="/showRecipe/:id" element={<ShowRecipe />} />
           <Route path="/blogs" element={<MyBlogs />} />
-          <Route path="/showBlogs" element={<ShowBlogs />} />
+          <Route path="/showBlogs/:id" element={<ShowBlogs />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
+   
       </Router>
     </>
   );
