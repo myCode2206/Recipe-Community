@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React,{useState,useEffect} from 'react'
 import MyNav from "../../Components/Navbar/MyNav";
@@ -16,7 +17,7 @@ export const MyBlogs = () => {
   {
     try{
       const res= await axios.get("http://localhost:5000/blog/")
-      {console.log(res.data);}
+      // {console.log(res.data);}
       setblogs(res.data);
     }
     catch(e)
@@ -65,6 +66,7 @@ export const MyBlogs = () => {
         
       })
       }
+
      
       </div>
 

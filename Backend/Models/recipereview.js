@@ -4,13 +4,18 @@ const recipereviewschema = new mongoose.Schema({
     
     rating:{
         type:Number,
-        require:true
+        // require:true
     },
     comment:{
         type:String,
         require:true
     },
-    usermail:{
+    user_id:{
+      type:String,
+      require:true
+    },
+    username:
+    {
       type:String,
       require:true
     }

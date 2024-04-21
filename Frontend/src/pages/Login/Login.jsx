@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import styles from "./Login.module.css";
 import MyNav from "../../Components/Navbar/MyNav";
+import axios from "axios"
 import Footer from "../../Components/footer/Footer";
 
 const Login = () => {
@@ -8,9 +10,9 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
-    
     password: "",
     username: "",
+    role: "", // New field for role
   });
 
   const togglePasswordVisibility = () => {
@@ -24,6 +26,7 @@ const Login = () => {
       email: "",
       password: "",
       username: "",
+      role: "", // Clear role when switching forms
     });
   };
 
@@ -35,13 +38,30 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password, username } = formData;
+    const { email, password, username, role } = formData;
     // Add your form submission logic here
     console.log("Email:", email);
     console.log("Password:", password);
     console.log("Username:", username);
+    console.log("Role:", role);
+    try{
+
+      const res = await axios.post("",{
+        email,
+        password,
+        username,
+        role,
+      })
+      console.log(res.data);
+
+    }
+    catch(e)
+    {
+      console.error("Error:", e); 
+    }
+    axios.post("")
   };
 
   return (
@@ -84,6 +104,18 @@ const Login = () => {
                     onClick={togglePasswordVisibility}
                   ></i>
                 </div>
+                {/* <div className={styles.inputField}>
+                  <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Role</option>
+                    <option value="chef">Chef</option>
+                    <option value="client">Client</option>
+                  </select>
+                </div> */}
                 <div className={styles.checkboxText}>
                   <div className={styles.checkboxContent}>
                     <input type="checkbox" id="logCheck" />
@@ -146,14 +178,26 @@ const Login = () => {
                   />
                   <i className=" uil uil-lock icon"></i>
                 </div>
-                <div className={styles.checkboxText}>
+                <div className={styles.inputField}>
+                  <select
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Role</option>
+                    <option value="chef">Chef</option>
+                    <option value="client">Client</option>
+                  </select>
+                </div>
+                {/* <div className={styles.checkboxText}>
                   <div className={styles.checkboxContent}>
                     <input type="checkbox" id="termCon" />
                     <label htmlFor="termCon" className={styles.text}>
                       I accepted all terms and conditions
                     </label>
                   </div>
-                </div>
+                </div> */}
                 <div className={styles.inputField}>
                   <button type="submit">Signup</button>
                 </div>
