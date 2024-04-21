@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import MyNav from "../Navbar/MyNav";
 import Footer from "../footer/Footer";
 
@@ -15,6 +15,8 @@ const AddRecipe = () => {
     procedure: [],
 
   });
+  const formref = useRef();
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +28,7 @@ const AddRecipe = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    formref.current.reset();
     console.log(formData);
 
   }
@@ -74,6 +77,7 @@ const AddRecipe = () => {
             flexDirection: "column",
           }}
           onSubmit={onSubmitHandler}
+          ref={formref}
         >
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
