@@ -1,11 +1,18 @@
-import  { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import MyNav from "../../Components/Navbar/MyNav";
 import Footer from "../../Components/footer/Footer";
 import MyCard from "../../Components/Cards/MyCard";
 import SearchForm from "../../Components/Search Bar/SearchForm";
 import axios from "axios";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 
 const Recipe = () => {
+  const navigate = useNavigate();
+
+  function Redirect() {
+    navigate("/add");
+  }
   //data fetch from api to get the content of cards
 
   const [recipes, setrecipe] = useState([]);
@@ -34,6 +41,32 @@ const Recipe = () => {
       <MyNav />
 
       <div style={{ textAlign: "center", marginTop: "30px" }}>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "end",
+            paddingRight: "20px",
+            marginBottom: "5px",
+            alignContent: "center",
+          }}
+        >
+          <button
+            style={{ right: "0" }}
+            className="btn btn-primary"
+            onClick={Redirect}
+          >
+            Add
+            <IoIosAddCircleOutline
+              color="#ffff"
+              style={{
+                marginLeft: "5px",
+                fontSize: "20px",
+                paddingBottom: "2px",
+              }}
+            />
+          </button>
+        </div>
         <h1>Discover Flavorful Creations</h1>
       </div>
       <div
@@ -51,7 +84,6 @@ const Recipe = () => {
         {recipes.map((recipe) => {
           return <MyCard key={recipe._id} item={recipe} />;
         })}
-        
       </div>
 
       <Footer />
