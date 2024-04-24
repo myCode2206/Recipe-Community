@@ -15,22 +15,32 @@ router.get("/recipe", async (req, res) => {
 
 router.post("/recipe/add", async (req, res) => {
   try {
-    console.log(req.body);
-    const { title, image, CookingTime, Calories, Ingredients, Instruction } =
-      req.body;
+    const {
+      recipeName,
+      img,
+      desc,
+      cookingTime,
+      calorie,
+      ingredient,
+      procedure,
+    } = req.body.formData;
+    console.log(req.body.formData);
     const author = "mukul";
     const usermail = "mukul";
     await MyRecipe.create({
-      title,
-      image,
-      CookingTime,
-      Calories,
-      Ingredients,
-      Instruction,
+      title: recipeName,
+      image: img,
+      body: desc,
+      CookingTime: cookingTime,
+      Calories: calorie,
+      Ingredients: ingredient,
+      Procedure: procedure,
       author,
       usermail,
     });
+    res.status(200).json({ msg: "Added Data Successfully" });
   } catch (e) {
+    // console.log(e);
     res.status(400).json({ msg: "Something Went Wrong!!!" });
   }
 });
