@@ -1,17 +1,26 @@
+<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+=======
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Form } from "react-router-dom";
+>>>>>>> 80d4986d09f7caffff1d770c61485dcb19532ff1
 import Recipe from "./pages/Recipe/Recipe";
 import Login from "./pages/Login/Login";
 import "./App.css";
 import ShowRecipe from "./pages/Show Recipe/ShowRecipe";
 import { MyBlogs } from "./pages/Blogs/MyBlogs";
 import { ShowBlogs } from "./pages/Show Blogs/ShowBlogs";
-import  { Contact } from "./pages/contactUs/Contact";
+import { Contact } from "./pages/contactUs/Contact";
 import Home from "./pages/Home/Home";
+<<<<<<< HEAD
+=======
+import AddRecipe from "../src/Components/Form/AddRecipe";
+import AddBlog from "../src/Components/Form/AddBlog";
+>>>>>>> 80d4986d09f7caffff1d770c61485dcb19532ff1
 const App = () => {
   return (
     <>
       <Router>
-    
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/recipe" element={<Recipe />} />
@@ -20,8 +29,9 @@ const App = () => {
           <Route path="/blogs" element={<MyBlogs />} />
           <Route path="/showBlogs/:id" element={<ShowBlogs />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/add" element={<AddRecipe />} />
+          <Route path="/addblog" element={<AddBlog />} />
         </Routes>
-   
       </Router>
     </>
   );

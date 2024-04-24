@@ -9,29 +9,26 @@ import axios from "axios";
 import ReviewRecipe from "../../Components/Reviews/ReviewRecipe";
 
 const ShowRecipe = () => {
+  const params = useParams();
 
-  const params=useParams();
-  
-  const [recipe,setRecipe] = useState([]);
+  const [recipe, setRecipe] = useState([]);
 
-
-  async function recipeDataFetcher(){
-    const res= await axios.get(`http://localhost:5000/recipe/${params.id}`)
-    // console.log(res.data);
+  async function recipeDataFetcher() {
+    const res = await axios.get(`http://localhost:5000/recipe/${params.id}`);
+    console.log(res.data);
     setRecipe(res.data);
   }
 
-  useEffect(()=>{
-    recipeDataFetcher()
-  },[]);
-
+  useEffect(() => {
+    recipeDataFetcher();
+  }, []);
 
   return (
     <>
       <MyNav />
-      <AboutRecipe  recipe={recipe}/>
+      <AboutRecipe recipe={recipe} />
       <RecipeMenu recipe={recipe} />
-      <ReviewRecipe  recipe={recipe}/>
+      <ReviewRecipe recipe={recipe} />
       <Footer />
     </>
   );

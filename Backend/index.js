@@ -11,19 +11,13 @@ const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const User = require('./Models/user');
 
 
-
-
-
-
-
-
 app.use(express.json());
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
-// const mongourl = process.env.MONGO_URL;
-const mongourl = "mongodb://127.0.0.1:27017/recipeeee";
-const port = process.env.PORT;
 
+// const mongourl = process.env.MONGO_URL;
+const mongourl = "mongodb://localhost:27017/recipeeee";
+const port = process.env.PORT;
 
 mongoose
   .connect(mongourl)
@@ -106,11 +100,6 @@ app.use((req, res, next) => {
 
   next();
 })
-
-
-
-
-
 
 
 

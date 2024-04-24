@@ -1,83 +1,229 @@
 const mongoose = require("mongoose");
-const blog = [
-  {
-    title: "paneer ka pratha",
-    image:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/traditional-korean-dish-bibimbap-with-chopsticks-free-photo.jpg?w=600&quality=80",
-    author: "mukul",
-    body: "Donuts, also known as doughnuts, are a popular type of fried or baked pastry. They are typically round with a hole in the center, though there are various shapes and flavors available. The dough is made from ingredients like flour, sugar, yeast, and often eggs and milk, resulting in a soft and slightly sweet texture. Donuts are commonly enjoyed as a breakfast treat or a snack, and they have become a beloved staple of many cuisines around the world. ",
-    usermail: "mukul1singh23@gmail.com",
-  },
-  {
-    title: "gobi ka pratha",
-    image:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/traditional-korean-dish-bibimbap-with-chopsticks-free-photo.jpg?w=600&quality=80",
-    author: "rajat",
-    body: "Donuts, also known as doughnuts, are a popular type of fried or baked pastry. They are typically round with a hole in the center, though there are various shapes and flavors available. The dough is made from ingredients like flour, sugar, yeast, and often eggs and milk, resulting in a soft and slightly sweet texture. Donuts are commonly enjoyed as a breakfast treat or a snack, and they have become a beloved staple of many cuisines around the world. ",
-    usermail: "rajatGupta@gmail.com",
-  },
-  {
-    title: "paneer ka pratha",
-    image:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/traditional-korean-dish-bibimbap-with-chopsticks-free-photo.jpg?w=600&quality=80",
-    author: "ajay",
-    body: "Donuts, also known as doughnuts, are a popular type of fried or baked pastry. They are typically round with a hole in the center, though there are various shapes and flavors available. The dough is made from ingredients like flour, sugar, yeast, and often eggs and milk, resulting in a soft and slightly sweet texture. Donuts are commonly enjoyed as a breakfast treat or a snack, and they have become a beloved staple of many cuisines around the world.",
-    usermail: "Ajaytyagi@gmail.com",
-  },
-];
 
-const recipe = [
+const recipesData = [
   {
-    title: "gobi ka pratha",
+    title: "Poha",
     image:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/traditional-korean-dish-bibimbap-with-chopsticks-free-photo.jpg?w=600&quality=80",
-    author: "mukul",
-    body: "Donuts, also known as doughnuts, are a popular type of fried or baked pastry. They are typically round with a hole in the center, though there are various shapes and flavors available. The dough is made from ingredients like flour, sugar, yeast, and often eggs and milk, resulting in a soft and slightly sweet texture. Donuts are commonly enjoyed as a breakfast treat or a snack, and they have become a beloved staple of many cuisines around the world. ",
-    CookingTime: "10 min ",
-    calories: "50",
-    Procedure:
-      " In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt. In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt.In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt.Cover the bowl with plastic wrap and refrigerate the dough for at least 30 minutes.On a floured surface, roll out the chilled dough to about 1/2-inch thickness.Using a donut cutter or a glass, cut out donut shapes and use a smaller cutter or a bottle cap to cut out the donut holes in the center.Heat vegetable oil in a deep pot or a deep fryer to 350°F (175°C).Carefully lower the donuts into the hot oil, frying a few at a time, but not overcrowding the pot.Fry the donuts for 1-2 minutes per side or until they are golden brown and cooked through.Use a slotted spoon to remove the donuts from the oil and place them on a paper towel-lined plate to drain excess oil.While the donuts are still warm, dust them with powdered sugar.Enjoy these delicious homemade donuts with your favorite coffee or tea!",
-    Ingredients:
-      "2 1/4 cups all-purpose flour. 1/2 cup granulated sugar. 2 teaspoons baking powder. 1/2 teaspoon salt. 1/2 cup milk. 1/4 cup unsalted butter melted. 1 large egg. 1 teaspoon vanilla extract.Vegetable oil, for frying. Powdered sugar, for dusting",
-
-    usermail: "mukul1singh23@gmail.com",
+      "https://t4.ftcdn.net/jpg/04/14/41/77/360_F_414417747_PncWOAXpLSMPuQSae7uXLmJGlGV41EOH.jpg",
+    body: "Poha, also known as flattened rice or beaten rice, is a popular Indian breakfast dish that's simple yet flavorful. It's made from flattened, dehusked rice, which is then tempered with spices and often mixed with vegetables",
+    author: "Ajay Tyagi",
+    CookingTime: "30 minutes",
+    calories: "500 kcal",
+    Ingredients: [
+      "2 cups Poha (flattened rice)",
+      "2 tablespoons Oil (vegetable oil, mustard oil, or peanut oil)",
+      "1 teaspoon Mustard seeds",
+      "1 teaspoon Cumin seeds",
+      "8-10 Curry leaves",
+      "2 Green chilies, finely chopped (adjust to taste)",
+      "1 Onion, finely chopped",
+      "1 Potato, small, diced into small pieces (optional)",
+      "1/4 cup Peanuts, roasted and crushed",
+      "1/2 teaspoon Turmeric powder",
+      "Salt to taste",
+      "1 teaspoon Sugar (optional)",
+      "1 Lemon, juiced",
+      "2 tablespoons Fresh coriander leaves, chopped (for garnish)",
+    ],
+    Procedure: [
+      "Rinse 2 cups of Poha (flattened rice) until softened. Drain excess water and set aside.",
+      "Finely chop 2 green chilies, 1 onion, and dice 1 small potato (if using). Crush 1/4 cup of roasted peanuts. Juice 1 lemon and chop 2 tablespoons of fresh coriander leaves for garnish.",
+      "Heat 2 tablespoons of oil in a pan over medium heat.",
+      "Add 1 teaspoon mustard seeds. Let them splutter",
+      "Add 1 teaspoon cumin seeds and sauté briefly until they sizzle.",
+      "Add 8-10 curry leaves and sauté until fragrant.",
+      "Add finely chopped green chilies. Sauté for a minute.",
+      "Add finely chopped onion. Sauté until translucent.",
+      "Add diced potato (if using) and cook until tender yet firm.",
+      "Reduce heat to low. Add 1/2 teaspoon turmeric powder, salt to taste, and 1 teaspoon of sugar (optional). Mix well.",
+      "Add drained Poha to the pan. Gently mix to coat with spices. Cook for 2-3 minutes on low heat.",
+      "Turn off the heat. Squeeze juice of 1 lemon over the Poha. Mix gently.",
+      "Add crushed peanuts. Mix again.",
+      "Sprinkle chopped fresh coriander leaves on top for garnish.",
+      "Your Poha is ready to be served hot! Enjoy it as is or with sev, yogurt, or sliced tomatoes.",
+    ],
+    usermail: "ajay@gmail.com",
+    date: "24 April",
   },
   {
-    title: "paneer ka pratha",
+    title: "Chole Bhature",
     image:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/traditional-korean-dish-bibimbap-with-chopsticks-free-photo.jpg?w=600&quality=80",
-    author: "ajay",
-    body: "Donuts, also known as doughnuts, are a popular type of fried or baked pastry. They are typically round with a hole in the center, though there are various shapes and flavors available. The dough is made from ingredients like flour, sugar, yeast, and often eggs and milk, resulting in a soft and slightly sweet texture. Donuts are commonly enjoyed as a breakfast treat or a snack, and they have become a beloved staple of many cuisines around the world. ",
-    CookingTime: "10 min ",
-    calories: "50",
-    Procedure:
-      " In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt. In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt.In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt.Cover the bowl with plastic wrap and refrigerate the dough for at least 30 minutes.On a floured surface, roll out the chilled dough to about 1/2-inch thickness.Using a donut cutter or a glass, cut out donut shapes and use a smaller cutter or a bottle cap to cut out the donut holes in the center.Heat vegetable oil in a deep pot or a deep fryer to 350°F (175°C).Carefully lower the donuts into the hot oil, frying a few at a time, but not overcrowding the pot.Fry the donuts for 1-2 minutes per side or until they are golden brown and cooked through.Use a slotted spoon to remove the donuts from the oil and place them on a paper towel-lined plate to drain excess oil.While the donuts are still warm, dust them with powdered sugar.Enjoy these delicious homemade donuts with your favorite coffee or tea!",
-    Ingredients:
-      "2 1/4 cups all-purpose flour. 1/2 cup granulated sugar. 2 teaspoons baking powder. 1/2 teaspoon salt. 1/2 cup milk. 1/4 cup unsalted butter melted. 1 large egg. 1 teaspoon vanilla extract.Vegetable oil, for frying. Powdered sugar, for dusting",
+      "https://content.jdmagicbox.com/comp/noida/v8/011pxx11.xx11.190925042619.e8v8/catalogue/punjabi-chole-bhature-noida-sector-34-noida-north-indian-restaurants-2whbntunqe.jpg",
+    body: "Chole Bhature is a beloved North Indian dish that consists of spicy chickpea curry (chole) paired with deep-fried bread (bhature). It's a popular street food and also served in restaurants across India",
+    author: "Rajat Gupta",
+    CookingTime: "45 minutes",
+    calories: "600 kcal",
+    Ingredients: [
+      "1 cup dried Chickpeas (Garbanzo beans), soaked overnight",
+      "2-3 tablespoons Oil",
+      "1 teaspoon Cumin seeds",
+      "1 large Onion, finely chopped",
+      "1 tablespoon Ginger-Garlic Paste",
+      "2 medium Tomatoes, finely chopped",
+      "2-3 Green Chilies, slit (adjust to taste)",
+      "1 teaspoon Turmeric powder",
+      "1 tablespoon Coriander powder",
+      "1 teaspoon Cumin powder",
+      "1-2 teaspoons Red Chili powder (adjust to spice preference)",
+      "1 teaspoon Amchur (Dry Mango Powder) or Anardana (Pomegranate Seed) powder",
+      "1 teaspoon Garam Masala",
+      "Salt to taste",
+      "Fresh Coriander leaves (Cilantro), chopped for garnish",
+    ],
+    Procedure: [
+      "Soak 1 cup dried chickpeas (garbanzo beans) overnight. Cook until soft, then drain and set aside.",
+      "Heat 2-3 tablespoons of oil in a pan. Add 1 teaspoon cumin seeds and let them splutter.",
+      "Add 1 large finely chopped onion and sauté until golden brown.",
+      "Stir in 1 tablespoon ginger-garlic paste until fragrant.",
+      "Add 2 medium finely chopped tomatoes and 2-3 slit green chilies. Cook until tomatoes are soft.",
+      "Add 1 teaspoon turmeric powder, 1 tablespoon coriander powder, 1 teaspoon cumin powder, and 1-2 teaspoons red chili powder. Mix well.",
+      "Add the cooked chickpeas. Stir to coat with spices.",
+      "Pour in water as needed for desired consistency. Simmer for flavors to meld.",
+      "Add 1 teaspoon amchur (dry mango powder) or anardana (pomegranate seed) powder, 1 teaspoon garam masala, and salt to taste.",
+      "Garnish with fresh chopped coriander leaves (cilantro).",
+    ],
     usermail: "rajat@gmail.com",
+    date: "24 April",
   },
   {
-    title: "gobi alu",
+    title: "Paneer Paratha",
     image:
-      "https://i0.wp.com/picjumbo.com/wp-content/uploads/traditional-korean-dish-bibimbap-with-chopsticks-free-photo.jpg?w=600&quality=80",
-    author: "ajay",
-    body: "Donuts, also known as doughnuts, are a popular type of fried or baked pastry. They are typically round with a hole in the center, though there are various shapes and flavors available. The dough is made from ingredients like flour, sugar, yeast, and often eggs and milk, resulting in a soft and slightly sweet texture. Donuts are commonly enjoyed as a breakfast treat or a snack, and they have become a beloved staple of many cuisines around the world. ",
-    CookingTime: "10 min ",
-    calories: "50",
-    Procedure:
-      " In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt. In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt.In a large mixing bowl, whisk together the all-purpose flour, granulated sugar, baking powder, and salt.Cover the bowl with plastic wrap and refrigerate the dough for at least 30 minutes.On a floured surface, roll out the chilled dough to about 1/2-inch thickness.Using a donut cutter or a glass, cut out donut shapes and use a smaller cutter or a bottle cap to cut out the donut holes in the center.Heat vegetable oil in a deep pot or a deep fryer to 350°F (175°C).Carefully lower the donuts into the hot oil, frying a few at a time, but not overcrowding the pot.Fry the donuts for 1-2 minutes per side or until they are golden brown and cooked through.Use a slotted spoon to remove the donuts from the oil and place them on a paper towel-lined plate to drain excess oil.While the donuts are still warm, dust them with powdered sugar.Enjoy these delicious homemade donuts with your favorite coffee or tea!",
-    Ingredients:
-      "2 1/4 cups all-purpose flour. 1/2 cup granulated sugar. 2 teaspoons baking powder. 1/2 teaspoon salt. 1/2 cup milk. 1/4 cup unsalted butter melted. 1 large egg. 1 teaspoon vanilla extract.Vegetable oil, for frying. Powdered sugar, for dusting",
-    usermail: "adi@gmail.com",
+      "https://maayeka.com/wp-content/uploads/2023/12/broccoli-paneer-paratha-recipe-a.jpg",
+    body: "Paneer Paratha is a delicious and popular Indian stuffed flatbread made with spiced paneer (Indian cottage cheese). It's a comforting and flavorful dish, perfect for breakfast or lunch. ",
+    author: "Mukul Singh",
+    CookingTime: "20 minutes",
+    calories: "300 kcal",
+    Ingredients: [
+      "2 cups Whole Wheat Flour (atta)",
+      "Water (for kneading)",
+      "Salt to taste",
+      "200 grams Paneer (Indian cottage cheese), crumbled",
+      "1 small Onion, finely chopped",
+      "2 Green Chilies, finely chopped (adjust to taste)",
+      "2 tablespoons Fresh Coriander Leaves (cilantro), chopped",
+      "1 teaspoon Ginger, grated",
+      "1/2 teaspoon Garam Masala",
+      "1/2 teaspoon Red Chili Powder (optional, for extra spice)",
+      "1/2 teaspoon Cumin Seeds",
+      "Salt to taste",
+      "Oil or Ghee (clarified butter) for cooking",
+      "Butter or Ghee (clarified butter)",
+      "Fresh Yogurt",
+      "Pickle or Chutney",
+    ],
+    Procedure: [
+      "In a mixing bowl, take 2 cups of whole wheat flour.",
+      "Add salt to taste.",
+      "Gradually add water little by little and knead into a soft dough.",
+      "Cover the dough and let it rest for about 15-20 minutes.",
+      "In another bowl, mix together:- 200 grams crumbled Paneer,1 small finely chopped Onion,2 finely chopped Green Chilies (adjust to taste),2 tablespoons chopped Fresh Coriander Leaves (cilantro),1 teaspoon grated Ginger,1/2 teaspoon Garam Masala,1/2 teaspoon Red Chili Powder (optional),1/2 teaspoon Cumin Seeds,Salt to taste",
+      "Take a portion of the dough and roll it into a small ball.",
+      "Flatten the ball slightly between your palms.",
+      "Roll the dough ball into a small disc, about the size of your palm.",
+      "Place a spoonful of the paneer filling in the center of the disc.",
+      "Gather the edges of the dough to enclose the filling and pinch together to seal.",
+      "Flatten the filled dough ball slightly and dust it with dry flour.",
+      "Roll it gently into a circle, ensuring the filling doesn't come out.",
+      "Heat a griddle or tawa on medium-high heat.",
+      "Place the rolled paneer paratha on the hot tawa.",
+      "Cook for about a minute or until you see bubbles forming on the surface.",
+      "Flip the paratha and drizzle some oil or ghee around the edges.",
+      "Cook until golden brown spots appear on both sides, pressing gently with a spatula.",
+      "Repeat the same process for the remaining dough balls.",
+    ],
+    usermail: "mukul@gmail.com",
+    date: "24 April",
+  },
+  {
+    title: "Dosa ",
+    image:
+      "https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__1200_0_0_0_auto.jpg",
+    body: "Dosa is a popular South Indian dish that's enjoyed not only in India but around the world. It's a thin, crispy, and savory crepe made from a fermented batter of rice and lentils.",
+    author: "Aditya Chauhan",
+    CookingTime: "25 minutes",
+    calories: "700 kcal",
+    Ingredients: [
+      "2 cups Rice (preferably parboiled rice)",
+      "1/2 cup Urad dal (skinned black gram lentils)",
+      "1/2 teaspoon Fenugreek seeds (optional, for fermentation)",
+      "Salt to taste",
+      "Oil or Ghee (clarified butter) for greasing the skillet (tava)",
+      "Sambar (a lentil-based vegetable stew)",
+      "Coconut chutney",
+      "Tomato chutney",
+      "Potato masala (a spicy potato filling)",
+    ],
+    Procedure: [
+      "Wash and soak 2 cups of rice and 1/2 cup urad dal separately in water for at least 4-6 hours or overnight.",
+      "If using fenugreek seeds, add about 1/2 teaspoon of fenugreek seeds to the urad dal while soaking.",
+      "Drain the soaked rice and urad dal.",
+      "Grind them separately to a fine paste using a little water. The consistency should be smooth.",
+      "Combine the ground rice and urad dal batter together in a large bowl.",
+      "Add salt to taste and mix well.",
+      "Cover the bowl loosely and let it ferment in a warm place for about 8-12 hours or overnight until it doubles in volume and becomes slightly bubbly.",
+      "Heat a non-stick or cast-iron skillet (tava) on medium-high heat.",
+      "Grease the tava lightly with oil or ghee.",
+      "Pour a ladleful of the dosa batter onto the center of the hot tava.",
+      "Using the back of the ladle, spread the batter in a circular motion to form a thin, even layer.",
+      "Drizzle a little oil or ghee around the edges of the dosa.",
+      "Cook the dosa on medium-high heat until the edges start to brown and lift off the tava.",
+      "Flip the dosa gently using a spatula and cook for another minute or until the other side is cooked and crisp.",
+      "Remove the dosa from the tava and serve hot.",
+      "Repeat the process with the remaining batter, greasing the tava as needed.",
+    ],
+    usermail: "aditya@gmail.com",
+    date: "24 April",
   },
 ];
 
-const Blog = require("./Models/blog");
+const blogSeedData = [
+  {
+    title: "Delicious Poha Recipe",
+    image:
+      "https://t4.ftcdn.net/jpg/04/14/41/77/360_F_414417747_PncWOAXpLSMPuQSae7uXLmJGlGV41EOH.jpg",
+    author: "Ajay Tyagi",
+    body: "Poha, also known as flattened rice, is a popular Indian breakfast dish that is easy to prepare and incredibly versatile. Made from flattened rice flakes, poha is light, fluffy, and nutritious, making it a perfect breakfast option for people of all ages.To prepare poha, the rice flakes are typically rinsed to remove any impurities and then soaked briefly in water to soften them. They are then stir-fried with a mixture of spices, vegetables, and often peanuts or other nuts for added crunch and flavor. Common ingredients include onions, green chilies, curry leaves, mustard seeds, turmeric, and lemon juice, among others.One of the best things about poha is its adaptability. It can be customized to suit individual tastes and dietary preferences. For example, it can be made with or without onions, and you can add or omit vegetables based on what you have on hand. Poha can also be made vegan or vegetarian, depending on your choice of ingredients.Poha is not only delicious but also nutritious. It is a good source of carbohydrates, making it a great energy-boosting breakfast option. Additionally, it is low in calories and fat, making it a healthy choice for those looking to maintain or lose weight. Poha is also gluten-free, making it suitable for those with gluten intolerance or celiac disease.",
+    usermail: "john.doe@example.com",
+  },
+  {
+    title: "Chole Bhature",
+    image:
+      "https://content.jdmagicbox.com/comp/noida/v8/011pxx11.xx11.190925042619.e8v8/catalogue/punjabi-chole-bhature-noida-sector-34-noida-north-indian-restaurants-2whbntunqe.jpg",
+    author: "Rajat Gupta",
+    body: "Chole Bhature is a beloved North Indian dish that combines spicy chickpea curry (chole) with deep-fried bread (bhature). It a flavorful and indulgent dish that is popular across India and is often enjoyed as a hearty breakfast or as a fulfilling meal.The chole, or chickpea curry, is made with a blend of aromatic spices such as coriander, cumin, turmeric, and garam masala, along with onions, tomatoes, and ginger-garlic paste. The chickpeas are simmered in this spicy gravy until they are tender and infused with the rich flavors of the spices.The bhature, on the other hand, are soft and fluffy deep-fried bread made from a dough of all-purpose flour, yogurt, and a leavening agent like baking powder or baking soda. The dough is rolled out into flat rounds and then deep-fried until they puff up and become golden brown and crispy on the outside.Chole Bhature is often served with a side of sliced onions, lemon wedges, and achar (Indian pickles) to complement the spicy and tangy flavors of the dish. It is a filling and satisfying meal that is perfect for special occasions or as a comforting treat on a lazy weekend morning.",
+    usermail: "jane.smith@example.com",
+  },
+  {
+    title: "Special Paneer Parantha",
+    image:
+      "https://maayeka.com/wp-content/uploads/2023/12/broccoli-paneer-paratha-recipe-a.jpg",
+    author: "Mukul Singh",
+    body: "Paneer Paratha is a delightful and nutritious Indian flatbread stuffed with spiced paneer (Indian cottage cheese). It is a popular breakfast or lunch option, loved for its delicious taste and fulfilling nature.To make paneer paratha, a mixture of crumbled paneer, finely chopped onions, green chilies, coriander leaves, and spices like cumin, garam masala, and red chili powder is prepared. This flavorful mixture is then stuffed inside a dough made from whole wheat flour, water, and a pinch of salt. The stuffed dough is rolled out into flatbreads and cooked on a hot griddle with a little oil or ghee until golden brown and crispy on the outside.Paneer, being a good source of protein and calcium, makes paneer paratha a healthy and satisfying meal option. The combination of spices and herbs gives it a rich and aromatic flavor that is sure to tantalize your taste buds.",
+    usermail: "jane.smith@example.com",
+  },
+  {
+    title: "Dhokla",
+    image:
+      "https://nishamadhulika.com/imgpst/featured/chana_dal_chawal_dhokla.jpg",
+    author: "Aditya Chauhan",
+    body: "Dhokla is a popular Indian snack originating from the state of Gujarat. It is a savory steamed cake made from fermented batter, typically made from gram flour (besan) and sometimes rice flour. Dhokla is known for its light and fluffy texture, tangy flavor, and is often served as a snack or appetizer.To prepare dhokla, the batter is made by mixing gram flour with water, yogurt, and a combination of spices such as turmeric, ginger, and green chilies. This mixture is then fermented for several hours, which helps in making the dhokla soft and airy.Once the batter is fermented, it is poured into a greased pan or plate and steamed until it is cooked through. After steaming, the dhokla is cut into pieces and garnished with a tempering of mustard seeds, curry leaves, and green chilies fried in oil. It is then topped with a sprinkle of fresh coriander leaves and sometimes grated coconut.",
+    usermail: "jane.smith@example.com",
+  },
+  {
+    title: "Dosa",
+    image:
+      "https://vismaifood.com/storage/app/uploads/public/8b4/19e/427/thumb__1200_0_0_0_auto.jpg",
+    author: "Ajay",
+    body: "Dosa is a popular South Indian dish that has gained worldwide fame for its delicious taste and unique texture. It is a type of thin, crispy pancake made from a fermented batter of rice and urad dal (black lentils), which gives it a slightly sour flavor and a light and airy texture.To make dosa, the rice and urad dal are soaked separately for several hours and then ground into a smooth batter. The batter is then fermented overnight or for a few hours, which helps in developing its characteristic flavor and texture. Once the batter is fermented, it is spread thinly on a hot griddle or skillet and cooked until it becomes crispy and golden brown. Dosa can be made plain or filled with a variety of fillings, such as spiced potatoes (masala dosa), cheese, or vegetables.Dosa is typically served with sambar, a flavorful lentil-based stew, and coconut chutney, which adds a creamy and slightly sweet contrast to the crispy dosa. It is also sometimes served with a spicy tomato chutney or a tangy tamarind chutney.",
+    usermail: "jane.smith@example.com",
+  },
+];
+
 const Recipe = require("./Models/recipe");
+const Blog = require("./Models/blog");
 async function seedDB() {
-  await Blog.insertMany(blog);
-  await Recipe.insertMany(recipe);
+  await Recipe.insertMany(recipesData);
+  await Blog.insertMany(blogSeedData);
   console.log("db seeded");
 }
-
 module.exports = seedDB;
