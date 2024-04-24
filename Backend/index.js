@@ -24,11 +24,11 @@ mongoose
   .then(() => console.log("Connection Open!"))
   .catch((err) => console.log(err));
 
-app.use(
-  cors({
-    origin: ["http://localhost:5173"],
-  })
-);
+  app.use(
+    cors({
+      origin: "*",
+    })
+  );
 app.use(session({
   secret: 'keyboard cat',
   resave: false,

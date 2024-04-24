@@ -57,9 +57,14 @@ catch (e) {
 
 
 
+// router.get("/auth/google",(req,res)=>{
+// console.log("req aii")
+// })
 router.get('/auth/google',
-  passport.authenticate('google', { scope:
+
+  passport.authenticate('google', {scope:
       [ 'email', 'profile' ] }
+
 ));
 
 
