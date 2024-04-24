@@ -8,7 +8,6 @@ import { MyBlogs } from "./pages/Blogs/MyBlogs";
 import { ShowBlogs } from "./pages/Show Blogs/ShowBlogs";
 import  { Contact } from "./pages/contactUs/Contact";
 import Home from "./pages/Home/Home";
-import { RecoilRoot } from "recoil";
 const App = () => {
   return (
     <>

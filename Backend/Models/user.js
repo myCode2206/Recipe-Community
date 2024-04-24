@@ -6,7 +6,8 @@ const authentication = new mongoose.Schema({
     email:String,
 
     role:{
-      default:chef
+      type:String,
+      default:"chef"
     }
   })
 

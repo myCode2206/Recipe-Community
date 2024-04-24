@@ -3,9 +3,11 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import MyNav from "../../Components/Navbar/MyNav";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/footer/Footer";
 
 const Login = () => {
+  const navigate =useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
@@ -48,20 +50,21 @@ const Login = () => {
     console.log("Role:", role);
     try{
 
-      const res = await axios.post("",{
+      const res = await axios.post("http://localhost:5000/register",{
         email,
         password,
         username,
         role,
       })
       console.log(res.data);
+      navigate("/blogs")
 
     }
     catch(e)
     {
       console.error("Error:", e); 
     }
-    axios.post("")
+    
   };
 
   return (
