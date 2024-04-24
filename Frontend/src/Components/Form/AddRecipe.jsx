@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MyNav from "../Navbar/MyNav";
 import Footer from "../footer/Footer";
+import axios from "axios";
 
 const AddRecipe = () => {
-  const [countIng, setCount1] = useState(2);
-  const [countIns, setCount2] = useState(2);
+  const [countIng, setCountIng] = useState(2);
+  const [countIns, setCountIns] = useState(2);
   const [formData, setFormData] = useState({
     recipeName: "",
     img: "",
@@ -13,10 +15,13 @@ const AddRecipe = () => {
     calorie: "",
     ingredient: [],
     procedure: [],
-
   });
-  const formref = useRef();
+  const formRef = useRef();
+  const navigate = useNavigate();
 
+  function Redirect() {
+    navigate("/blogs");
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,36 +31,50 @@ const AddRecipe = () => {
     });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    formref.current.reset();
-    console.log(formData);
+    try {
+      await axios.post("http://localhost:5000/recipe/add", { formData });
+    } catch (err) {
+      console.log(err);
+    }
 
-  }
+    Redirect();
+  };
 
-  async function Input1() {
-    await setCount1(countIng + 1);
-    let input = document.createElement("input");
-    let steps = document.getElementsByClassName("steps")[0];
-    input.type = "text";
-    input.name = "ingredient";
-    input.className = "form-control mb-2";
-    input.placeholder = `Step-${countIng}`;
-    input.onChange = handleChange;
-    steps.append(input);
-  }
-  async function Input2() {
-    await setCount2(countIns + 1);
-    let input = document.createElement("input");
-    let procedure = document.getElementsByClassName("procedure")[0];
-    input.type = "text";
-    input.name = "procedure";
-    input.onChange = handleChange;
-    input.className = "form-control mb-2";
-    input.placeholder = `Step-${countIns}`;
+  const addIngredientInput = () => {
+    setCountIng(countIng + 1);
+    setFormData({
+      ...formData,
+      ingredient: [...formData.ingredient, ""],
+    });
+  };
 
-    procedure.append(input);
-  }
+  const addProcedureInput = () => {
+    setCountIns(countIns + 1);
+    setFormData({
+      ...formData,
+      procedure: [...formData.procedure, ""],
+    });
+  };
+
+  const handleIngredientChange = (e, index) => {
+    const newIngredients = [...formData.ingredient];
+    newIngredients[index] = e.target.value;
+    setFormData({
+      ...formData,
+      ingredient: newIngredients,
+    });
+  };
+
+  const handleProcedureChange = (e, index) => {
+    const newProcedures = [...formData.procedure];
+    newProcedures[index] = e.target.value;
+    setFormData({
+      ...formData,
+      procedure: newProcedures,
+    });
+  };
 
   return (
     <>
@@ -77,7 +96,7 @@ const AddRecipe = () => {
             flexDirection: "column",
           }}
           onSubmit={onSubmitHandler}
-          ref={formref}
+          ref={formRef}
         >
           <div className="mb-3">
             <label htmlFor="title" className="form-label">
@@ -96,7 +115,13 @@ const AddRecipe = () => {
             <label htmlFor="img" className="form-label">
               Img
             </label>
-            <input type="text" name="img" className="form-control" id="img" onChange={handleChange} />
+            <input
+              type="text"
+              name="img"
+              className="form-control"
+              id="img"
+              onChange={handleChange}
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="description" className="form-label">
@@ -137,18 +162,22 @@ const AddRecipe = () => {
           <div className="mb-3">
             <label className="form-label">Ingredient</label>
             <div className="steps">
-              <input
-                type="text"
-                name="ingredient"
-                className="form-control mb-2"
-                placeholder="step-1"
-                onChange={handleChange}
-              />
+              {formData.ingredient.map((ingredient, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  name="ingredient"
+                  className="form-control mb-2"
+                  placeholder={`Step ${index + 1}`}
+                  value={ingredient}
+                  onChange={(e) => handleIngredientChange(e, index)}
+                />
+              ))}
             </div>
             <p
               className="btn text-muted addInput"
               style={{ border: "0.5px solid black" }}
-              onClick={Input1}
+              onClick={addIngredientInput}
             >
               Add
             </p>
@@ -156,18 +185,22 @@ const AddRecipe = () => {
           <div className="mb-3">
             <label className="form-label">Procedure</label>
             <div className="procedure">
-              <input
-                type="text"
-                name="procedure"
-                className="form-control mb-2"
-                placeholder="step-1"
-                onChange={handleChange}
-              />
+              {formData.procedure.map((step, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  name="procedure"
+                  className="form-control mb-2"
+                  placeholder={`Step ${index + 1}`}
+                  value={step}
+                  onChange={(e) => handleProcedureChange(e, index)}
+                />
+              ))}
             </div>
             <p
               className="btn text-muted addInput"
               style={{ border: "0.5px solid black" }}
-              onClick={Input2}
+              onClick={addProcedureInput}
             >
               Add
             </p>
