@@ -14,7 +14,7 @@ const Login = () => {
     email: "",
     password: "",
     username: "",
-    role: "", // New field for role
+    role: "", 
   });
 
   const togglePasswordVisibility = () => {
@@ -40,7 +40,7 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const onregisterclick = async (e) => {
     e.preventDefault();
     const { email, password, username, role } = formData;
     // Add your form submission logic here
@@ -67,6 +67,25 @@ const Login = () => {
     
   };
 
+  const onloginsubmit = async (e)=>{
+
+    e.preventDefault();
+  const { username, password } = formData;
+
+  try {
+    const res = await axios.post("http://localhost:5000/login", {
+      username,
+      password
+    });
+    console.log(res.data);
+    navigate("/blogs");
+  } catch (error) {
+    console.error("Error:", error.response.data.error);
+    console.error("Login failed.");
+    // Handle login failure, such as showing an error message to the user
+  }
+};
+
   return (
     <>
       <MyNav />
@@ -75,18 +94,17 @@ const Login = () => {
           {isLogin ? (
             <div className={styles.form}>
               <span className={styles.title}>Login</span>
-              <form onSubmit={handleSubmit}>
-                <div className={styles.inputField}>
+              <form onSubmit={onloginsubmit}>
+              <div className={styles.inputField}>
                   <input
-                    id="inp-email"
                     type="text"
-                    placeholder="Enter your email"
-                    name="email"
-                    value={formData.email}
+                    placeholder="Enter your username"
+                    name="username"
+                    value={formData.username}
                     onChange={handleChange}
                     required
                   />
-                  <i className="uil uil-envelope icon"></i>
+                  <i className="uil uil-user"></i>
                 </div>
                 <div className={styles.inputField}>
                   <input
@@ -107,18 +125,6 @@ const Login = () => {
                     onClick={togglePasswordVisibility}
                   ></i>
                 </div>
-                {/* <div className={styles.inputField}>
-                  <select
-                    name="role"
-                    value={formData.role}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="">Select Role</option>
-                    <option value="chef">Chef</option>
-                    <option value="client">Client</option>
-                  </select>
-                </div> */}
                 <div className={styles.checkboxText}>
                   <div className={styles.checkboxContent}>
                     <input type="checkbox" id="logCheck" />
@@ -146,11 +152,11 @@ const Login = () => {
           ) : (
             <div className={styles.form}>
               <span className={styles.title}>SignUp</span>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={onregisterclick}>
                 <div className={styles.inputField}>
                   <input
                     type="text"
-                    placeholder="Enter your name"
+                    placeholder="Enter your username"
                     name="username"
                     value={formData.username}
                     onChange={handleChange}

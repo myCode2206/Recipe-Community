@@ -4,52 +4,40 @@ const passport=require('passport');
 const path = require("path");
 const User =require('../Models/user');
 
-// console.log("auth js route");
+
+// router.post('/login',(req,res)=>{
+//   console.log("inside login")
+//   console.log(req.body);
+// })
 
 
-
-router.post('/login', passport.authenticate('local', { 
-  failureRedirect: '/register',
-  failureFlash: true
-}), 
-(req, res) => {
-  try{
-
- 
-  req.flash('success', `Welcome Back  ${req.user.username} Again!!`);
-  console.log('Logged In Successfully!');
-
-  let redirecturl=currenturl||'/home'
-
-  if(redirecturl && redirecturl.indexOf('user')!==-1)
-  {
-      redirecturl = ('/home');
-  }
-  
-  if(redirecturl && redirecturl.indexOf('review')!==-1)
-  {
-      redirecturl=redirecturl.split('/');
-      redirecturl.pop();
-      redirecturl=redirecturl.join('/');   
-  }
- 
-
-  res.redirect('/home');
-  }
-  catch(e)
-  {
-    res.redirect('/home')
-  }
-}
-);
+router.post('/login', (req, res, next) => {
+  console.log(req.body);
+  // Use Passport.js local strategy for authentication
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+    if (!user) {
+      console.log(info);
+      return res.status(400).json({ error: 'Invalid credentials' });
+    }
+    // If authentication succeeds, log in the user
+    req.login(user, (err) => {
+      if (err) {
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+      // Send a success response
+      return res.status(200).json({ message: 'Logged in successfully', user });
+    });
+  })(req, res, next);
+});
 
 
 
 
 router.post('/register', async (req,res)=>{
-  // console.log("hwloo")
   try {
-    // console.log("register post request")
     const { username, password, email, role } = req.body;
     const user = new User({ username, email,role });
     const newUser = await User.register( user, password);
@@ -62,7 +50,6 @@ router.post('/register', async (req,res)=>{
     });
 }
 catch (e) {
-    // req.flash('error', e.message);
     console.log(e.message);
     res.send('Signup unsucessfull');
 }
@@ -82,9 +69,8 @@ passport.authenticate( 'google', {
       failureRedirect: '/login',
       failureFlash: true
 }),(req,res)=>{
-  req.flash('success', `Welcome ${req.user.displayName} Again!!`);
   console.log(req.user.displayName);
-  res.redirect('/home');
+  res.send('google auth');
 
 });
 
@@ -92,9 +78,8 @@ passport.authenticate( 'google', {
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
       if (err) { return next(err); }
-      req.logOut()
-      req.flash('success', 'GoodBye!!');
-      res.redirect('/home');
+      req.logOut();
+      res.send("logout sucessfull")
     });
 });
 

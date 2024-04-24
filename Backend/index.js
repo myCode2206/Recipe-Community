@@ -64,14 +64,15 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 //passport  check krega username and password using authenticate method provided by the passport-local-mongoose package
-passport.use(new LocalStrategy(User.authenticate())); 
-
+passport.use(new LocalStrategy(
+  User.authenticate()
+));
 
   passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "https://shapeshift.onrender.com/auth/google/callback",
-    // callbackURL: "http://localhost:5000/auth/google/callback",
+    // callbackURL: "https://shapeshift.onrender.com/auth/google/callback",
+    callbackURL: "http://localhost:5000/auth/google/callback",
     passReqToCallback   : true
   },
   function(request, accessToken, refreshToken, profile, done) {
@@ -86,8 +87,8 @@ app.use((req, res, next) => {
   res.locals.currentUser = "";
   res.locals.currentusermail="";
   res.locals.user="";
-  res.locals.success=req.flash('success')
-  res.locals.error=req.flash('error');
+  // res.locals.success=req.flash('success')
+  // res.locals.error=req.flash('error');
   res.locals.currenturl="/home";
   if(req.user && req.user.displayName)
   {
