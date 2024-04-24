@@ -33,7 +33,7 @@ router.post("/blog/add", async (req, res) => {
 router.get("/blog/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const blog = await MyBlog.findById(id);
+    const blog = await MyBlog.findById(id).populate("comment");
     res.status(200).json(blog);
   } catch (e) {
     res.status(400).json({ msg: "Something Went Wrong!!!" });
@@ -69,12 +69,8 @@ router.post("/blog/:id/updateblog", (req, res) => {
 router.post("/blog/:id/comment", async (req, res) => {
   try {
     const { id } = req.params;
-    // console.log(id);
     const blog = await MyBlog.findById(id);
-    // console.log(blog)
-    //
     const { comment } = req.body;
-    console.log(req.body);
 
     const newComment = await BlogComment.create({
       comment,
@@ -85,6 +81,7 @@ router.post("/blog/:id/comment", async (req, res) => {
     // console.log(newComment)
 
     blog.comment.push(newComment);
+    blog.save();
 
     res.status(201).json({ msg: "comment added sucess" });
   } catch (e) {

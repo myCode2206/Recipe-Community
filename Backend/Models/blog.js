@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const comment = require("./blogComment");
+const BlogComment = require("./blogComment");
 
 let arr = new Date().toDateString().split(" ");
 let date = arr[2] + " " + arr[1];
@@ -31,7 +31,7 @@ const blogschema = new mongoose.Schema({
   comment: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "comment",
+      ref: "BlogComment",
     },
   ],
 });
