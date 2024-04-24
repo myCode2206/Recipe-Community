@@ -9,6 +9,7 @@ import { Contact } from "./pages/contactUs/Contact";
 import Home from "./pages/Home/Home";
 import AddRecipe from "../src/Components/Form/AddRecipe";
 import AddBlog from "../src/Components/Form/AddBlog";
+import Profile from "./Components/Profile/Profile";
 const App = () => {
   return (
     <>
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/add" element={<AddRecipe />} />
           <Route path="/addblog" element={<AddBlog />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </Router>
     </>
