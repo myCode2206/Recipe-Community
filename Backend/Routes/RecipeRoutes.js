@@ -40,7 +40,6 @@ router.post("/recipe/add", async (req, res) => {
     });
     res.status(200).json({ msg: "Added Data Successfully" });
   } catch (e) {
-    // console.log(e);
     res.status(400).json({ msg: "Something Went Wrong!!!" });
   }
 });
@@ -102,9 +101,8 @@ router.post("/recipe/:id/review", async (req, res) => {
       username: "mukul",
     });
 
-    // console.log(newComment)
-
     recipee.comment.push(newReview);
+    console.log(recipee.comment);
 
     res.status(201).json({ msg: "review added sucess" });
   } catch (e) {
