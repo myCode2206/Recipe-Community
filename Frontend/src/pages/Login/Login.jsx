@@ -6,6 +6,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/footer/Footer";
 
+
 const Login = () => {
   const navigate =useNavigate()
   const [showPassword, setShowPassword] = useState(false);
@@ -16,6 +17,22 @@ const Login = () => {
     username: "",
     role: "", 
   });
+
+  const googlelogin = async ()=>{
+    console.log("login with google request aii hai")
+    try{
+      const res = await axios.get("http://localhost:5000/auth/google")
+      navigate("/blogs")
+      console.log(res.data);
+
+    }
+    catch(e)
+    {
+      console.log("login with google unsucessfull");
+      console.log(e);
+    }
+
+  }
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -73,7 +90,7 @@ const Login = () => {
   const { username, password } = formData;
 
   try {
-    const res = await axios.post("http://localhost:5000/login", {
+    const res = await axios.get("http://localhost:5000/login", {
       username,
       password
     });
@@ -132,8 +149,8 @@ const Login = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href="#" className={styles.text}>
-                    Forgot password?
+                  <a onClick={googlelogin} className={styles.text}>
+                    signup with google
                   </a>
                 </div>
                 <div className={styles.inputField}>
