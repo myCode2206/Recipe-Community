@@ -3,10 +3,11 @@ const passportLocolMongoose = require('passport-local-mongoose');
 
 //auth model
 const authentication = new mongoose.Schema({
-    email:String,
+    username:String,
 
     role:{
-      default:chef
+      type:String,
+      default:"chef"
     }
   })
 
