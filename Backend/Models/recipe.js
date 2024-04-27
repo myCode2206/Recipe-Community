@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const review = require("./recipereview");
+const recipeReview = require("./recipereview");
 let arr = new Date().toDateString().split(" ");
 let date = arr[2] + " " + arr[1];
 
@@ -49,7 +49,7 @@ const recipeSchema = new mongoose.Schema({
   comment: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "review",
+      ref: "recipeReview",
     },
   ],
 });

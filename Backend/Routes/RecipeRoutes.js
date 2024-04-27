@@ -47,8 +47,8 @@ router.post("/recipe/add", async (req, res) => {
 router.get("/recipe/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const recipe = await MyRecipe.findById(id);
-    console.log("sare recipes aa jynge");
+    const recipe = await MyRecipe.findById(id).populate("comment");
+    console.log(recipe);
     res.status(200).json(recipe);
   } catch (e) {
     res.status(400).json({ msg: "Something Went Wrong!!!" });
@@ -88,21 +88,18 @@ router.post("/recipe/:id/updaterecipe", (req, res) => {
 router.post("/recipe/:id/review", async (req, res) => {
   try {
     const { id } = req.params;
-    // console.log(id);
     const recipee = await MyRecipe.findById(id);
-    // console.log(blog)
-    //
+    console.log(recipee);
     const { comment } = req.body;
-    console.log(req.body);
 
     const newReview = await recipeReview.create({
       comment,
       user_id: "1",
       username: "mukul",
     });
-
+    console.log(newReview);
     recipee.comment.push(newReview);
-    console.log(recipee.comment);
+    recipee.save();
 
     res.status(201).json({ msg: "review added sucess" });
   } catch (e) {

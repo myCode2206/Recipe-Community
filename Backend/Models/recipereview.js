@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const recipereviewschema = new mongoose.Schema({
   rating: {
     type: Number,
-    // require:true
   },
   comment: {
     type: String,

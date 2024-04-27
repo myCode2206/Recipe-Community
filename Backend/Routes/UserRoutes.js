@@ -5,10 +5,6 @@ const path = require("path");
 const User =require('../Models/user');
 
 
-// router.post('/login',(req,res)=>{
-//   console.log("inside login")
-//   console.log(req.body);
-// })
 
 
 router.post('/login', (req, res, next) => {
@@ -57,38 +53,34 @@ catch (e) {
 
 
 
-// router.get("/auth/google",(req,res)=>{
-// console.log("req aii")
-// })
+
+
 router.get('/auth/google',
-
-  passport.authenticate('google', {scope:
-      [ 'email', 'profile' ] }
-
+  passport.authenticate('google', { scope: ['email', 'profile'] },
+// console.log("/auth/google")
 ));
 
 
 
-router.get('/auth/google/callback',
-passport.authenticate( 'google', {
-      failureRedirect: '/login',
-      failureFlash: true
-}),(req,res)=>{
-  console.log(req.user.displayName);
-  res.send('google auth');
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: 'http://localhost:5173/login' }),
+  (req, res)=>{
+    // Successful authentication, redirect home.
+    console.log(req.user.username);
+    res.redirect("http://localhost:5173");
+  });
 
-});
+
 
 
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
       if (err) { return next(err); }
-      req.logOut();
-      res.send("logout sucessfull")
+      // req.logOut();
+      res.redirect(" http://localhost:5173");
     });
 });
 
 
-  
 
-  module.exports = router;
+module.exports = router;

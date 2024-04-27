@@ -18,21 +18,9 @@ const Login = () => {
     role: "", 
   });
 
-  const googlelogin = async ()=>{
-    console.log("login with google request aii hai")
-    try{
-      const res = await axios.get("http://localhost:5000/auth/google")
-      navigate("/blogs")
-      console.log(res.data);
-
-    }
-    catch(e)
-    {
-      console.log("login with google unsucessfull");
-      console.log(e);
-    }
-
-  }
+   const googlelogin = async () => {
+    window.open("http://localhost:5000/auth/google","_self");
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -87,10 +75,11 @@ const Login = () => {
   const onloginsubmit = async (e)=>{
 
     e.preventDefault();
+
   const { username, password } = formData;
 
   try {
-    const res = await axios.get("http://localhost:5000/login", {
+    const res = await axios.post("http://localhost:5000/login", {
       username,
       password
     });
@@ -99,7 +88,6 @@ const Login = () => {
   } catch (error) {
     console.error("Error:", error.response.data.error);
     console.error("Login failed.");
-    // Handle login failure, such as showing an error message to the user
   }
 };
 

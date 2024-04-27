@@ -10,25 +10,31 @@ const dotenv=require('dotenv').config()
 const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
 const User = require('./Models/user');
 
+app.use(cors({
+  origin: ['http://localhost:5173'],
+  credentials: true  // Include credentials (cookies, authorization headers) in CORS requests
+}));
+
+
 
 app.use(express.json());
+
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
+
 
 // const mongourl = process.env.MONGO_URL;
 const mongourl = "mongodb://localhost:27017/recipeeee";
 const port = process.env.PORT;
+
 
 mongoose
   .connect(mongourl)
   .then(() => console.log("Connection Open!"))
   .catch((err) => console.log(err));
 
-  app.use(
-    cors({
-      origin: "*",
-    })
-  );
+  
+  
 app.use(session({
   secret: 'keyboard cat',
   resave: false,
@@ -44,6 +50,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
 
   passport.serializeUser((user,done)=>{
     done(null,user);
@@ -65,7 +72,6 @@ passport.use(new LocalStrategy(
   passport.use(new GoogleStrategy({
     clientID:     process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // callbackURL: "https://shapeshift.onrender.com/auth/google/callback",
     callbackURL: "http://localhost:5000/auth/google/callback",
     passReqToCallback   : true
   },
@@ -76,27 +82,30 @@ passport.use(new LocalStrategy(
 
 
 
-
 app.use((req, res, next) => {
+
   res.locals.currentUser = "";
   res.locals.currentusermail="";
   res.locals.user="";
-  // res.locals.success=req.flash('success')
-  // res.locals.error=req.flash('error');
   res.locals.currenturl="/home";
   if(req.user && req.user.displayName)
   {
+    console.log("google login hai")
     res.locals.user=req.user;
     const username=(req.user.displayName.split(' '))[0];
    res.locals.currentUser= username.toUpperCase();
    res.locals.currentusermail= req.user.email;
+   
   }
   if(req.user && req.user.username)
   {
+    console.log("local login hai")
     res.locals.user=req.user;
     res.locals.currentUser= req.user.username.toUpperCase();
     res.locals.currentusermail= req.user.email;
   }
+
+  // console.log(res.locals)
 
   next();
 })
