@@ -6,10 +6,10 @@ import Footer from "../../Components/footer/Footer";
 import HCard from "../../Components/Cards/HCard";
 import Herotitle from "../../Components/Hero Text/Herotitle";
 
-const Home = () => {
+const Home = (props) => {
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       <Herotitle />
       <MyCarousels />
       <HCard />

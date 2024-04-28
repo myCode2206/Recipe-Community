@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import MyNav from "../../Components/Navbar/MyNav";
 import SearchForm from "../../Components/Search Bar/SearchForm";
 import MyCard from "../../Components/Cards/MyCard";
@@ -8,10 +8,9 @@ import Footer from "../../Components/footer/Footer";
 import BCard from "../../Components/Cards/BCard";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 
 export const MyBlogs = () => {
-
   const [blogs, setblogs] = useState([]);
   const navigate = useNavigate();
 
@@ -19,15 +18,13 @@ export const MyBlogs = () => {
     navigate("/addBlog");
   }
 
-
   async function getAllBlogs() {
     try {
-      const res = await axios.get("http://localhost:5000/blog/")
+      const res = await axios.get("http://localhost:5000/blog/");
       // {console.log(res.data);}
       setblogs(res.data);
-    }
-    catch (e) {
-      console.log('unable to fetch all blogs data');
+    } catch (e) {
+      console.log("unable to fetch all blogs data");
     }
   }
 
@@ -41,10 +38,9 @@ export const MyBlogs = () => {
     flexWrap: "wrap",
   };
 
-
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       <div
         style={{
           width: "100%",
@@ -53,6 +49,7 @@ export const MyBlogs = () => {
           paddingRight: "20px",
           marginBottom: "5px",
           alignContent: "center",
+          marginTop: "30px",
         }}
       >
         <button
@@ -86,19 +83,10 @@ export const MyBlogs = () => {
         <SearchForm />
       </div>
 
-
       <div className="container" style={flexbox}>
-        {
-          blogs.map((blog) => {
-            return <BCard
-              key={blog._id}
-              blog={blog}
-            />
-
-          })
-        }
-
-
+        {blogs.map((blog) => {
+          return <BCard key={blog._id} blog={blog} />;
+        })}
       </div>
 
       <Footer />

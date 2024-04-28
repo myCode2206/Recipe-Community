@@ -38,7 +38,7 @@ const Recipe = () => {
 
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
 
       <div style={{ textAlign: "center", marginTop: "30px" }}>
         <div

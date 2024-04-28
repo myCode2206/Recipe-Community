@@ -48,7 +48,6 @@ router.get("/recipe/:id", async (req, res) => {
   try {
     const { id } = req.params;
     const recipe = await MyRecipe.findById(id).populate("comment");
-    console.log(recipe);
     res.status(200).json(recipe);
   } catch (e) {
     res.status(400).json({ msg: "Something Went Wrong!!!" });

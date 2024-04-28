@@ -6,43 +6,39 @@ const User =require('../Models/user');
 
 
 
+// router.post("/login",(req,res)=>{
+//   console.log("jello")
+// })
 
-router.post('/login', (req, res, next) => {
-  console.log(req.body);
-  // Use Passport.js local strategy for authentication
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return res.status(500).json({ error: 'Internal server error' });
+
+router.post('/login', passport.authenticate('local', { 
+  failureRedirect: 'http://localhost:5173/login',
+}), 
+(req, res) => {
+  try
+    {
+      console.log("inside login routs  " + req.user);
+      return res.status(200).json({ message: 'Logged in successfully', user:req.user });   
     }
-    if (!user) {
-      console.log(info);
-      return res.status(400).json({ error: 'Invalid credentials' });
+    catch(e)
+    {
+      return res.status(500).json({ message: {e}});
     }
-    // If authentication succeeds, log in the user
-    req.login(user, (err) => {
-      if (err) {
-        return res.status(500).json({ error: 'Internal server error' });
-      }
-      // Send a success response
-      return res.status(200).json({ message: 'Logged in successfully', user });
-    });
-  })(req, res, next);
-});
-
-
+}
+);
 
 
 router.post('/register', async (req,res)=>{
   try {
     const { username, password, email, role } = req.body;
-    const user = new User({ username, email,role });
-    const newUser = await User.register( user, password);
+    const newuser = new User({ username, email,role });
+    const user = await User.register( newuser, password);
 
-    req.login(newUser, function(err) {
+    req.login(user, function(err) {
         if (err){
             return next(err);
         }
-        return res.send('Signup sucessfull');
+        return res.status(200).json({ message: 'sign up successfully', user:user });
     });
 }
 catch (e) {
@@ -53,34 +49,59 @@ catch (e) {
 
 
 
+const CLIENT_URL = "http://localhost:5173/";
 
-
-router.get('/auth/google',
-  passport.authenticate('google', { scope: ['email', 'profile'] },
-// console.log("/auth/google")
-));
-
-
-
-router.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: 'http://localhost:5173/login' }),
-  (req, res)=>{
-    // Successful authentication, redirect home.
-    console.log(req.user.username);
-    res.redirect("http://localhost:5173");
-  });
-
-
-
-
-router.get('/logout', (req, res) => {
-  req.logout(function(err) {
-      if (err) { return next(err); }
-      // req.logOut();
-      res.redirect(" http://localhost:5173");
+router.get("/login/success", (req, res) => {
+  if (req.user) {
+    res.status(200).json({
+      success: true,
+      message: "successfull",
+      user: req.user,
     });
+  }
 });
 
+router.get("/login/failed", (req, res) => {
+  res.status(401).json({
+    success: false,
+    message: "failure",
+  });
+});
 
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect(CLIENT_URL);
+});
+
+router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed",
+  })
+);
+
+
+
+// router.get("/github", passport.authenticate("github", { scope: ["profile"] }));
+// router.get(
+//   "/github/callback",
+//   passport.authenticate("github", {
+//     successRedirect: CLIENT_URL,
+//     failureRedirect: "/login/failed",
+//   })
+// );
+
+// router.get("/facebook", passport.authenticate("facebook", { scope: ["profile"] }));
+
+// router.get(
+//   "/facebook/callback",
+//   passport.authenticate("facebook", {
+//     successRedirect: CLIENT_URL,
+//     failureRedirect: "/login/failed",
+//   })
+// );
 
 module.exports = router;
