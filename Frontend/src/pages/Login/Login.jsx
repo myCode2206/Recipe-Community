@@ -7,14 +7,14 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/footer/Footer";
 
 const Login = () => {
-  const navigate =useNavigate()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     username: "",
-    role: "", 
+    role: "",
   });
 
   const togglePasswordVisibility = () => {
@@ -48,9 +48,9 @@ const Login = () => {
     console.log("Password:", password);
     console.log("Username:", username);
     console.log("Role:", role);
-    try{
+    try {
 
-      const res = await axios.post("http://localhost:5000/register",{
+      const res = await axios.post("http://localhost:5000/register", {
         email,
         password,
         username,
@@ -60,31 +60,30 @@ const Login = () => {
       navigate("/blogs")
 
     }
-    catch(e)
-    {
-      console.error("Error:", e); 
+    catch (e) {
+      console.error("Error:", e);
     }
-    
+
   };
 
-  const onloginsubmit = async (e)=>{
+  const onloginsubmit = async (e) => {
 
     e.preventDefault();
-  const { username, password } = formData;
+    const { username, password } = formData;
 
-  try {
-    const res = await axios.post("http://localhost:5000/login", {
-      username,
-      password
-    });
-    console.log(res.data);
-    navigate("/blogs");
-  } catch (error) {
-    console.error("Error:", error.response.data.error);
-    console.error("Login failed.");
-    // Handle login failure, such as showing an error message to the user
-  }
-};
+    try {
+      const res = await axios.post("http://localhost:5000/login", {
+        username,
+        password
+      });
+      console.log(res.data);
+      navigate("/blogs");
+    } catch (error) {
+      console.error("Error:", error.response.data.error);
+      console.error("Login failed.");
+      // Handle login failure, such as showing an error message to the user
+    }
+  };
 
   return (
     <>
@@ -95,7 +94,7 @@ const Login = () => {
             <div className={styles.form}>
               <span className={styles.title}>Login</span>
               <form onSubmit={onloginsubmit}>
-              <div className={styles.inputField}>
+                <div className={styles.inputField}>
                   <input
                     type="text"
                     placeholder="Enter your username"
@@ -119,9 +118,8 @@ const Login = () => {
                   />
                   <i className="uil uil-lock icon"></i>
                   <i
-                    className={`uil ${
-                      showPassword ? "uil-eye" : "uil-eye-slash"
-                    } ${styles.showHidePw}`}
+                    className={`uil ${showPassword ? "uil-eye" : "uil-eye-slash"
+                      } ${styles.showHidePw}`}
                     onClick={togglePasswordVisibility}
                   ></i>
                 </div>
@@ -193,6 +191,7 @@ const Login = () => {
                     value={formData.role}
                     onChange={handleChange}
                     required
+                    style={{ borderRadius: "9px", padding: "5px" }}
                   >
                     <option value="">Select Role</option>
                     <option value="chef">Chef</option>

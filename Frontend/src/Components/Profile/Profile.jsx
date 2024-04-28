@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MyNav from "../Navbar/MyNav";
 import { MdGridOn } from "react-icons/md";
-import { FaBloggerB } from "react-icons/fa6";
+import { FaBloggerB } from "react-icons/fa";
+import MyCard from "../../Components/Cards/MyCard";
+import BCard from "../../Components/Cards/BCard";
+import { MdVerified } from "react-icons/md";
+import axios from "axios";
 
 const styles = {
   header: {
     minHeight: "60vh",
-    background: "linear-gradient(to right, #f9c823, #fc506e)",
+    // background: "linear-gradient(to right, #f9c823, #fc506e)",
+    background: "linear-gradient(to right, #f9c823, rgb(53 22 27))",
     color: "white",
     clipPath: "ellipse(100vw 60vh at 50% 50%)",
     display: "flex",
@@ -49,15 +54,71 @@ const styles = {
 };
 
 function Profile() {
-  const [value, setValue] = useState("true");
+  const [value, setValue] = useState("recipe");
+  const [recipes, setrecipe] = useState([]);
+  const [blogs, setblogs] = useState([]);
+  const [followerCount, setFollowerCount] = useState(1050);
+  const [followingCount, setFollowingCount] = useState(100);
 
-  function handler1() {
-    setValue("true");
+
+  //follower and following
+  function formatCount(count) {
+    if (count >= 1000000) {
+      return `${(count / 1000000).toFixed(1)}M`;
+    } else if (count >= 1000) {
+      return `${(count / 1000).toFixed(1)}K`;
+    } else {
+      return count.toString();
+    }
   }
 
-  function handler2() {
-    setValue("false");
+
+  //recipees
+  async function getAllRecipes() {
+    try {
+      const res = await axios.get("http://localhost:5000/recipe/");
+      setrecipe(res.data);
+    } catch (e) {
+      console.log("bhai recipe fetch nhi ho pa rhi url se");
+    }
   }
+
+  useEffect(() => {
+    getAllRecipes();
+  }, []);
+
+
+
+  //blogs
+  async function getAllBlogs() {
+    try {
+      const res = await axios.get("http://localhost:5000/blog/");
+      setblogs(res.data);
+    } catch (e) {
+      console.log("unable to fetch all blogs data");
+    }
+  }
+
+  useEffect(() => {
+    getAllBlogs();
+  }, []);
+
+
+  function handleRecipeClick() {
+    setValue("recipe");
+  }
+
+  function handleBlogClick() {
+    setValue("blog");
+  }
+
+  const flexbox = {
+    display: "flex",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+  };
+  const totalPosts = recipes.length + blogs.length;
+
   return (
     <>
       <MyNav />
@@ -69,18 +130,22 @@ function Profile() {
               alt="Rajat Gupta"
               style={styles.profilePic}
             />
-            <h1 style={styles.heading}>Rajat Gupta</h1>
+            <h1 style={styles.heading}>Rajat Gupta  {followerCount >= 1000 && (
+              <span style={{ color: '#4895ef' }}>
+                <MdVerified />
+              </span>
+            )}</h1>
             <div style={styles.stats}>
               <div style={styles.col4}>
-                <h4>20</h4>
+                <h4>{totalPosts}</h4>
                 <p>Post</p>
               </div>
               <div style={styles.col4}>
-                <h4>1.05k</h4>
+                <h4>{formatCount(followerCount)}</h4>
                 <p>Followers</p>
               </div>
               <div style={styles.col4}>
-                <h4>100</h4>
+                <h4>{formatCount(followingCount)}</h4>
                 <p>Following</p>
               </div>
             </div>
@@ -95,19 +160,33 @@ function Profile() {
             }}
           >
             <div>
-              <button className="btn" onClick={handler1}>
+              <button className="btn" onClick={handleRecipeClick}>
                 <MdGridOn style={{ marginRight: "2px" }} />
                 Recipe
               </button>
             </div>
             <div>
-              <button className="btn" onClick={handler2}>
+              <button className="btn" onClick={handleBlogClick}>
                 <FaBloggerB style={{ marginRight: "2px" }} />
                 Blog
               </button>
             </div>
           </div>
-          {value}
+          {value === "recipe" && (
+            <div className="container" style={flexbox}>
+              {recipes.map((recipe) => {
+                return <MyCard key={recipe._id} item={recipe} />;
+              })}
+            </div>
+
+          )}
+          {value === "blog" && (
+            <div className="container" style={flexbox}>
+              {blogs.map((blog) => {
+                return <BCard key={blog._id} blog={blog} />;
+              })}
+            </div>
+          )}
         </section>
       </section>
     </>
