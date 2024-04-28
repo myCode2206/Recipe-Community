@@ -25,7 +25,7 @@ const ShowRecipe = () => {
 
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       <AboutRecipe recipe={recipe} />
       <RecipeMenu recipe={recipe} />
       <ReviewRecipe recipe={recipe} />

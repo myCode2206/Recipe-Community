@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -6,10 +7,34 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { useEffect } from "react";
+import axios from "axios";
 
-function MyNav() {
+function MyNav(props) {
+  const user = props.user;
+
+ 
+    
+    const logouthandler = ()=>{
+      try{
+
+
+        window.open("http://localhost:5000/auth/logout", "_self");
+
+      }
+      catch(e)
+      {
+        console.log("logout button kam nhi kiya");
+        console.log(e);
+      }
+      
+
+    }
+
+  
   return (
     <>
+
       {["md"].map((expand) => (
         <Navbar
           key={expand}
@@ -75,7 +100,41 @@ function MyNav() {
                     Contact Us
                   </Link>
                 </Nav>
+                {
+                user?(
+                <>
                 <button
+                      style={{
+                        backgroundColor: "#ffd449",
+                        color: "black",
+                        marginRight: "5px",
+                      }}
+                      className="d-flex btn btn-success"
+                    >
+                      <Link
+                        onClick={logouthandler}
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        Log Out
+                      </Link>
+                    </button><Button
+                      style={{ backgroundColor: "#ffd449", color: "black" }}
+                      className="d-flex btn btn-success"
+                    >
+                        <Link
+                          to="/profile"
+                          style={{
+                            textDecoration: "none",
+                            color: "black",
+                          }}
+                        >
+                          Profile
+                        </Link>
+                      </Button>
+                      </>
+                ):
+                (
+                  <button
                   style={{
                     backgroundColor: "#ffd449",
                     color: "black",
@@ -90,20 +149,8 @@ function MyNav() {
                     Log In
                   </Link>
                 </button>
-                <button
-                  style={{ backgroundColor: "#ffd449", color: "black" }}
-                  className="d-flex btn btn-success"
-                >
-                  <Link
-                    to="/profile"
-                    style={{
-                      textDecoration: "none",
-                      color: "black",
-                    }}
-                  >
-                    Profile
-                  </Link>
-                </button>
+                )
+                }
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

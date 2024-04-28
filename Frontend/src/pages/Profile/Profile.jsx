@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MyNav from "../Navbar/MyNav";
+import MyNav from "../../Components/Navbar/MyNav";
 import { MdGridOn } from "react-icons/md";
 import { FaBloggerB } from "react-icons/fa6";
 
@@ -60,7 +60,6 @@ function Profile() {
   }
   return (
     <>
-      <MyNav />
       <section style={styles.body}>
         <header style={styles.header}>
           <div style={styles.details}>

@@ -4,7 +4,7 @@ import styles from "./Login.module.css";
 import MyNav from "../../Components/Navbar/MyNav";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import Footer from "../../Components/footer/Footer";
+
 
 const Login = () => {
   const navigate =useNavigate()
@@ -16,6 +16,10 @@ const Login = () => {
     username: "",
     role: "", 
   });
+
+   const googlelogin = async () => {
+    window.open("http://localhost:5000/auth/google","_self");
+  };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -50,7 +54,7 @@ const Login = () => {
     console.log("Role:", role);
     try{
 
-      const res = await axios.post("http://localhost:5000/register",{
+      const res = await axios.post("http://localhost:5000/auth/register",{
         email,
         password,
         username,
@@ -70,10 +74,11 @@ const Login = () => {
   const onloginsubmit = async (e)=>{
 
     e.preventDefault();
+
   const { username, password } = formData;
 
   try {
-    const res = await axios.post("http://localhost:5000/login", {
+    const res = await axios.post("http://localhost:5000/auth/login", {
       username,
       password
     });
@@ -82,13 +87,12 @@ const Login = () => {
   } catch (error) {
     console.error("Error:", error.response.data.error);
     console.error("Login failed.");
-    // Handle login failure, such as showing an error message to the user
   }
 };
 
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       <div className={styles.container} style={{ marginTop: "20px" }}>
         <div className={styles.forms}>
           {isLogin ? (
@@ -132,8 +136,8 @@ const Login = () => {
                       Remember me
                     </label>
                   </div>
-                  <a href="#" className={styles.text}>
-                    Forgot password?
+                  <a onClick={googlelogin} className={styles.text}>
+                    signup with google
                   </a>
                 </div>
                 <div className={styles.inputField}>

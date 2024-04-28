@@ -29,7 +29,7 @@ export const ShowBlogs = () => {
   return (
     <div>
      
-        <MyNav />
+        {/* <MyNav /> */}
         <AboutBlogs data={data} />
         <Review data={data} />
         <Footer />

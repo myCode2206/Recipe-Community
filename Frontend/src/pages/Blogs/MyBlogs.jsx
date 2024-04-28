@@ -40,7 +40,7 @@ export const MyBlogs = () => {
 
   return (
     <>
-      <MyNav />
+      {/* <MyNav /> */}
       <div
         style={{
           width: "100%",
