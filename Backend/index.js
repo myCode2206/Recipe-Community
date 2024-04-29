@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const seedDB = require("./seed");
 const cookieSession = require('cookie-session')
-const dotenv=require('dotenv').config()
+const dotenv = require('dotenv').config()
 const passport = require('passport');
 const passportsetup = require('./passoprt')
 
@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-// const mongourl = process.env.MONGO_URL;
-const mongourl = "mongodb://localhost:27017/recipeeee";
+const mongourl = process.env.MONGO_URL;
+// const mongourl = "mongodb://localhost:27017/recipeeee";
 const port = process.env.PORT;
 
 
@@ -24,12 +24,12 @@ mongoose
   .then(() => console.log("Connection Open!"))
   .catch((err) => console.log(err));
 
-  
-  
+
+
 app.use(cookieSession({
-  name:"session",
-  keys:["helloji"],
-  maxAge:24*60*60*100,
+  name: "session",
+  keys: ["helloji"],
+  maxAge: 24 * 60 * 60 * 100,
 }));
 
 
@@ -64,7 +64,7 @@ const UserRoutes = require("./Routes/UserRoutes");
 app.use(BlogRoutes);
 app.use(NormalRoutes);
 app.use(RecipeRoutes);
-app.use("/auth",UserRoutes);
+app.use("/auth", UserRoutes);
 
 
 // seedDB();
