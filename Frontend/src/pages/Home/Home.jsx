@@ -9,7 +9,6 @@ import Herotitle from "../../Components/Hero Text/Herotitle";
 const Home = (props) => {
   return (
     <>
-      {/* <MyNav /> */}
       <Herotitle />
       <MyCarousels />
       <HCard />
