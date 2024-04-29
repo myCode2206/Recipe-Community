@@ -1,156 +1,103 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+/* Original CSS code */
 
+/* Ensure proper box-sizing for all elements */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+/* Import font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* Global styles */
+html, body {
   font-family: "Poppins", sans-serif;
+  height: 100%;
 }
 
 a {
   cursor: pointer;
+  text-decoration: none; /* Ensure consistent link styling */
 }
 
-/* to cover full image in background */
+/* Ensure full coverage of background image */
 html {
-  /* background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg") */
-  /* no-repeat center center fixed; */
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+  background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
+/* Container styles */
 .container {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(53, 53, 53, 0.596);
-  width: auto;
+  max-width: 100%;
+  width: 400px; /* Set a maximum width for better readability */
+  background: rgba(96, 95, 95, 0.596);
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  padding: 30px 30px;
 }
 
+/* Form section styles */
 .container .forms {
   display: flex;
+  flex-direction: column; /* Adjust layout for smaller screens */
   align-items: center;
-  height: 440px;
-  width: 200%;
+  padding: 30px;
   transition: height 0.2s ease;
 }
 
+/* Individual form styles */
 .container .form {
-  width: 50%;
-  padding: 30px;
-  transition: margin-left 0.18s ease;
+  width: 100%; /* Occupy full width of container */
+  padding: 20px; /* Increase padding for better spacing */
 }
 
-.container.active .login {
-  margin-left: -50%;
-  opacity: 0;
-  transition: margin-left 0.18s ease, opacity 0.15s ease;
-}
-
-.container .signup {
-  transition: opacity 0.09s ease;
-}
-
-.container.active .signup {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.container.active .forms {
-  height: 600px;
-}
-
+/* Title styles */
 .container .form .title {
-  position: relative;
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 600;
   color: #ffca3a;
+  margin-bottom: 20px; /* Add spacing below title */
 }
 
-.form .title::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  background-color: #ffca3a;
-  /* background-color: black; */
-  border-radius: 25px;
-}
-
-.form .inputField {
+/* Input field styles */
+.inputField {
   position: relative;
-  height: 50px;
-  width: 100%;
-  margin-top: 30px;
+  margin-bottom: 20px; /* Add spacing between input fields */
 }
 
 .inputField input {
-  position: absolute;
-  height: 100%;
   width: 100%;
-  padding: 0 35px;
+  height: 40px; /* Reduce height for better proportion */
+  padding: 10px; /* Adjust padding for better spacing */
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   outline: none;
   font-size: 16px;
   border-bottom: 2px solid #ccc;
-  border-top: 2px solid transparent;
   transition: all 0.2s ease;
 }
 
-.inputField input:is(:focus, :valid) {
+.inputField input:focus, .inputField input:valid {
   border-bottom-color: #ffca3a;
 }
 
-.inputField i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #ffffff;
-  font-size: 23px;
-  transition: all 0.2s ease;
-}
-
-.inputField input:is(:focus, :valid) ~ i {
-  color: #ffca3a;
-}
-
-.inputField i.icon {
-  left: 0;
-}
-
-.inputField i.showHidePw {
-  right: 0;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.form .checkboxText {
+/* Checkbox text styles */
+.checkboxText {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
+  margin-bottom: 20px; /* Add spacing below checkbox text */
 }
 
-.checkbox-text .checkboxContent {
-  display: flex;
-  align-items: center;
+.checkboxText .text {
+  margin-right: 10px; /* Add spacing between text and checkbox */
 }
 
-.checkbox-content input {
-  margin-right: 10px;
-  accent-color: blue;
-}
-
+/* Button styles */
 .form .text {
   color: #ffffff;
   font-size: 14px;
@@ -188,33 +135,38 @@ button:hover {
   text-align: center;
 }
 
+/* Error animation styles */
 .error {
   border: 2px solid red;
   animation: shake 0.1s linear 10;
 }
 
 @keyframes shake {
-  0% {
-    border-color: red;
-    transform: translate(0);
+  0%, 100% {
+    transform: translateX(0);
   }
 
-  25% {
-    border-color: red;
-    transform: translate(-2px);
+  25%, 75% {
+    transform: translateX(-5px);
   }
 
   50% {
-    border-color: red;
-    transform: translate(0);
+    transform: translateX(5px);
+  }
+}
+
+/* Media query for smaller screens */
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 90%; /* Adjust container width for smaller screens */
   }
 
-  75% {
-    border-color: red;
-    transform: translate(2px);
+  .inputField input {
+    height: 35px; /* Reduce input field height for smaller screens */
   }
 
-  100% {
-    transform: translate(0);
+  .form button {
+    height: 35px; /* Reduce button height for smaller screens */
+    font-size: 14px; /* Reduce font size for smaller screens */
   }
 }
