@@ -1,40 +1,42 @@
 /* eslint-disable react/prop-types */
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Offcanvas from "react-bootstrap/Offcanvas";
-import { useEffect } from "react";
-import axios from "axios";
+import {
+  Button,
+  Container,
+  Form,
+  Nav,
+  Navbar,
+  NavDropdown,
+  Offcanvas,
+} from "react-bootstrap";
+import { IoIosNotifications } from "react-icons/io";
+import { IoCheckmarkSharp } from "react-icons/io5";
+import { RxCross2 } from "react-icons/rx";
 
 function MyNav(props) {
+  const [showNotifications, setShowNotifications] = useState(false);
   const user = props.user;
 
- 
-    
-    const logouthandler = ()=>{
-      try{
-
-
-        window.open("http://localhost:5000/auth/logout", "_self");
-
-      }
-      catch(e)
-      {
-        console.log("logout button kam nhi kiya");
-        console.log(e);
-      }
-      
-
+  const logouthandler = () => {
+    try {
+      window.open("http://localhost:5000/auth/logout", "_self");
+    } catch (e) {
+      console.log("logout button kam nhi kiya");
+      console.log(e);
     }
+  };
 
-  
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  const closeNotifications = () => {
+    setShowNotifications(false);
+  };
+
   return (
     <>
-
       {["md"].map((expand) => (
         <Navbar
           key={expand}
@@ -100,62 +102,94 @@ function MyNav(props) {
                     Contact Us
                   </Link>
                 </Nav>
-                {
-                user?(
-                <>
-                <button
+                {user ? (
+                  <>
+                    <Button
+                      onClick={logouthandler}
                       style={{
                         backgroundColor: "#ffd449",
                         color: "black",
                         marginRight: "5px",
                       }}
-                      className="d-flex btn btn-success"
+                    >
+                      Log Out
+                    </Button>
+                    <Button
+                      style={{
+                        backgroundColor: "#ffd449",
+                        color: "black",
+                        marginRight: "5px",
+                      }}
                     >
                       <Link
-                        onClick={logouthandler}
+                        to="/profile"
                         style={{ textDecoration: "none", color: "black" }}
                       >
-                        Log Out
+                        Profile
                       </Link>
-                    </button><Button
-                      style={{ backgroundColor: "#ffd449", color: "black" }}
-                      className="d-flex btn btn-success"
-                    >
-                        <Link
-                          to="/profile"
-                          style={{
-                            textDecoration: "none",
-                            color: "black",
-                          }}
-                        >
-                          Profile
-                        </Link>
-                      </Button>
-                      </>
-                ):
-                (
-                  <button
-                  style={{
-                    backgroundColor: "#ffd449",
-                    color: "black",
-                    marginRight: "5px",
-                  }}
-                  className="d-flex btn btn-success"
-                >
-                  <Link
-                    to="/login"
-                    style={{ textDecoration: "none", color: "black" }}
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    style={{
+                      backgroundColor: "#ffd449",
+                      color: "black",
+                      marginRight: "5px",
+                    }}
                   >
-                    Log In
-                  </Link>
-                </button>
-                )
-                }
+                    <Link
+                      to="/login"
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      Log In
+                    </Link>
+                  </Button>
+                )}
+                <Button
+                  onClick={toggleNotifications}
+                  style={{ backgroundColor: "#ffd449", color: "black" }}
+                >
+                  <IoIosNotifications />
+                </Button>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
         </Navbar>
       ))}
+      {/* Notification Panel */}
+      <Offcanvas show={showNotifications} onHide={closeNotifications}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Notifications (2) </Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          <div className="d-flex justify-content-between">
+            <div className="pt-2">
+              <p>Ayush Agarwal</p>
+            </div>
+            <div>
+              <button className="btn btn-success">
+                <IoCheckmarkSharp />
+              </button>
+              <button className="btn btn-danger ms-2">
+                <RxCross2 />
+              </button>
+            </div>
+          </div>
+          <div className="d-flex justify-content-between">
+            <div className="pt-2">
+              <p>Monu Bhaiya</p>
+            </div>
+            <div>
+              <button className="btn btn-success">
+                <IoCheckmarkSharp />
+              </button>
+              <button className="btn btn-danger ms-2">
+                <RxCross2 />
+              </button>
+            </div>
+          </div>
+        </Offcanvas.Body>
+      </Offcanvas>
     </>
   );
 }

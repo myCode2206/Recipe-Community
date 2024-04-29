@@ -59,7 +59,6 @@ function Profile() {
   const [followerCount, setFollowerCount] = useState(1050);
   const [followingCount, setFollowingCount] = useState(100);
 
-
   //follower and following
   function formatCount(count) {
     if (count >= 1000000) {
@@ -70,7 +69,6 @@ function Profile() {
       return count.toString();
     }
   }
-
 
   //recipees
   async function getAllRecipes() {
@@ -86,8 +84,6 @@ function Profile() {
     getAllRecipes();
   }, []);
 
-
-
   //blogs
   async function getAllBlogs() {
     try {
@@ -101,7 +97,6 @@ function Profile() {
   useEffect(() => {
     getAllBlogs();
   }, []);
-
 
   function handleRecipeClick() {
     setValue("recipe");
@@ -128,11 +123,15 @@ function Profile() {
               alt="Rajat Gupta"
               style={styles.profilePic}
             />
-            <h1 style={styles.heading}>Rajat Gupta  {followerCount >= 1000 && (
-              <span style={{ color: '#4895ef' }}>
-                <MdVerified />
-              </span>
-            )}</h1>
+            <h1 style={styles.heading}>
+              Rajat Gupta
+              {followerCount >= 1000 && (
+                <span style={{ color: "#4895ef" }}>
+                  <MdVerified />
+                </span>
+              )}
+            </h1>
+            <button className="btn btn-primary mb-3">Follow</button>
             <div style={styles.stats}>
               <div style={styles.col4}>
                 <h4>{totalPosts}</h4>
@@ -176,7 +175,6 @@ function Profile() {
                 return <MyCard key={recipe._id} item={recipe} />;
               })}
             </div>
-
           )}
           {value === "blog" && (
             <div className="container" style={flexbox}>
