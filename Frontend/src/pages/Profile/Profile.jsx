@@ -5,12 +5,12 @@ import MyCard from "../../Components/Cards/MyCard";
 import BCard from "../../Components/Cards/BCard";
 import { MdVerified } from "react-icons/md";
 import axios from "axios";
+import { MdOutlineVerified } from "react-icons/md";
 
 const styles = {
   header: {
     minHeight: "60vh",
-    // background: "linear-gradient(to right, #f9c823, #fc506e)",
-    background: "linear-gradient(to right, #f9c823, rgb(53 22 27))",
+    backgroundColor: "#5f0f40",
     color: "white",
     clipPath: "ellipse(100vw 60vh at 50% 50%)",
     display: "flex",
@@ -54,29 +54,62 @@ const styles = {
 
 function Profile() {
   const [value, setValue] = useState("recipe");
-  const [recipes, setrecipe] = useState([]);
-  const [blogs, setblogs] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [blogs, setBlogs] = useState([]);
   const [followerCount, setFollowerCount] = useState(1050);
   const [followingCount, setFollowingCount] = useState(100);
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [isRequested, setIsRequested] = useState(false);
 
-  //follower and following
-  function formatCount(count) {
-    if (count >= 1000000) {
-      return `${(count / 1000000).toFixed(1)} M`;
-    } else if (count >= 1000) {
-      return `${(count / 1000).toFixed(1)} K`;
-    } else {
-      return count.toString();
+  // Function to handle follow
+  function handleFollow() {
+    if (!isFollowing && !isRequested) {
+      // Simulate follow request
+      setIsRequested(true);
+      // API call to send follow request
+      // Example:
+      // axios.post("http://localhost:5000/follow", { userId: "userId" })
+      //   .then(response => {
+      //     setIsRequested(true);
+      //   })
+      //   .catch(error => {
+      //     console.error("Error following user:", error);
+      //   });
+    } else if (isFollowing) {
+      // Simulate unfollow
+      setIsFollowing(false);
+      // API call to unfollow user
+      // Example:
+      // axios.post("http://localhost:5000/unfollow", { userId: "userId" })
+      //   .then(response => {
+      //     setIsFollowing(false);
+      //   })
+      //   .catch(error => {
+      //     console.error("Error unfollowing user:", error);
+      //   });
     }
   }
 
-  //recipees
+  // Function to check if user is already following
+  useEffect(() => {
+    // Simulating API call to check if user is already following
+    // Example:
+    // axios.get("http://localhost:5000/isFollowing", { params: { userId: "userId" } })
+    //   .then(response => {
+    //     setIsFollowing(response.data.isFollowing);
+    //   })
+    //   .catch(error => {
+    //     console.error("Error checking if user is following:", error);
+    //   });
+  }, []);
+
+  // Function to get all recipes
   async function getAllRecipes() {
     try {
       const res = await axios.get("http://localhost:5000/recipe/");
-      setrecipe(res.data);
-    } catch (e) {
-      console.log("bhai recipe fetch nhi ho pa rhi url se");
+      setRecipes(res.data);
+    } catch (error) {
+      console.log("Unable to fetch recipes data");
     }
   }
 
@@ -84,13 +117,13 @@ function Profile() {
     getAllRecipes();
   }, []);
 
-  //blogs
+  // Function to get all blogs
   async function getAllBlogs() {
     try {
       const res = await axios.get("http://localhost:5000/blog/");
-      setblogs(res.data);
-    } catch (e) {
-      console.log("unable to fetch all blogs data");
+      setBlogs(res.data);
+    } catch (error) {
+      console.log("Unable to fetch blogs data");
     }
   }
 
@@ -98,10 +131,12 @@ function Profile() {
     getAllBlogs();
   }, []);
 
+  // Function to handle click on Recipe button
   function handleRecipeClick() {
     setValue("recipe");
   }
 
+  // Function to handle click on Blog button
   function handleBlogClick() {
     setValue("blog");
   }
@@ -112,6 +147,17 @@ function Profile() {
     flexWrap: "wrap",
   };
   const totalPosts = recipes.length + blogs.length;
+
+  // Function to format count
+  function formatCount(count) {
+    if (count >= 1000000) {
+      return `${(count / 1000000).toFixed(1)} M`;
+    } else if (count >= 1000) {
+      return `${(count / 1000).toFixed(1)} K`;
+    } else {
+      return count.toString();
+    }
+  }
 
   return (
     <>
@@ -127,11 +173,13 @@ function Profile() {
               Rajat Gupta
               {followerCount >= 1000 && (
                 <span style={{ color: "#4895ef" }}>
-                  <MdVerified />
+                  <MdVerified style={{ fontSize: "25px" }} />
                 </span>
               )}
             </h1>
-            <button className="btn btn-primary mb-3">Follow</button>
+            <button className="btn btn-primary mb-3" onClick={handleFollow}>
+              {isFollowing ? "Unfollow" : isRequested ? "Requested" : "Follow"}
+            </button>
             <div style={styles.stats}>
               <div style={styles.col4}>
                 <h4>{totalPosts}</h4>

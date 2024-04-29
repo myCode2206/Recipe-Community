@@ -41,7 +41,7 @@ function MyNav(props) {
         <Navbar
           key={expand}
           expand={expand}
-          style={{ backgroundColor: "#ffee32" }}
+          style={{ backgroundColor: "#e36414" }}
         >
           <Container fluid>
             <Navbar.Brand href="#">Recipe</Navbar.Brand>
@@ -57,10 +57,7 @@ function MyNav(props) {
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body>
-                <Nav
-                  className="justify-content-center flex-grow-1 pe-3 align-content-center"
-                  style={{}}
-                >
+                <Nav className="justify-content-center flex-grow-1 pe-3 align-content-center">
                   <Link
                     to="/"
                     style={{
@@ -107,18 +104,22 @@ function MyNav(props) {
                     <Button
                       onClick={logouthandler}
                       style={{
-                        backgroundColor: "#ffd449",
+                        backgroundColor: "#e36414",
                         color: "black",
                         marginRight: "5px",
+                        border: "none",
+                        outline: "none",
                       }}
                     >
                       Log Out
                     </Button>
                     <Button
                       style={{
-                        backgroundColor: "#ffd449",
+                        backgroundColor: "#e36414",
                         color: "black",
                         marginRight: "5px",
+                        border: "none",
+                        outline: "none",
                       }}
                     >
                       <Link
@@ -132,9 +133,11 @@ function MyNav(props) {
                 ) : (
                   <Button
                     style={{
-                      backgroundColor: "#ffd449",
+                      backgroundColor: "#e36414",
                       color: "black",
                       marginRight: "5px",
+                      border: "none",
+                      outline: "none",
                     }}
                   >
                     <Link
@@ -147,9 +150,14 @@ function MyNav(props) {
                 )}
                 <Button
                   onClick={toggleNotifications}
-                  style={{ backgroundColor: "#ffd449", color: "black" }}
+                  style={{
+                    backgroundColor: "#e36414",
+                    color: "black",
+                    border: "none",
+                    outline: "none",
+                  }}
                 >
-                  <IoIosNotifications />
+                  <IoIosNotifications style={{ fontSize: "23px" }} />
                 </Button>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
