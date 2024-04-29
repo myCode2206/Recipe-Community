@@ -123,7 +123,7 @@ function MyNav(props) {
                       }}
                     >
                       <Link
-                        to="/profile"
+                        to={`/profile/${user._id}`}
                         style={{ textDecoration: "none", color: "black" }}
                       >
                         Profile

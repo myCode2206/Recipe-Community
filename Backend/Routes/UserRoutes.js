@@ -48,6 +48,32 @@ catch (e) {
 })
 
 
+router.get("/profile/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const userDetailById = await User.findById(id)
+      .populate("blogs")
+      .populate("recipes")
+      .populate("following")
+      .populate("follower");
+
+    if (!userDetailById) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    return res.status(200).json({
+      msg: "Successfully fetched user detail",
+      userDetailById,
+    });
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({ msg: "Internal server error" });
+  }
+});
+
+
+
 
 const CLIENT_URL = "http://localhost:5173/";
 
@@ -73,8 +99,16 @@ router.get("/logout", (req, res) => {
   res.redirect(CLIENT_URL);
 });
 
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
 
+router.get("/google", passport.authenticate("google", { scope: ["email","profile"] }));
+
+router.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    successRedirect: CLIENT_URL,
+    failureRedirect: "/login/failed",
+  })
+);
 router.get(
   "/google/callback",
   passport.authenticate("google", {

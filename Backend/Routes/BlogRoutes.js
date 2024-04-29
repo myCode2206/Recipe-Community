@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const MyBlog = require("../Models/blog");
 const BlogComment = require("../Models/blogComment");
+const User = require("../Models/user")
 
 router.get("/blog", async (req, res) => {
   try {
@@ -15,20 +16,48 @@ router.get("/blog", async (req, res) => {
 
 router.post("/blog/add", async (req, res) => {
   try {
-    const { blogName, img, desc } = req.body.formData;
-    const author = "mukul";
-    const newblog = await MyBlog.create({
+    // console.log("Current user id:", req.user._id);
+    const userid = req.user._id;
+    const currentUser = await User.findById(req.user._id);
+
+    if (!currentUser) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // console.log("Current user:", currentUser);
+
+    const { blogName, img, desc } = req.body;
+    const author = req.user.displayName;
+
+    // Check if MyBlog model is imported correctly and defined
+    console.log("Creating new blog...");
+    const newBlog = await MyBlog.create({
       title: blogName,
       image: img,
       body: desc,
       author,
+      userid,
     });
-    res.status(201).json({ _id: newblog._id });
+
+    // console.log("New blog created:", newBlog);
+
+    // Push the new blog ID to the currentUser's blogs array
+    currentUser.blogs.push(newBlog);
+
+    // Save the currentUser to update the blogs array
+    await currentUser.save();
+
+    // console.log("Blog added to current user's blogs array.");
+
+    res.status(201).json({ _id: newBlog._id });
   } catch (err) {
-    console.log(err);
-    res.status(400).json({ msg: "Something Went Wrong!!!" });
+    console.error("Error adding blog:", err);
+    res.status(400).json({ msg: "Something went wrong" });
   }
 });
+
+
+
 
 router.get("/blog/:id", async (req, res) => {
   try {

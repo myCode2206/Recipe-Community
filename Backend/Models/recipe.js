@@ -46,6 +46,9 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     default: date,
   },
+  userid:{
+    type: String,
+  },
   comment: [
     {
       type: mongoose.Schema.Types.ObjectId,

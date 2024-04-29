@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MyNav from "../Navbar/MyNav";
 import Footer from "../footer/Footer";
@@ -34,10 +34,15 @@ const AddRecipe = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/recipe/add", { formData });
-      console.log("hi;kfgdhidougwjqukqj");
-      formRef.current.reset();
-      // Redirect();
+      await axios.post("http://localhost:5000/recipe/add", formData, {
+      withCredentials: true,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    });
+    console.log("Recipe added successfully!");
+    formRef.current.reset();
     } catch (err) {
       console.log(err);
     }
@@ -81,7 +86,6 @@ const AddRecipe = () => {
 
   return (
     <>
-      <MyNav />
       <div
         style={{
           display: "flex",

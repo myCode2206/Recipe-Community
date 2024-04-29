@@ -26,11 +26,29 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "/auth/google/callback",
     },
-    function (accessToken, refreshToken, profile, done) {
-      done(null, profile);
+    async (req, accessToken, refreshToken, profile, done) => {
+      // console.log("Google profile:", profile); // Log profile object
+      try {
+        let user = await User.findOne({ googleId: profile.id });
+
+        if (!user) {
+          user = new User({
+            googleId: profile.id,
+            displayName: profile.displayName,
+            email: profile.emails ? profile.emails[0].value : "", // Check if emails array exists
+          });
+          await user.save();
+        }
+        return done(null, user);
+      } catch (error) {
+        return done(error, null);
+      }
     }
   )
 );
+
+
+
 
 // passport.use(
 //   new GithubStrategy(

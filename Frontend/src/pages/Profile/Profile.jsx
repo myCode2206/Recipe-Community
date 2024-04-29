@@ -6,6 +6,7 @@ import BCard from "../../Components/Cards/BCard";
 import { MdVerified } from "react-icons/md";
 import axios from "axios";
 import { MdOutlineVerified } from "react-icons/md";
+import { useParams } from "react-router-dom";
 
 const styles = {
   header: {
@@ -53,6 +54,7 @@ const styles = {
 };
 
 function Profile() {
+  const { id } = useParams();
   const [value, setValue] = useState("recipe");
   const [recipes, setRecipes] = useState([]);
   const [blogs, setBlogs] = useState([]);
@@ -60,6 +62,39 @@ function Profile() {
   const [followingCount, setFollowingCount] = useState(100);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
+  const [userDetail, setUserDetail] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetail = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/auth/profile/${id}`,{
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }
+        });
+        console.log(response);
+        // setUserDetail(response.data.userDetailById);
+      } catch (error) {
+        // setError(error.response.data.msg);
+        console.log(error)
+      }
+    };
+
+    fetchUserDetail();
+
+    // Cleanup function
+    return () => {
+      setUserDetail(null);
+      setError(null);
+    };
+  }, [id]);
+
+
+
+
 
   // Function to handle follow
   function handleFollow() {

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const BlogComment = require("./blogComment");
+const user= require("./user")
 
 let arr = new Date().toDateString().split(" ");
 let date = arr[2] + " " + arr[1];
@@ -34,6 +35,9 @@ const blogschema = new mongoose.Schema({
       ref: "BlogComment",
     },
   ],
+  userid:{
+    type: String
+  }
 });
 
 const Blog = mongoose.model("Blog", blogschema);
