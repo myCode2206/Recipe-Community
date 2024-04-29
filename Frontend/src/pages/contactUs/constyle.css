@@ -6,7 +6,7 @@
 .contactpage{
     background-image: url('./mainspices.jpg');
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center bottom;
     background-size: cover;
     background-size: 2000px 1100px; 
    
@@ -85,6 +85,7 @@
     background-color: #283618;
 }
 
-.main-div{
-    margin: 110px auto;
-}
+/* .main-div{
+    margin-top: 0;
+    margin-bottom: 50px;
+} */
