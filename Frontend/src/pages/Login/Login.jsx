@@ -4,7 +4,7 @@ import styles from "./Login.module.css";
 import MyNav from "../../Components/Navbar/MyNav";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   const navigate =useNavigate()
@@ -137,7 +137,8 @@ const Login = () => {
                     </label>
                   </div>
                   <a onClick={googlelogin} className={styles.text}>
-                    signup with google
+                    {/* signup with google */}
+                    <FcGoogle  className="googleicon"/>
                   </a>
                 </div>
                 <div className={styles.inputField}>
