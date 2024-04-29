@@ -52,7 +52,7 @@ const App = () => {
         <MyNav user={user} />
         {/* <Navv /> */}
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/recipe" element={<Recipe />} />
           <Route path="/login" element={<Login />} />
           <Route
@@ -65,9 +65,9 @@ const App = () => {
             element={user ? <ShowBlogs /> : <Login />}
           />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/add" element={<AddRecipe />} />
-          <Route path="/addblog" element={<AddBlog />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/addrecipe" element={user ?<AddRecipe /> :<Login/>} />
+          <Route path="/addblog" element={user ? <AddBlog /> : <Login/> } />
+          <Route path="profile/:id" element={<Profile />} />
         </Routes>
       </Router>
     </>

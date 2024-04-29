@@ -11,7 +11,7 @@ const Recipe = () => {
   const navigate = useNavigate();
 
   function Redirect() {
-    navigate("/add");
+    navigate("/addrecipe");
   }
   //data fetch from api to get the content of cards
 

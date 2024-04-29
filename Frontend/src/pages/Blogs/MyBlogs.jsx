@@ -15,12 +15,18 @@ export const MyBlogs = () => {
   const navigate = useNavigate();
 
   function Redirect() {
-    navigate("/addBlog");
+    navigate("/addblog");
   }
 
   async function getAllBlogs() {
     try {
-      const res = await axios.get("http://localhost:5000/blog/");
+      const res = await axios.get("http://localhost:5000/blog/", {
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+        });
       // {console.log(res.data);}
       setblogs(res.data);
     } catch (e) {

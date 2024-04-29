@@ -2,10 +2,14 @@ import React, { useState, useRef } from "react";
 import MyNav from "../Navbar/MyNav";
 import Footer from "../footer/Footer";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const AddRecipe = () => {
-  const [countIng, setCount1] = useState(2);
-  const [countIns, setCount2] = useState(2);
+const AddBlog = () => {
+  const navigate = useNavigate();
+  
+  function Redirect() {
+    navigate("/recipe");
+  }
   const [formData, setFormData] = useState({
     blogName: "",
     img: "",
@@ -21,45 +25,29 @@ const AddRecipe = () => {
     });
   };
 
+  
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/blog/add", {
-        formData,
-      });
+      await axios.post("http://localhost:5000/blog/add", formData, {
+      withCredentials: true,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      }
+    });
+    console.log("Recipe added successfully!");
     } catch (err) {
       console.log(err);
     }
     formref.current.reset();
+    Redirect();
   };
 
-  async function Input1() {
-    await setCount1(countIng + 1);
-    let input = document.createElement("input");
-    let steps = document.getElementsByClassName("steps")[0];
-    input.type = "text";
-    input.name = "ingredient";
-    input.className = "form-control mb-2";
-    input.placeholder = `Step-${countIng}`;
-    input.onChange = handleChange;
-    steps.append(input);
-  }
-  async function Input2() {
-    await setCount2(countIns + 1);
-    let input = document.createElement("input");
-    let procedure = document.getElementsByClassName("procedure")[0];
-    input.type = "text";
-    input.name = "procedure";
-    input.onChange = handleChange;
-    input.className = "form-control mb-2";
-    input.placeholder = `Step-${countIns}`;
-
-    procedure.append(input);
-  }
+  
 
   return (
     <>
-      <MyNav />
       <div
         style={{
           display: "flex",
@@ -126,4 +114,4 @@ const AddRecipe = () => {
   );
 };
 
-export default AddRecipe;
+export default AddBlog;

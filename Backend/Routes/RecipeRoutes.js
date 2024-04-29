@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const MyRecipe = require("../Models/recipe");
 const recipeReview = require("../Models/recipereview");
+const User = require("../Models/user");
 
 router.get("/recipe", async (req, res) => {
   try {
@@ -15,6 +16,17 @@ router.get("/recipe", async (req, res) => {
 
 router.post("/recipe/add", async (req, res) => {
   try {
+    const userid = req.user._id;
+
+    console.log("Current user id:", req.user._id);
+    const currentUser = await User.findById(req.user._id);
+
+    if (!currentUser) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+
+    // console.log("Current user:", currentUser);
+
     const {
       recipeName,
       img,
@@ -23,11 +35,14 @@ router.post("/recipe/add", async (req, res) => {
       calorie,
       ingredient,
       procedure,
-    } = req.body.formData;
-    console.log(req.body.formData);
-    const author = "mukul";
-    const usermail = "mukul";
-    await MyRecipe.create({
+    } = req.body;
+
+    // console.log(req.body);
+
+    const author =currentUser.displayName;
+    const usermail = currentUser.email;
+
+    const newRecipe = await MyRecipe.create({
       title: recipeName,
       image: img,
       body: desc,
@@ -37,7 +52,15 @@ router.post("/recipe/add", async (req, res) => {
       Procedure: procedure,
       author,
       usermail,
+      userid 
+
     });
+
+    currentUser.recipes.push(newRecipe);
+
+    await currentUser.save();
+
+    // console.log("recipe saved to user recipe array")
     res.status(200).json({ msg: "Added Data Successfully" });
   } catch (e) {
     res.status(400).json({ msg: "Something Went Wrong!!!" });

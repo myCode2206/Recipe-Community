@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const user =require("./user")
 
 const recipereviewschema = new mongoose.Schema({
   rating: {
@@ -16,6 +17,10 @@ const recipereviewschema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  userid:{
+    type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+  }
 });
 
 const recipeReview = mongoose.model("recipeReview", recipereviewschema);
