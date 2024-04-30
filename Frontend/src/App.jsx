@@ -67,7 +67,7 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/addrecipe" element={user ?<AddRecipe /> :<Login/>} />
           <Route path="/addblog" element={user ? <AddBlog /> : <Login/> } />
-          <Route path="profile/:id" element={<Profile />} />
+          <Route path="profile/:id" element={<Profile  user = {user}/>} />
         </Routes>
       </Router>
     </>

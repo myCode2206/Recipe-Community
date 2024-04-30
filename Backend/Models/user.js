@@ -1,54 +1,43 @@
-const mongoose=require("mongoose");
-const passportLocolMongoose = require('passport-local-mongoose');
-const Blog =require("./blog");
-const Recipe= require("./recipe");
+const mongoose = require("mongoose");
+const Blog = require("./blog");
+const Recipe = require("./recipe");
 
-
-//auth model
-const authentication = new mongoose.Schema({
-    googleId:String,
-    displayName:String,
-    email:String,
-    role:{
-      type:String,
-      default:"client"
+// Define your schema without passport-local-mongoose
+const authenticationSchema = new mongoose.Schema({
+    googleId: String,
+    username: String,
+    email: String,
+    role: {
+        type: String,
+        default: "client"
     },
-    blogs:[
-      {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Blog"
-      }
-    ],
-    recipes:[
-      {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Recipe"
-      }
-    ],
+    blogs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Blog"
+    }],
+    recipes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Recipe"
+    }],
+    following: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    follower: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    sendrequest: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    recivedrequest: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+}, { timestamps: true });
 
-    following:[
-      {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-      }
-    ],
-    follower:[
-      {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-      }
-    ],
-    waitingfollower:[
-      {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
-      }
-    ],
-  },{timestamps:true});
+// Create the model without applying passport-local-mongoose plugin
+const User = mongoose.model("User", authenticationSchema);
 
-
-  authentication.plugin(passportLocolMongoose)
-  
-  const User = mongoose.model("User", authentication);
-  
-module.exports=User 
+module.exports = User;

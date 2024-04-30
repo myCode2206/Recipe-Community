@@ -3,12 +3,85 @@ const router = express.Router();
 const passport=require('passport');
 const path = require("path");
 const User =require('../Models/user');
+const { findById } = require('../Models/blogComment');
 
 
 
 // router.post("/login",(req,res)=>{
 //   console.log("jello")
 // })
+
+
+
+
+
+
+
+// Send follow request
+
+router.post("/follow/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const loggedin = await User.findById(req.body._id);
+    const profileperson = await User.findById(userId);
+
+    loggedin.sendrequest.push(profileperson);
+    profileperson.recivedrequest.push(loggedin);
+
+    loggedin.save();
+    profileperson.save();
+
+    res.status(200).json({ success: true, message: "Follow request sent." });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error." });
+  }
+});
+
+
+
+
+// Accept follow request
+router.post("/accept/:followerId", async (req, res) => {
+  try {
+    const { followerId } = req.params;
+    const { user } = req; // Assuming you're using Passport.js for authentication
+
+    // Add the follower ID to the follower array of the current user
+    await User.findByIdAndUpdate(user._id, { $addToSet: { follower: followerId } });
+
+    // Add the current user ID to the following array of the follower
+    await User.findByIdAndUpdate(followerId, { $addToSet: { following: user._id } });
+
+    // Remove the follower ID from the recivedrequest array of the current user
+    await User.findByIdAndUpdate(user._id, { $pull: { recivedrequest: followerId } });
+
+    // Remove the current user ID from the sendrequest array of the follower
+    await User.findByIdAndUpdate(followerId, { $pull: { sendrequest: user._id } });
+
+    res.status(200).json({ success: true, message: "Follow request accepted." });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error." });
+  }
+});
+
+
+router.get("/requesteduser", async (req, res) => {
+  try {
+    const allRequests = await User.findById(req.user._id).populate("recivedrequest");
+    res.status(200).json({ msg: "request", allRequests });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
+
+
+
+
 
 
 router.post('/login', passport.authenticate('local', { 
@@ -31,7 +104,7 @@ router.post('/login', passport.authenticate('local', {
 router.post('/register', async (req,res)=>{
   try {
     const { username, password, email, role } = req.body;
-    const newuser = new User({ username, email,role });
+    const newuser = new User({ displayName:username, email,role });
     const user = await User.register( newuser, password);
 
     req.login(user, function(err) {
@@ -109,13 +182,7 @@ router.get(
     failureRedirect: "/login/failed",
   })
 );
-router.get(
-  "/google/callback",
-  passport.authenticate("google", {
-    successRedirect: CLIENT_URL,
-    failureRedirect: "/login/failed",
-  })
-);
+
 
 
 
