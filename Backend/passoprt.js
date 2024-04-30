@@ -1,7 +1,7 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 // const GithubStrategy = require("passport-github2").Strategy;
 // const FacebookStrategy = require("passport-facebook").Strategy;
-const LocalStrategy = require('passport-local');
+// const LocalStrategy = require('passport-local');
 const User =require("./Models/user")
 const passport = require("passport");
 const dotenv=require('dotenv').config()
@@ -34,7 +34,7 @@ passport.use(
         if (!user) {
           user = new User({
             googleId: profile.id,
-            displayName: profile.displayName,
+            username: profile.displayName,
             email: profile.emails ? profile.emails[0].value : "", // Check if emails array exists
           });
           await user.save();

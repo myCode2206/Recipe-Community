@@ -11,8 +11,8 @@ const passportsetup = require("./passoprt");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// const mongourl = process.env.MONGO_URL;
-const mongourl = "mongodb://localhost:27017/recipeeee";
+const mongourl = process.env.MONGO_URL;
+// const mongourl = "mongodb://localhost:27017/recipeeee";
 const port = process.env.PORT;
 
 mongoose

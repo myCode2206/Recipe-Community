@@ -36,7 +36,7 @@ const AddBlog = () => {
         "Content-Type": "application/json",
       }
     });
-    console.log("Recipe added successfully!");
+    console.log("blogs added successfully!");
     } catch (err) {
       console.log(err);
     }

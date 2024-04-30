@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Button,
@@ -13,10 +13,35 @@ import {
 import { IoIosNotifications } from "react-icons/io";
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
+import axios from "axios";
 
 function MyNav(props) {
   const [showNotifications, setShowNotifications] = useState(false);
   const user = props.user;
+  const [requesteduser,setRequestedUser]= useState([]);
+
+  useEffect(() => {
+    const fetchRequestedUser = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/auth/requesteduser', {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+        setRequestedUser(response.data.allRequests.recivedrequest);
+      console.log(response.data.allRequests.recivedrequest); // Log the response data
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchRequestedUser();
+  }, []); 
+
+
+
 
   const logouthandler = () => {
     try {
@@ -126,7 +151,7 @@ function MyNav(props) {
                         to={`/profile/${user._id}`}
                         style={{ textDecoration: "none", color: "black" }}
                       >
-                        Profile
+                        {user.username}
                       </Link>
                     </Button>
                   </>
@@ -140,6 +165,7 @@ function MyNav(props) {
                       outline: "none",
                     }}
                   >
+
                     <Link
                       to="/login"
                       style={{ textDecoration: "none", color: "black" }}
@@ -170,33 +196,29 @@ function MyNav(props) {
           <Offcanvas.Title>Notifications (2) </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div className="d-flex justify-content-between">
-            <div className="pt-2">
-              <p>Ayush Agarwal</p>
-            </div>
-            <div>
-              <button className="btn btn-success">
-                <IoCheckmarkSharp />
-              </button>
-              <button className="btn btn-danger ms-2">
-                <RxCross2 />
-              </button>
-            </div>
-          </div>
-          <div className="d-flex justify-content-between">
-            <div className="pt-2">
-              <p>Monu Bhaiya</p>
-            </div>
-            <div>
-              <button className="btn btn-success">
-                <IoCheckmarkSharp />
-              </button>
-              <button className="btn btn-danger ms-2">
-                <RxCross2 />
-              </button>
-            </div>
-          </div>
-        </Offcanvas.Body>
+            {/* Notifications for admin */}
+            {requesteduser ? (
+              <>
+                {requesteduser.map((user) => (
+                  <div className="d-flex justify-content-between" key={user._id}>
+                    <div className="pt-2">
+                      <p>{user.username}</p>
+                    </div>
+                    <div>
+                      <button className="btn btn-success">
+                        <IoCheckmarkSharp />
+                      </button>
+                      <button className="btn btn-danger ms-2">
+                        <RxCross2 />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <p>Loading requested users...</p>
+            )}
+          </Offcanvas.Body>
       </Offcanvas>
     </>
   );
