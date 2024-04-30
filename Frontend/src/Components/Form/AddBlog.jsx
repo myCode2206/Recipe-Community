@@ -8,7 +8,7 @@ const AddBlog = () => {
   const navigate = useNavigate();
   
   function Redirect() {
-    navigate("/recipe");
+    navigate("/blogs");
   }
   const [formData, setFormData] = useState({
     blogName: "",

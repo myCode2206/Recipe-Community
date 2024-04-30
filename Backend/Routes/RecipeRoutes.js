@@ -39,7 +39,7 @@ router.post("/recipe/add", async (req, res) => {
 
     // console.log(req.body);
 
-    const author =currentUser.displayName;
+    const author =currentUser.username;
     const usermail = currentUser.email;
 
     const newRecipe = await MyRecipe.create({
@@ -117,7 +117,7 @@ router.post("/recipe/:id/review", async (req, res) => {
     const newReview = await recipeReview.create({
       comment,
       user_id: req.user._id,
-      username: req.user.displayName,
+      username: req.user.username,
     });
     console.log(newReview);
     recipee.comment.push(newReview);
