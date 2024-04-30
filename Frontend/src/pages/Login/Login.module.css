@@ -19,7 +19,8 @@ body {
 
 a {
   cursor: pointer;
-  text-decoration: none; /* Ensure consistent link styling */
+  text-decoration: none;
+  /* Ensure consistent link styling */
 }
 
 /* Ensure full coverage of background image */
@@ -35,7 +36,8 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
   max-width: 100%;
-  width: 400px; /* Set a maximum width for better readability */
+  width: 350px;
+  /* Set a maximum width for better readability */
   background: rgba(96, 95, 95, 0.596);
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
@@ -45,36 +47,45 @@ html {
 /* Form section styles */
 .container .forms {
   display: flex;
-  flex-direction: column; /* Adjust layout for smaller screens */
+  flex-direction: column;
+  height: 65vh;
   align-items: center;
   padding: 30px;
   transition: height 0.2s ease;
+  margin-top: 10px;
 }
 
 /* Individual form styles */
 .container .form {
-  width: 100%; /* Occupy full width of container */
-  padding: 20px; /* Increase padding for better spacing */
+  width: 100%;
+  /* Occupy full width of container */
+  margin: 15px;
+  padding: 20px;
+  /* Increase padding for better spacing */
 }
 
 /* Title styles */
 .container .form .title {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: 600;
   color: #ffca3a;
-  margin-bottom: 20px; /* Add spacing below title */
+  margin-bottom: 20px;
+  /* Add spacing below title */
 }
 
 /* Input field styles */
 .inputField {
   position: relative;
-  margin-bottom: 20px; /* Add spacing between input fields */
+  margin-bottom: 20px;
+  /* Add spacing between input fields */
 }
 
 .inputField input {
   width: 100%;
-  height: 40px; /* Reduce height for better proportion */
-  padding: 10px; /* Adjust padding for better spacing */
+  height: 40px;
+  /* Reduce height for better proportion */
+  padding: 10px;
+  /* Adjust padding for better spacing */
   border: none;
   border-radius: 8px;
   outline: none;
@@ -92,11 +103,13 @@ html {
 .checkboxText {
   display: flex;
   align-items: center;
-  margin-bottom: 20px; /* Add spacing below checkbox text */
+  margin-bottom: 20px;
+  /* Add spacing below checkbox text */
 }
 
 .checkboxText .text {
-  margin-right: 10px; /* Add spacing between text and checkbox */
+  margin-right: 10px;
+  /* Add spacing between text and checkbox */
 }
 
 /* Button styles */
@@ -110,9 +123,9 @@ html {
   text-decoration: none;
 }
 
-.form a:hover {
+/* .form a:hover {
   text-decoration: underline;
-}
+} */
 
 .form button {
   height: 100%;
@@ -124,6 +137,7 @@ html {
   letter-spacing: 1px;
   border-radius: 6px;
   background-color: #ffca3a;
+  padding: 5px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -144,6 +158,7 @@ button:hover {
 }
 
 @keyframes shake {
+
   0%,
   100% {
     transform: translateX(0);
@@ -162,15 +177,19 @@ button:hover {
 /* Media query for smaller screens */
 @media only screen and (max-width: 768px) {
   .container {
-    width: 90%; /* Adjust container width for smaller screens */
+    width: 90%;
+    /* Adjust container width for smaller screens */
   }
 
   .inputField input {
-    height: 35px; /* Reduce input field height for smaller screens */
+    height: 35px;
+    /* Reduce input field height for smaller screens */
   }
 
   .form button {
-    height: 35px; /* Reduce button height for smaller screens */
-    font-size: 14px; /* Reduce font size for smaller screens */
+    height: 35px;
+    /* Reduce button height for smaller screens */
+    font-size: 14px;
+    /* Reduce font size for smaller screens */
   }
 }

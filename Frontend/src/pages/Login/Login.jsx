@@ -7,18 +7,18 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const navigate =useNavigate()
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
     username: "",
-    role: "", 
+    role: "",
   });
 
-   const googlelogin = async () => {
-    window.open("http://localhost:5000/auth/google","_self");
+  const googlelogin = async () => {
+    window.open("http://localhost:5000/auth/google", "_self");
   };
 
   const togglePasswordVisibility = () => {
@@ -52,9 +52,9 @@ const Login = () => {
     console.log("Password:", password);
     console.log("Username:", username);
     console.log("Role:", role);
-    try{
+    try {
 
-      const res = await axios.post("http://localhost:5000/auth/register",{
+      const res = await axios.post("http://localhost:5000/auth/register", {
         email,
         password,
         username,
@@ -64,31 +64,30 @@ const Login = () => {
       navigate("/blogs")
 
     }
-    catch(e)
-    {
-      console.error("Error:", e); 
+    catch (e) {
+      console.error("Error:", e);
     }
-    
+
   };
 
-  const onloginsubmit = async (e)=>{
+  const onloginsubmit = async (e) => {
 
     e.preventDefault();
 
-  const { username, password } = formData;
+    const { username, password } = formData;
 
-  try {
-    const res = await axios.post("http://localhost:5000/auth/login", {
-      username,
-      password
-    });
-    console.log(res.data);
-    navigate("/blogs");
-  } catch (error) {
-    console.error("Error:", error.response.data.error);
-    console.error("Login failed.");
-  }
-};
+    try {
+      const res = await axios.post("http://localhost:5000/auth/login", {
+        username,
+        password
+      });
+      console.log(res.data);
+      navigate("/blogs");
+    } catch (error) {
+      console.error("Error:", error.response.data.error);
+      console.error("Login failed.");
+    }
+  };
 
   return (
     <>
@@ -99,7 +98,7 @@ const Login = () => {
             <div className={styles.form}>
               <span className={styles.title}>Login</span>
               <form onSubmit={onloginsubmit}>
-              <div className={styles.inputField}>
+                <div className={styles.inputField}>
                   <input
                     type="text"
                     placeholder="Enter your username"
@@ -123,22 +122,20 @@ const Login = () => {
                   />
                   <i className="uil uil-lock icon"></i>
                   <i
-                    className={`uil ${
-                      showPassword ? "uil-eye" : "uil-eye-slash"
-                    } ${styles.showHidePw}`}
+                    className={`uil ${showPassword ? "uil-eye" : "uil-eye-slash"
+                      } ${styles.showHidePw}`}
                     onClick={togglePasswordVisibility}
                   ></i>
                 </div>
                 <div className={styles.checkboxText}>
                   <div className={styles.checkboxContent}>
-                    <input type="checkbox" id="logCheck" />
+                    {/* <input type="checkbox" id="logCheck" /> */}
                     <label htmlFor="logCheck" className={styles.text}>
-                      Remember me
+                      Sign in with Google
                     </label>
                   </div>
                   <a onClick={googlelogin} className={styles.text}>
-                    {/* signup with google */}
-                    <FcGoogle  className="googleicon"/>
+                    <FcGoogle className="googleicon" style={{ fontSize: "30px" }} />
                   </a>
                 </div>
                 <div className={styles.inputField}>
@@ -198,6 +195,7 @@ const Login = () => {
                     value={formData.role}
                     onChange={handleChange}
                     required
+                    style={{ padding: "3px", borderRadius: "10px" }}
                   >
                     <option value="">Select Role</option>
                     <option value="chef">Chef</option>
