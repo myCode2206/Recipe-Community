@@ -38,7 +38,7 @@ const HomeCard = (props) => {
           }}
         >
           <Link
-            to="/showRecipe"
+            to={props.url}
             style={{ textDecoration: "none", color: "black" }}
           >
             Read More
