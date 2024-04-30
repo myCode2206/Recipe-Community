@@ -63,57 +63,56 @@ function Profile() {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
   const [userDetail, setUserDetail] = useState(null);
-const [error, setError] = useState(null);
+  const [error, setError] = useState(null);
 
 
 
 
 
-useEffect(() => {
-  const fetchUserDetail = async () => {
-    try {
-      const response = await axios.get(`http://localhost:5000/auth/profile/${id}`, {
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        }
-      });
+  useEffect(() => {
+    const fetchUserDetail = async () => {
+      try {
+        const response = await axios.get(`http://localhost:5000/auth/profile/${id}`, {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }
+        });
 
-      // const userdata = response.data.userDetailById;
-      setUserDetail(response.data.userDetailById);
-    } catch (error) {
-      setError("An error occurred while fetching user details.");
-      console.error(error);
+        // const userdata = response.data.userDetailById;
+        setUserDetail(response.data.userDetailById);
+      } catch (error) {
+        setError("An error occurred while fetching user details.");
+        console.error(error);
+      }
+    };
+
+    fetchUserDetail();
+
+    // No cleanup function needed
+
+  }, [id]);
+
+  // Log userDetail when it changes
+  useEffect(() => {
+    if (userDetail) {
+      console.log(userDetail);
+      setFollowerCount(userDetail.follower.length)
+      setFollowingCount(userDetail.following.length)
+      setRecipes(userDetail.recipes)
+      setBlogs(userDetail.blogs)
     }
-  };
 
-  fetchUserDetail();
 
-  // No cleanup function needed
 
-}, [id]);
 
-// Log userDetail when it changes
-useEffect(() => {
-  if(userDetail)
-  {
-  console.log(userDetail);
-  setFollowerCount(userDetail.follower.length)
-  setFollowingCount(userDetail.following.length)
-  setRecipes(userDetail.recipes)
-  setBlogs(userDetail.blogs)
+  }, [userDetail]);
+
+  // Display error if it occurs
+  if (error) {
+    return <div>Error: {error}</div>;
   }
-
- 
-
-
-}, [userDetail]);
-
-// Display error if it occurs
-if (error) {
-  return <div>Error: {error}</div>;
-}
 
 
 
@@ -164,7 +163,7 @@ if (error) {
     //   });
   }, []);
 
-  
+
 
   // Function to handle click on Recipe button
   function handleRecipeClick() {
@@ -206,10 +205,10 @@ if (error) {
             />
             <h1 style={styles.heading}>
               {userDetail ? (
-                  <> {userDetail.displayName}</>
-                ) : (
-                  <>Loading...</>
-                )}
+                <> {userDetail.displayName}</>
+              ) : (
+                <>Loading...</>
+              )}
               {followerCount >= 1000 && (
                 <span style={{ color: "#4895ef" }}>
                   <MdVerified style={{ fontSize: "25px" }} />
