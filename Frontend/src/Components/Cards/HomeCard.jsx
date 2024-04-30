@@ -1,3 +1,4 @@
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
@@ -11,29 +12,34 @@ const HomeCard = (props) => {
         border: "1px solid #ffba08",
         margin: "10px",
         borderRadius: "6px",
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
       }}
     >
       <Card.Img
         variant="top"
         src={props.image}
-        style={{ width: "100%", height: "50%" }}
+        style={{
+          width: "100%",
+          height: "200px",
+          objectFit: "cover",
+          borderTopLeftRadius: "6px",
+          borderTopRightRadius: "6px",
+        }}
       />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
+        <Card.Title style={{ marginBottom: "10px" }}>{props.name}</Card.Title>
+        <Card.Text>{props.text}</Card.Text>
         <Button
+          variant="primary"
           style={{
             backgroundColor: "#ffee32",
-            color: "black",
+            border: "none",
+            marginTop: "auto",
           }}
-          variant="primary"
         >
           <Link
+            to={props.url}
             style={{ textDecoration: "none", color: "black" }}
-            to="/showRecipe"
           >
             Read More
           </Link>
@@ -41,6 +47,6 @@ const HomeCard = (props) => {
       </Card.Body>
     </Card>
   );
-}
+};
 
-export default HomeCard
+export default HomeCard;
