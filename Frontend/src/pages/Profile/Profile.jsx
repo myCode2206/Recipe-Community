@@ -64,11 +64,7 @@ function Profile(props) {
   const [blogs, setBlogs] = useState([]);
   const [followerCount, setFollowerCount] = useState(0);
   const [followingCount, setFollowingCount] = useState(0);
-
   const [buttoncontent,setbuttoncontent] = useState("Follow")
-  
-  const [isFollowing, setIsFollowing] = useState(false);
-  const [isRequested, setIsRequested] = useState(false);
   const [userDetail, setUserDetail] = useState(null);
   const [error, setError] = useState(null);
 
@@ -125,7 +121,7 @@ function Profile(props) {
             Accept: "application/json",
             "Content-Type": "application/json",
           }
-        });
+        })
         setbuttoncontent("Follow")
       } 
       else if (buttoncontent==="Follow"){
@@ -144,7 +140,22 @@ function Profile(props) {
       console.error("Error:", error);
       setError("An error occurred while performing the action.");
     }
-  };
+  }
+
+    
+
+  // Log userDetail when it changes
+  useEffect(() => {
+    if (userDetail) {
+      console.log(userDetail);
+      setFollowerCount(userDetail.follower.length)
+      setFollowingCount(userDetail.following.length)
+      setRecipes(userDetail.recipes)
+      setBlogs(userDetail.blogs)
+
+  }}, [userDetail]);
+
+
 
   // Function to handle click on Recipe button
   const handleRecipeClick = () => {
@@ -190,6 +201,7 @@ function Profile(props) {
                 ) : (
                   <>Loading...</>
                 )}
+          
               {followerCount >= 1000 && (
                 <span style={{ color: "#4895ef" }}>
                   <MdVerified style={{ fontSize: "25px" }} />

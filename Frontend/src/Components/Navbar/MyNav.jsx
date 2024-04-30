@@ -36,7 +36,7 @@ function MyNav(props) {
         console.error(error);
       }
     };
-
+    // if(user)
     fetchRequestedUser();
   }, []); 
 
