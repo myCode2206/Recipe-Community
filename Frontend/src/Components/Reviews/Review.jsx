@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaUser } from "react-icons/fa";
 import React, { useState } from "react";
 import { MdOutlineStar } from "react-icons/md";
@@ -17,7 +18,12 @@ const Review = (props) => {
       try {
         await axios.post(`http://localhost:5000/blog/${id}/comment`, {
           comment,
-        });
+        },{
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }});
         setComment("");
       } catch (e) {
         console.log("unable to fetch post comments");

@@ -103,8 +103,8 @@ router.post("/blog/:id/comment", async (req, res) => {
 
     const newComment = await BlogComment.create({
       comment,
-      user_id: "1",
-      username: "mukul",
+      user_id: req.user._id,
+      username: req.user.displayName,
     });
 
     // console.log(newComment)
