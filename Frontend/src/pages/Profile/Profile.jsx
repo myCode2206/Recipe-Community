@@ -200,8 +200,8 @@ if (error) {
         <header style={styles.header}>
           <div style={styles.details}>
             <img
-              src="https://images.unsplash.com/photo-1516708274537-6f91e34ccaf2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1vbmtleXxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Rajat Gupta"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKmuF7Xeu5CRsXcIKgVcE0wtU8UgJQZx6pe8L4CoYJpQ&s"
+              alt="user image"
               style={styles.profilePic}
             />
             <h1 style={styles.heading}>
