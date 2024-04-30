@@ -39,7 +39,7 @@ router.post("/recipe/add", async (req, res) => {
 
     // console.log(req.body);
 
-    const author =currentUser.displayName;
+    const author = currentUser.displayName;
     const usermail = currentUser.email;
 
     const newRecipe = await MyRecipe.create({
@@ -52,8 +52,7 @@ router.post("/recipe/add", async (req, res) => {
       Procedure: procedure,
       author,
       usermail,
-      userid 
-
+      userid,
     });
 
     currentUser.recipes.push(newRecipe);
@@ -63,6 +62,7 @@ router.post("/recipe/add", async (req, res) => {
     // console.log("recipe saved to user recipe array")
     res.status(200).json({ msg: "Added Data Successfully" });
   } catch (e) {
+    // console.log("hi");
     res.status(400).json({ msg: "Something Went Wrong!!!" });
   }
 });

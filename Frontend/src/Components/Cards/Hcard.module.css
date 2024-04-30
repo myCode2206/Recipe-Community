@@ -1,4 +1,8 @@
-.hcard {
+.card-container {
+  margin-top: 20px;
   display: flex;
-  border: 2px solid red;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
+
+/* Styling for individual cards can be done in the HomeCard component */

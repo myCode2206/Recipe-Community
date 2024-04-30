@@ -18,30 +18,30 @@ import axios from "axios";
 function MyNav(props) {
   const [showNotifications, setShowNotifications] = useState(false);
   const user = props.user;
-  const [requesteduser,setRequestedUser]= useState([]);
+  const [requesteduser, setRequestedUser] = useState([]);
 
   useEffect(() => {
     const fetchRequestedUser = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/auth/requesteduser', {
-          withCredentials: true,
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:5000/auth/requesteduser",
+          {
+            withCredentials: true,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        );
         setRequestedUser(response.data.allRequests.recivedrequest);
-      console.log(response.data.allRequests.recivedrequest); // Log the response data
+        console.log(response.data.allRequests.recivedrequest); // Log the response data
       } catch (error) {
         console.error(error);
       }
     };
     // if(user)
     fetchRequestedUser();
-  }, []); 
-
-
-
+  }, []);
 
   const logouthandler = () => {
     try {
@@ -66,7 +66,7 @@ function MyNav(props) {
         <Navbar
           key={expand}
           expand={expand}
-          style={{ backgroundColor: "#e36414" }}
+          style={{ backgroundColor: "#FFEE32" }}
         >
           <Container fluid>
             <Navbar.Brand href="#">Recipe</Navbar.Brand>
@@ -129,7 +129,7 @@ function MyNav(props) {
                     <Button
                       onClick={logouthandler}
                       style={{
-                        backgroundColor: "#e36414",
+                        backgroundColor: "#FFEE32",
                         color: "black",
                         marginRight: "5px",
                         border: "none",
@@ -140,7 +140,7 @@ function MyNav(props) {
                     </Button>
                     <Button
                       style={{
-                        backgroundColor: "#e36414",
+                        backgroundColor: "#FFEE32",
                         color: "black",
                         marginRight: "5px",
                         border: "none",
@@ -158,14 +158,13 @@ function MyNav(props) {
                 ) : (
                   <Button
                     style={{
-                      backgroundColor: "#e36414",
+                      backgroundColor: "#FFEE32",
                       color: "black",
                       marginRight: "5px",
                       border: "none",
                       outline: "none",
                     }}
                   >
-
                     <Link
                       to="/login"
                       style={{ textDecoration: "none", color: "black" }}
@@ -177,7 +176,7 @@ function MyNav(props) {
                 <Button
                   onClick={toggleNotifications}
                   style={{
-                    backgroundColor: "#e36414",
+                    backgroundColor: "#FFEE32",
                     color: "black",
                     border: "none",
                     outline: "none",
@@ -196,29 +195,29 @@ function MyNav(props) {
           <Offcanvas.Title>Notifications (2) </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-            {/* Notifications for admin */}
-            {requesteduser ? (
-              <>
-                {requesteduser.map((user) => (
-                  <div className="d-flex justify-content-between" key={user._id}>
-                    <div className="pt-2">
-                      <p>{user.username}</p>
-                    </div>
-                    <div>
-                      <button className="btn btn-success">
-                        <IoCheckmarkSharp />
-                      </button>
-                      <button className="btn btn-danger ms-2">
-                        <RxCross2 />
-                      </button>
-                    </div>
+          {/* Notifications for admin */}
+          {requesteduser ? (
+            <>
+              {requesteduser.map((user) => (
+                <div className="d-flex justify-content-between" key={user._id}>
+                  <div className="pt-2">
+                    <p>{user.username}</p>
                   </div>
-                ))}
-              </>
-            ) : (
-              <p>Loading requested users...</p>
-            )}
-          </Offcanvas.Body>
+                  <div>
+                    <button className="btn btn-success">
+                      <IoCheckmarkSharp />
+                    </button>
+                    <button className="btn btn-danger ms-2">
+                      <RxCross2 />
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </>
+          ) : (
+            <p>Loading requested users...</p>
+          )}
+        </Offcanvas.Body>
       </Offcanvas>
     </>
   );
