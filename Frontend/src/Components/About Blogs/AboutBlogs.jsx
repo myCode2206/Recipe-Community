@@ -2,9 +2,12 @@
 import React from "react";
 import { FaUser } from "react-icons/fa";
 import { MdOutlineDateRange } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const AboutBlogs = (props) => {
   console.log(props.data);
+
+  const navigate=useNavigate();
   
   return (
     <>
@@ -20,8 +23,8 @@ const AboutBlogs = (props) => {
             width="70%"
           />
           <div className="d-flex flex-wrap justify-content-around" style={{ marginTop: "10px" }}>
-            <div style={{ fontSize: "20px" }}>
-              <FaUser style={{ color: "yellow", marginRight: "5px" }} />
+            <div style={{ fontSize: "20px",  cursor:"pointer"}}  onClick={ ()=>{navigate(`/profile/${props.data.userid}`)}}>
+              <FaUser style={{ color: "yellow", marginRight: "5px" }}  />
               {props.data.author}
             </div>
             <div>
