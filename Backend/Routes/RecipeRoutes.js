@@ -117,7 +117,7 @@ router.post("/recipe/:id/review", async (req, res) => {
     const newReview = await recipeReview.create({
       comment,
       user_id: req.user._id,
-      username: req.user.displayName,
+      username: req.user.username,
     });
     console.log(newReview);
     recipee.comment.push(newReview);

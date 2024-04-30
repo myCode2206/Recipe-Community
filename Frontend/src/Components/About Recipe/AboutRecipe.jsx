@@ -4,6 +4,7 @@ import { MdOutlineStar } from "react-icons/md";
 import { TbChefHat } from "react-icons/tb";
 import { FaRegClock } from "react-icons/fa";
 import { LiaWeightSolid } from "react-icons/lia";
+import { useNavigate } from "react-router-dom";
 
 const mystyle = {
   display: "flex",
@@ -13,6 +14,7 @@ const mystyle = {
   justifyContent: "space-evenly",
 };
 const AboutRecipe = (props) => {
+  const navigate = useNavigate();
   return (
     <section className="" style={mystyle}>
       <div>
@@ -27,7 +29,7 @@ const AboutRecipe = (props) => {
         <h3 style={{ fontSize: "40px" }} className="text-dark">
           {props.recipe.title}
         </h3>
-        <h5 className="text-muted">
+        <h5 style={{cursor:"pointer"}} className="text-muted" onClick={()=>{navigate(`/profile/${props.recipe.userid}`)}}>
           <TbChefHat />
           {props.recipe.author}
         </h5>

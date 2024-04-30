@@ -27,7 +27,7 @@ router.post("/blog/add", async (req, res) => {
     // console.log("Current user:", currentUser);
 
     const { blogName, img, desc } = req.body;
-    const author = req.user.displayName;
+    const author = req.user.username;
 
     // Check if MyBlog model is imported correctly and defined
     console.log("Creating new blog...");
@@ -104,7 +104,7 @@ router.post("/blog/:id/comment", async (req, res) => {
     const newComment = await BlogComment.create({
       comment,
       user_id: req.user._id,
-      username: req.user.displayName,
+      username: req.user.username,
     });
 
     // console.log(newComment)
