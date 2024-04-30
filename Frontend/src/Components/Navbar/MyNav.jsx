@@ -251,12 +251,6 @@ function MyNav(props) {
                       </button>
                     </div>
                   <div>
-                    <button className="btn btn-success">
-                      <IoCheckmarkSharp />
-                    </button>
-                    <button className="btn btn-danger ms-2">
-                      <RxCross2 />
-                    </button>
                   </div>
                 </div>
               ))}
