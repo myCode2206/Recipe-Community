@@ -100,9 +100,15 @@ function Profile(props) {
 
       // Check if the current user is following the profile user
       if (currentuser && userDetail && currentuser._id !== userDetail._id) {
+
+        // console.log(userDetail.follower)
+        // console.log(userDetail.recivedrequest)
+        // console.log(currentuser._id)
+        // console.log(userDetail.follower.includes(currentuser._id))
+
         if(userDetail.follower.includes(currentuser._id))
-        setbuttoncontent("Unfollow")
-        if(userDetail.recivedrequest.includes(currentuser._id))
+        setbuttoncontent("Following")
+        else if(userDetail.recivedrequest.includes(currentuser._id))
         setbuttoncontent("Requested")
         else
         setbuttoncontent("Follow")
@@ -113,7 +119,7 @@ function Profile(props) {
   // Function to handle follow/unfollow
   const handleFollow = async () => {
     try {
-      if (buttoncontent==="Unfollow") {
+      if (buttoncontent==="Following") {
         // Unfollow user
         await axios.post(`http://localhost:5000/auth/unfollow/${id}`,currentuser, {
           withCredentials: true,
@@ -147,7 +153,7 @@ function Profile(props) {
   // Log userDetail when it changes
   useEffect(() => {
     if (userDetail) {
-      console.log(userDetail);
+      // console.log(userDetail);
       setFollowerCount(userDetail.follower.length)
       setFollowingCount(userDetail.following.length)
       setRecipes(userDetail.recipes)

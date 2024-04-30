@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link ,useNavigate } from "react-router-dom";
 import {
   Button,
   Container,
-  Form,
   Nav,
   Navbar,
-  NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
 import { IoIosNotifications } from "react-icons/io";
@@ -17,10 +15,49 @@ import axios from "axios";
 
 function MyNav(props) {
   const [showNotifications, setShowNotifications] = useState(false);
-  const user = props.user;
+  const currentuser = props.user;
   const [requesteduser,setRequestedUser]= useState([]);
+  const navigate=useNavigate();
 
-  useEffect(() => {
+
+  const requestAcceptHAndler = async (user)=>{
+    try{
+    await axios.get(`http://localhost:5000/auth/follow/accept/${user._id}`,{
+      withCredentials: true,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+    navigate(`/profile/${currentuser._id}`);
+    setRequestedUser((prevRequestedUser) => prevRequestedUser.filter((u) => u._id !== user._id));
+  }
+  catch(e)
+  {
+    console.log(e)
+  } }
+
+
+  const requestdeclineHandler = async(user)=>{
+    try{
+        await axios.get(`http://localhost:5000/auth/follow/decline/${user._id}`,{
+        withCredentials: true,
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
+      navigate(`/profile/${currentuser._id}`);
+      setRequestedUser((prevRequestedUser) => prevRequestedUser.filter((u) => u._id !== user._id));
+    }
+    catch(e)
+    {
+      console.log(e)
+    } }
+
+
+
+
     const fetchRequestedUser = async () => {
       try {
         const response = await axios.get('http://localhost:5000/auth/requesteduser', {
@@ -31,14 +68,13 @@ function MyNav(props) {
           },
         });
         setRequestedUser(response.data.allRequests.recivedrequest);
-      console.log(response.data.allRequests.recivedrequest); // Log the response data
+      // console.log(response.data.allRequests.recivedrequest); // Log the response data
       } catch (error) {
         console.error(error);
       }
     };
-    // if(user)
-    fetchRequestedUser();
-  }, []); 
+    
+   
 
 
 
@@ -52,7 +88,9 @@ function MyNav(props) {
     }
   };
 
+
   const toggleNotifications = () => {
+    fetchRequestedUser()
     setShowNotifications(!showNotifications);
   };
 
@@ -124,7 +162,7 @@ function MyNav(props) {
                     Contact Us
                   </Link>
                 </Nav>
-                {user ? (
+                {currentuser ? (
                   <>
                     <Button
                       onClick={logouthandler}
@@ -148,10 +186,10 @@ function MyNav(props) {
                       }}
                     >
                       <Link
-                        to={`/profile/${user._id}`}
+                        to={`/profile/${currentuser._id}`}
                         style={{ textDecoration: "none", color: "black" }}
                       >
-                        {user.username}
+                        {currentuser.username}
                       </Link>
                     </Button>
                   </>
@@ -176,6 +214,7 @@ function MyNav(props) {
                 )}
                 <Button
                   onClick={toggleNotifications}
+                  
                   style={{
                     backgroundColor: "#e36414",
                     color: "black",
@@ -193,7 +232,7 @@ function MyNav(props) {
       {/* Notification Panel */}
       <Offcanvas show={showNotifications} onHide={closeNotifications}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Notifications (2) </Offcanvas.Title>
+          <Offcanvas.Title>Notifications </Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
             {/* Notifications for admin */}
@@ -205,10 +244,10 @@ function MyNav(props) {
                       <p>{user.username}</p>
                     </div>
                     <div>
-                      <button className="btn btn-success">
+                      <button className="btn btn-success" onClick={()=>requestAcceptHAndler(user)}>
                         <IoCheckmarkSharp />
                       </button>
-                      <button className="btn btn-danger ms-2">
+                      <button className="btn btn-danger ms-2" onClick={()=>requestdeclineHandler(user)}>
                         <RxCross2 />
                       </button>
                     </div>

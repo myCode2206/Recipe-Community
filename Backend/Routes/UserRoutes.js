@@ -7,17 +7,6 @@ const { findById } = require('../Models/blogComment');
 
 
 
-// router.post("/login",(req,res)=>{
-//   console.log("jello")
-// })
-
-
-
-
-
-
-
-// Send follow request
 
 router.post("/follow/:userId", async (req, res) => {
   try {
@@ -39,12 +28,32 @@ router.post("/follow/:userId", async (req, res) => {
 });
 
 
+router.post("/unfollow/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const loggedin = await User.findById(req.body._id);
+    const profileperson = await User.findById(userId);
+
+    profileperson.follower.remove(loggedin);
+    loggedin.following.remove(profileperson);
+
+    loggedin.save();
+    profileperson.save();
+
+    res.status(200).json({ success: true, message: "Follow request sent." });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ success: false, message: "Internal server error." });
+  }
+});
+
+
 
 
 // Accept follow request
-router.post("/accept/:followerId", async (req, res) => {
+router.post("/accept/:userId", async (req, res) => {
   try {
-    const { followerId } = req.params;
+    const { userId } = req.params;
     const { user } = req; // Assuming you're using Passport.js for authentication
 
     // Add the follower ID to the follower array of the current user
@@ -77,6 +86,64 @@ router.get("/requesteduser", async (req, res) => {
   }
 });
 
+router.get("/follow/accept/:id", async (req, res) => {
+  try {
+    const requestedUser = await User.findById(req.params.id);
+    const currentUser = await User.findById(req.user._id);
+
+    // Add requested user to the current user's followers and vice versa
+    currentUser.follower.push(requestedUser);
+    requestedUser.following.push(currentUser);
+
+    // Save changes to both users
+    await currentUser.save();
+    await requestedUser.save();
+
+    // Remove the request from both users' pending request lists
+    currentUser.recivedrequest.remove(requestedUser);
+    requestedUser.sendrequest.remove(currentUser);
+
+    // Save changes again
+    await currentUser.save();
+    await requestedUser.save();
+
+    console.log("Request accepted successfully");
+    res.status(200).json({ msg: "Request accepted" });
+  } catch (error) {
+    console.error("Error accepting request:", error);
+    res.status(400).json({ msg: "Problem in request acceptance" });
+  }
+});
+
+
+
+
+
+
+router.get("/follow/decline/:id", async (req, res) => {
+  try {
+    const requestedUser = await User.findById(req.params.id);
+    const currentUser = await User.findById(req.user._id);
+
+    // Remove the request from both users' pending request lists
+    currentUser.recivedrequest.remove(requestedUser);
+    requestedUser.sendrequest.remove(currentUser);
+
+    // Save changes again
+    await currentUser.save();
+    await requestedUser.save();
+
+    console.log("Request declined successfully");
+    res.status(200).json({ msg: "Request accepted" });
+  } catch (error) {
+    console.error("Error accepting request:", error);
+    res.status(400).json({ msg: "Problem in request decline" });
+  }
+});
+
+
+
+
 
 
 
@@ -90,7 +157,7 @@ router.post('/login', passport.authenticate('local', {
 (req, res) => {
   try
     {
-      console.log("inside login routs  " + req.user);
+      // console.log("inside login routs  " + req.user);
       return res.status(200).json({ message: 'Logged in successfully', user:req.user });   
     }
     catch(e)
@@ -128,8 +195,7 @@ router.get("/profile/:id", async (req, res) => {
     const userDetailById = await User.findById(id)
       .populate("blogs")
       .populate("recipes")
-      .populate("following")
-      .populate("follower");
+
 
     if (!userDetailById) {
       return res.status(404).json({ msg: "User not found" });
