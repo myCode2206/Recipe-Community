@@ -1,8 +1,7 @@
 const mongoose=require("mongoose");
 const passportLocolMongoose = require('passport-local-mongoose');
-const user= require("./user")
-const blog =require("./blog");
-const recipe= require("./recipe");
+const Blog =require("./blog");
+const Recipe= require("./recipe");
 
 
 //auth model
@@ -17,26 +16,32 @@ const authentication = new mongoose.Schema({
     blogs:[
       {
         type:mongoose.Schema.Types.ObjectId,
-        ref:"blog"
+        ref:"Blog"
       }
     ],
     recipes:[
       {
         type:mongoose.Schema.Types.ObjectId,
-        ref:"recipe"
+        ref:"Recipe"
       }
     ],
 
     following:[
       {
         type:mongoose.Schema.Types.ObjectId,
-        ref:"user"
+        ref:"User"
       }
     ],
     follower:[
       {
         type:mongoose.Schema.Types.ObjectId,
-        ref:"user"
+        ref:"User"
+      }
+    ],
+    waitingfollower:[
+      {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
       }
     ],
   },{timestamps:true});

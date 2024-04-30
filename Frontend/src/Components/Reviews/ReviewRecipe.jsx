@@ -15,7 +15,12 @@ const ReviewRecipe = (props) => {
       try {
         await axios.post(`http://localhost:5000/recipe/${id}/review`, {
           comment,
-        });
+        },{
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          }});
         setComment("");
       } catch (e) {
         console.log("Unable to post comment");

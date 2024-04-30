@@ -58,39 +58,65 @@ function Profile() {
   const [value, setValue] = useState("recipe");
   const [recipes, setRecipes] = useState([]);
   const [blogs, setBlogs] = useState([]);
-  const [followerCount, setFollowerCount] = useState(1050);
-  const [followingCount, setFollowingCount] = useState(100);
+  const [followerCount, setFollowerCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
   const [userDetail, setUserDetail] = useState(null);
-  const [error, setError] = useState(null);
+const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchUserDetail = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/auth/profile/${id}`,{
-          withCredentials: true,
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          }
-        });
-        console.log(response);
-        // setUserDetail(response.data.userDetailById);
-      } catch (error) {
-        // setError(error.response.data.msg);
-        console.log(error)
-      }
-    };
 
-    fetchUserDetail();
 
-    // Cleanup function
-    return () => {
-      setUserDetail(null);
-      setError(null);
-    };
-  }, [id]);
+
+
+useEffect(() => {
+  const fetchUserDetail = async () => {
+    try {
+      const response = await axios.get(`http://localhost:5000/auth/profile/${id}`, {
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      });
+
+      // const userdata = response.data.userDetailById;
+      setUserDetail(response.data.userDetailById);
+    } catch (error) {
+      setError("An error occurred while fetching user details.");
+      console.error(error);
+    }
+  };
+
+  fetchUserDetail();
+
+  // No cleanup function needed
+
+}, [id]);
+
+// Log userDetail when it changes
+useEffect(() => {
+  if(userDetail)
+  {
+  console.log(userDetail);
+  setFollowerCount(userDetail.follower.length)
+  setFollowingCount(userDetail.following.length)
+  setRecipes(userDetail.recipes)
+  setBlogs(userDetail.blogs)
+  }
+
+ 
+
+
+}, [userDetail]);
+
+// Display error if it occurs
+if (error) {
+  return <div>Error: {error}</div>;
+}
+
+
+
 
 
 
@@ -138,33 +164,7 @@ function Profile() {
     //   });
   }, []);
 
-  // Function to get all recipes
-  async function getAllRecipes() {
-    try {
-      const res = await axios.get("http://localhost:5000/recipe/");
-      setRecipes(res.data);
-    } catch (error) {
-      console.log("Unable to fetch recipes data");
-    }
-  }
-
-  useEffect(() => {
-    getAllRecipes();
-  }, []);
-
-  // Function to get all blogs
-  async function getAllBlogs() {
-    try {
-      const res = await axios.get("http://localhost:5000/blog/");
-      setBlogs(res.data);
-    } catch (error) {
-      console.log("Unable to fetch blogs data");
-    }
-  }
-
-  useEffect(() => {
-    getAllBlogs();
-  }, []);
+  
 
   // Function to handle click on Recipe button
   function handleRecipeClick() {
@@ -200,12 +200,16 @@ function Profile() {
         <header style={styles.header}>
           <div style={styles.details}>
             <img
-              src="https://images.unsplash.com/photo-1516708274537-6f91e34ccaf2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fG1vbmtleXxlbnwwfHwwfHx8MA%3D%3D"
-              alt="Rajat Gupta"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKmuF7Xeu5CRsXcIKgVcE0wtU8UgJQZx6pe8L4CoYJpQ&s"
+              alt="user image"
               style={styles.profilePic}
             />
             <h1 style={styles.heading}>
-              Rajat Gupta
+              {userDetail ? (
+                  <> {userDetail.displayName}</>
+                ) : (
+                  <>Loading...</>
+                )}
               {followerCount >= 1000 && (
                 <span style={{ color: "#4895ef" }}>
                   <MdVerified style={{ fontSize: "25px" }} />
