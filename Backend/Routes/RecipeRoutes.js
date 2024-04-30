@@ -39,7 +39,7 @@ router.post("/recipe/add", async (req, res) => {
 
     // console.log(req.body);
 
-    const author = currentUser.displayName;
+    const author = currentUser.username;
     const usermail = currentUser.email;
 
     const newRecipe = await MyRecipe.create({
