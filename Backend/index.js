@@ -40,8 +40,8 @@ app.use(
 );
 
 app.use((req, res, next) => {
-  console.log("req.user");
-  console.log(req.user);
+  // console.log("req.user");
+  // console.log(req.user);
   next();
 });
 
