@@ -91,7 +91,6 @@ const Login = () => {
 
   return (
     <>
-      {/* <MyNav /> */}
       <div className={styles.container} style={{ marginTop: "20px" }}>
         <div className={styles.forms}>
           {isLogin ? (
@@ -202,14 +201,7 @@ const Login = () => {
                     <option value="client">Client</option>
                   </select>
                 </div>
-                {/* <div className={styles.checkboxText}>
-                  <div className={styles.checkboxContent}>
-                    <input type="checkbox" id="termCon" />
-                    <label htmlFor="termCon" className={styles.text}>
-                      I accepted all terms and conditions
-                    </label>
-                  </div>
-                </div> */}
+                
                 <div className={styles.inputField}>
                   <button type="submit">Signup</button>
                 </div>

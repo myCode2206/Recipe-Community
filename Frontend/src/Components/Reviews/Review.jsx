@@ -46,14 +46,14 @@ const Review = (props) => {
           paddingTop: "40px",
         }}
       >
-        <div>
+        {/* <div>
           <h3>Add A Review</h3>
           <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
           <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
           <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
           <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
           <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
-        </div>
+        </div> */}
         <div>
           <div>
             <label id="review">

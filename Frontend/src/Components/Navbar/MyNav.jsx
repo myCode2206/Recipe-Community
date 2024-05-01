@@ -238,7 +238,7 @@ function MyNav(props) {
             {requesteduser ? (
               <>
                 {requesteduser.map((user) => (
-                  <div className="d-flex justify-content-between" key={user._id}>
+                  <div className="d-flex justify-content-between" key={user._id} onClick={()=>{navigate(`/profile/${user._id}`)}}>
                     <div className="pt-2">
                       <p>{user.username}</p>
                     </div>

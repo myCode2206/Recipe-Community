@@ -24,10 +24,10 @@ a {
 }
 
 /* Ensure full coverage of background image */
-html {
-  /* background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg") no-repeat center center fixed; */
+/* html {
+  background: url("https://img.freepik.com/free-photo/top-view-fresh-vegetables-various-spices-small-bowls-wooden-spoons-table-free-space_140725-147473.jpg") no-repeat center center fixed;
   background-size: cover;
-}
+} */
 
 /* Container styles */
 .container {
