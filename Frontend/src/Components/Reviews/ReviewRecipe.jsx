@@ -46,14 +46,14 @@ const ReviewRecipe = (props) => {
         }}
       >
         <div>
-          <h3>Add A Review</h3>
+          {/* <h3>Add A Review</h3>
           <div style={{ display: "flex", alignItems: "center" }}>
             <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
             <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
             <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
             <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
             <MdOutlineStar style={{ fontSize: "40px", color: "#FFEE32" }} />
-          </div>
+          </div> */}
         </div>
         <div>
           <div>

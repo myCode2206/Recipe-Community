@@ -16,6 +16,7 @@ import MyNav from "./Components/Navbar/MyNav";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Wrongurl from "./Components/Wrongurl/Wrongurl";
 const App = () => {
   // const user=true;
 
@@ -68,6 +69,7 @@ const App = () => {
           <Route path="/addrecipe" element={user ?<AddRecipe /> :<Login/>} />
           <Route path="/addblog" element={user ? <AddBlog /> : <Login/> } />
           <Route path="profile/:id" element={<Profile  user = {user}/>} />
+          <Route path="*" element={<Wrongurl/>} />
         </Routes>
       </Router>
     </>

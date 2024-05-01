@@ -33,11 +33,11 @@ const AboutRecipe = (props) => {
           <TbChefHat />
           {props.recipe.author}
         </h5>
+        {/* <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
         <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
-        <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
-        <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} />
+        <MdOutlineStar style={{ fontSize: "30px", color: "#FFEE32" }} /> */}
         <p>
           {props.recipe.body}
         </p>
