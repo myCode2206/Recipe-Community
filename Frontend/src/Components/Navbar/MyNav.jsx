@@ -107,7 +107,7 @@ function MyNav(props) {
           style={{ backgroundColor: "#FFEE32" }}
         >
           <Container fluid>
-            <Navbar.Brand href="#">Recipe</Navbar.Brand>
+            <Navbar.Brand href="#" style={{fontWeight:"bold"}}>FlavourVerse</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
               id={`offcanvasNavbar-expand-${expand}`}
