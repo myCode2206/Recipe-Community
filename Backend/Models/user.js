@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Blog = require("./blog");
 const Recipe = require("./recipe");
+const passportLocalMongoose= require("passport-local-mongoose");
 
 // Define your schema without passport-local-mongoose
 const authenticationSchema = new mongoose.Schema({
@@ -38,6 +39,8 @@ const authenticationSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 // Create the model without applying passport-local-mongoose plugin
+authenticationSchema.plugin(passportLocalMongoose);
+
 const User = mongoose.model("User", authenticationSchema);
 
 module.exports = User;

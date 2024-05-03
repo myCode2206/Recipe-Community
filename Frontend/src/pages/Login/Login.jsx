@@ -59,9 +59,16 @@ const Login = () => {
         password,
         username,
         role,
+      },{
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
       })
       console.log(res.data);
-      navigate("/blogs")
+      window.location.href="http://localhost:5173/";
+      // navigate("winblogs")
 
     }
     catch (e) {
@@ -80,9 +87,15 @@ const Login = () => {
       const res = await axios.post("http://localhost:5000/auth/login", {
         username,
         password
+      },{
+        withCredentials: true,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
       });
       console.log(res.data);
-      navigate("/blogs");
+      window.location.href="http://localhost:5173/";
     } catch (error) {
       console.error("Error:", error.response.data.error);
       console.error("Login failed.");
