@@ -8,6 +8,7 @@ const { findById } = require('../Models/blogComment');
 
 
 
+
 router.post("/follow/:userId", async (req, res) => {
   try {
     const { userId } = req.params;
@@ -26,6 +27,8 @@ router.post("/follow/:userId", async (req, res) => {
     res.status(500).json({ success: false, message: "Internal server error." });
   }
 });
+
+
 
 
 router.post("/unfollow/:userId", async (req, res) => {
@@ -86,6 +89,8 @@ router.get("/requesteduser", async (req, res) => {
   }
 });
 
+
+
 router.get("/follow/accept/:id", async (req, res) => {
   try {
     const requestedUser = await User.findById(req.params.id);
@@ -114,6 +119,8 @@ router.get("/follow/accept/:id", async (req, res) => {
     res.status(400).json({ msg: "Problem in request acceptance" });
   }
 });
+
+
 
 
 
@@ -158,6 +165,8 @@ router.post('/login', passport.authenticate('local', {
   try
     {
       // console.log("inside login routs  " + req.user);
+      console.log("req.user in login")
+      console.log(req.user)
       return res.status(200).json({ message: 'Logged in successfully', user:req.user });   
     }
     catch(e)
@@ -170,14 +179,18 @@ router.post('/login', passport.authenticate('local', {
 
 router.post('/register', async (req,res)=>{
   try {
+
+    
+
     const { username, password, email, role } = req.body;
-    const newuser = new User({ displayName:username, email,role });
+    const newuser = new User({ username, email,role });
     const user = await User.register( newuser, password);
 
     req.login(user, function(err) {
         if (err){
             return next(err);
         }
+        
         return res.status(200).json({ message: 'sign up successfully', user:user });
     });
 }

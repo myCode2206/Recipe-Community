@@ -1,7 +1,7 @@
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 // const GithubStrategy = require("passport-github2").Strategy;
 // const FacebookStrategy = require("passport-facebook").Strategy;
-// const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local');
 const User =require("./Models/user")
 const passport = require("passport");
 const dotenv=require('dotenv').config()
@@ -11,12 +11,11 @@ const dotenv=require('dotenv').config()
 
 
 //passport  check krega username and password using authenticate method provided by the passport-local-mongoose package
-// passport.use(new LocalStrategy(User.authenticate())); 
+passport.use(new LocalStrategy(User.authenticate())); 
 
+passport.serializeUser(User.serializeUser());
 
-// passport.serializeUser(User.serializeUser());
-
-// passport.deserializeUser(User.deserializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 
 passport.use(

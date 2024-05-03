@@ -192,6 +192,19 @@ function MyNav(props) {
                         {currentuser.username}
                       </Link>
                     </Button>
+                    <Button
+                  onClick={toggleNotifications}
+                  
+                  style={{
+                    backgroundColor: "#FFEE32",
+                    color: "black",
+                    border: "none",
+                    outline: "none",
+                  }}
+                >
+                  <IoIosNotifications style={{ fontSize: "23px" }} />
+                </Button>
+                    
                   </>
                 ) : (
                   <Button
@@ -211,18 +224,7 @@ function MyNav(props) {
                     </Link>
                   </Button>
                 )}
-                <Button
-                  onClick={toggleNotifications}
-                  
-                  style={{
-                    backgroundColor: "#FFEE32",
-                    color: "black",
-                    border: "none",
-                    outline: "none",
-                  }}
-                >
-                  <IoIosNotifications style={{ fontSize: "23px" }} />
-                </Button>
+                
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>
