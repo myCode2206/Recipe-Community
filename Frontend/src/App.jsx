@@ -12,18 +12,16 @@ import AddRecipe from "../src/Components/Form/AddRecipe";
 import AddBlog from "../src/Components/Form/AddBlog";
 import Profile from "./pages/Profile/Profile";
 import MyNav from "./Components/Navbar/MyNav";
-// import Navv from "./Components/Navbar/Navv";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Wrongurl from "./Components/Wrongurl/Wrongurl";
-const App = () => {
-  // const user=true;
 
-  const [user, setuser] = useState(null);
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const fetchuserinfo = () => {
+    const fetchUserInfo = () => {
       fetch("http://localhost:5000/auth/login/success", {
         method: "GET",
         credentials: "include",
@@ -38,38 +36,42 @@ const App = () => {
           throw new Error("authentication has been failed!");
         })
         .then((resObject) => {
-          setuser(resObject.user);
+          setUser(resObject.user);
         })
         .catch((err) => {
           console.log(err);
         });
     };
 
-    fetchuserinfo();
+    fetchUserInfo();
   }, []);
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
+
   return (
     <>
       <Router>
         <MyNav user={user} />
-        {/* <Navv /> */}
         <Routes>
-          <Route path="/" element={<Home/>} />
-          <Route path="/recipe" element={<Recipe />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/recipe" element={<Recipe searchQuery={searchQuery} />} />
           <Route path="/login" element={<Login />} />
           <Route
             path="/showRecipe/:id"
             element={user ? <ShowRecipe /> : <Login />}
           />
-          <Route path="/blogs" element={<MyBlogs />} />
+          <Route path="/blogs" element={<MyBlogs searchQuery={searchQuery} />} />
           <Route
             path="/showBlogs/:id"
             element={user ? <ShowBlogs /> : <Login />}
           />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/addrecipe" element={user ?<AddRecipe /> :<Login/>} />
-          <Route path="/addblog" element={user ? <AddBlog /> : <Login/> } />
-          <Route path="profile/:id" element={<Profile  user = {user}/>} />
-          <Route path="*" element={<Wrongurl/>} />
+          <Route path="/addrecipe" element={user ? <AddRecipe /> : <Login />} />
+          <Route path="/addblog" element={user ? <AddBlog /> : <Login />} />
+          <Route path="profile/:id" element={<Profile user={user} />} />
+          <Route path="*" element={<Wrongurl />} />
         </Routes>
       </Router>
     </>
