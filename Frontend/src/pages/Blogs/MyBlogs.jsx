@@ -1,17 +1,15 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import MyNav from "../../Components/Navbar/MyNav";
-import SearchForm from "../../Components/Search Bar/SearchForm";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import MyCard from "../../Components/Cards/MyCard";
+import SearchForm from "../../Components/Search Bar/SearchForm";
 import Footer from "../../Components/footer/Footer";
 import BCard from "../../Components/Cards/BCard";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
-export const MyBlogs = () => {
-  const [blogs, setblogs] = useState([]);
+export const MyBlogs = ({ searchQuery }) => {
+  const [blogs, setBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   const navigate = useNavigate();
 
   function Redirect() {
@@ -25,18 +23,27 @@ export const MyBlogs = () => {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-        }
-        });
-      // {console.log(res.data);}
-      setblogs(res.data);
+        },
+      });
+      setBlogs(res.data);
     } catch (e) {
-      console.log("unable to fetch all blogs data");
+      console.log("Unable to fetch blogs");
     }
   }
 
   useEffect(() => {
     getAllBlogs();
   }, []);
+
+  //search filter
+
+  useEffect(() => {
+    setFilteredBlogs(
+      blogs.filter((blog) =>
+        blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, blogs]);
 
   const flexbox = {
     display: "flex",
@@ -46,7 +53,6 @@ export const MyBlogs = () => {
 
   return (
     <>
-      {/* <MyNav /> */}
       <div
         style={{
           width: "100%",
@@ -76,7 +82,7 @@ export const MyBlogs = () => {
       </div>
 
       <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <h1>Explore's The Blogs </h1>
+        <h1>Explore the Blogs</h1>
       </div>
       <div
         style={{
@@ -86,11 +92,15 @@ export const MyBlogs = () => {
           margin: "20px",
         }}
       >
-        <SearchForm />
+        <SearchForm onSearch={(query) => setFilteredBlogs(
+          blogs.filter((blog) =>
+            blog.title.toLowerCase().includes(query.toLowerCase())
+          )
+        )} />
       </div>
 
       <div className="container" style={flexbox}>
-        {blogs.map((blog) => {
+        {filteredBlogs.map((blog) => {
           return <BCard key={blog._id} blog={blog} />;
         })}
       </div>

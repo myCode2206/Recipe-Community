@@ -1,34 +1,43 @@
 import { useState, useEffect } from "react";
-import MyNav from "../../Components/Navbar/MyNav";
-import Footer from "../../Components/footer/Footer";
 import MyCard from "../../Components/Cards/MyCard";
 import SearchForm from "../../Components/Search Bar/SearchForm";
 import axios from "axios";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 
-const Recipe = () => {
+const Recipe = ({ searchQuery }) => {
   const navigate = useNavigate();
 
   function Redirect() {
     navigate("/addrecipe");
   }
-  //data fetch from api to get the content of cards
 
-  const [recipes, setrecipe] = useState([]);
+  const [recipes, setRecipes] = useState([]);
+  const [filteredRecipes, setFilteredRecipes] = useState([]);
 
   async function getAllRecipes() {
     try {
       const res = await axios.get("http://localhost:5000/recipe/");
-      setrecipe(res.data);
+      setRecipes(res.data);
     } catch (e) {
-      console.log("bhai recipe fetch nhi ho pa rhi url se");
+      console.log("Unable to fetch recipes");
     }
   }
 
   useEffect(() => {
     getAllRecipes();
   }, []);
+
+  //Searchfilter
+
+  useEffect(() => {
+    setFilteredRecipes(
+      recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [searchQuery, recipes]);
+
 
   const flexbox = {
     display: "flex",
@@ -38,8 +47,6 @@ const Recipe = () => {
 
   return (
     <>
-      {/* <MyNav /> */}
-
       <div style={{ textAlign: "center", marginTop: "30px" }}>
         <div
           style={{
@@ -77,16 +84,18 @@ const Recipe = () => {
           margin: "20px",
         }}
       >
-        <SearchForm />
+        <SearchForm onSearch={(query) => setFilteredRecipes(
+          recipes.filter((recipe) =>
+            recipe.title.toLowerCase().includes(query.toLowerCase())
+          )
+        )} />
       </div>
 
       <div className="container" style={flexbox}>
-        {recipes.map((recipe) => {
+        {filteredRecipes.map((recipe) => {
           return <MyCard key={recipe._id} item={recipe} />;
         })}
       </div>
-
-      <Footer />
     </>
   );
 };
