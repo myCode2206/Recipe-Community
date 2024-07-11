@@ -37,10 +37,12 @@ export const MyBlogs = ({ searchQuery }) => {
 
   //search filter
 
+  const Blogstr = (str) => str.split(' ').join('').toLowerCase();
+
   useEffect(() => {
     setFilteredBlogs(
       blogs.filter((blog) =>
-        blog.title.toLowerCase().includes(searchQuery.toLowerCase())
+        Blogstr(blog.title).includes(Blogstr(searchQuery))
       )
     );
   }, [searchQuery, blogs]);
@@ -94,7 +96,7 @@ export const MyBlogs = ({ searchQuery }) => {
       >
         <SearchForm onSearch={(query) => setFilteredBlogs(
           blogs.filter((blog) =>
-            blog.title.toLowerCase().includes(query.toLowerCase())
+            Blogstr(blog.title).includes(Blogstr(query))
           )
         )} />
       </div>

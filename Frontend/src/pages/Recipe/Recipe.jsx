@@ -4,6 +4,7 @@ import SearchForm from "../../Components/Search Bar/SearchForm";
 import axios from "axios";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../Components/footer/Footer";
 
 const Recipe = ({ searchQuery }) => {
   const navigate = useNavigate();
@@ -30,10 +31,12 @@ const Recipe = ({ searchQuery }) => {
 
   //Searchfilter
 
+  const Recipestr = (str) => str.split(' ').join('').toLowerCase();
+
   useEffect(() => {
     setFilteredRecipes(
       recipes.filter((recipe) =>
-        recipe.title.toLowerCase().includes(searchQuery.toLowerCase())
+        Recipestr(recipe.title).includes(Recipestr(searchQuery))
       )
     );
   }, [searchQuery, recipes]);
@@ -86,7 +89,7 @@ const Recipe = ({ searchQuery }) => {
       >
         <SearchForm onSearch={(query) => setFilteredRecipes(
           recipes.filter((recipe) =>
-            recipe.title.toLowerCase().includes(query.toLowerCase())
+            Recipestr(recipe.title).includes(Recipestr(query))
           )
         )} />
       </div>
@@ -96,6 +99,7 @@ const Recipe = ({ searchQuery }) => {
           return <MyCard key={recipe._id} item={recipe} />;
         })}
       </div>
+      <Footer />
     </>
   );
 };
